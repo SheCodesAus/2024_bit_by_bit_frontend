@@ -24,7 +24,7 @@ import ProfilePage from "./pages/UserPages/ProfilePage";
 import UpdateProfilePage from "./pages/UserPages/UpdateProfilePage";
 import ManageUsersPage from "./pages/UserPages/ManageUsersPage";
 
-import 
+
 // COMPONENTS
 import { AuthProvider } from "./components/AuthProvider.jsx";
 import NavBar from "./components/GlobalElements/NavBar.jsx";
