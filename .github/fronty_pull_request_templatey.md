@@ -11,8 +11,7 @@ Please include a clear overview of what has changed so that reviewers can quickl
 - [ ] Yes
 - [ ] No
 
-## If Yes to the above question - give details:
-## Skip this section if the answer is No
+## Skip this section if the answer is No - If Yes to the above question - give details:
 
 ## What kind of feedback do you need?
 
