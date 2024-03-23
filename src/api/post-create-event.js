@@ -1,5 +1,5 @@
 async function postCreateEvent(eventDetails) {
-  const url = `${import.meta.env.VITE_API_URL}/festivals/`;
+  const url = `${import.meta.env.VITE_API_URL}/events/`;
   const token = window.localStorage.getItem("token");
 
   const newEvent = await fetch(url, {
