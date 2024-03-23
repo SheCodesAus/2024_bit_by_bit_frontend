@@ -1,6 +1,13 @@
-function LoginPage() {
+// COMPONENTS
+import LoginForm from "../../components/UserComponents/LoginForm";
 
-	return <h1>This is the login page</h1>;
+function LoginPage() {
+  return (
+    <main>
+      <h1>This is the Register User page</h1>
+      <LoginForm />
+    </main>
+  );
 }
 
 export default LoginPage;
