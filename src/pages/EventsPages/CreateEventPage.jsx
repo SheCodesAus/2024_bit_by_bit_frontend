@@ -1,6 +1,13 @@
-function CreateEventPage() {
+// COMPONENTS
+import CreateEventForm from "../../components/EventComponents/CreateEventForm";
 
-	return <h1>This is the login page</h1>;
+function CreateEventPage() {
+  return (
+    <main>
+      <h1>This is the Create Event page</h1>
+      <CreateEventForm />
+    </main>
+  );
 }
 
 export default CreateEventPage;
