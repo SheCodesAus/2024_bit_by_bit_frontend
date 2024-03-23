@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 
 // GLOBAL PAGES
-import LoginPage from "./pages/GlobalPages/LoginPage.jsx";
+import Log
 import RegisterPage from "./pages/GlobalPages/RegisterPage.jsx";
 import HomePage from "./pages/GlobalPages/HomePage.jsx";
 import AboutPage from "./pages/GlobalPages/AboutPage.jsx";
