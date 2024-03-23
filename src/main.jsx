@@ -7,7 +7,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 
 // GLOBAL PAGES
-import Log
+import LoginPage from "./pages/GlobalPages/LoginPage.jsx";
 import RegisterPage from "./pages/GlobalPages/RegisterPage.jsx";
 import HomePage from "./pages/GlobalPages/HomePage.jsx";
 import AboutPage from "./pages/GlobalPages/AboutPage.jsx";
@@ -23,7 +23,6 @@ import ScheduleEventMentorPage from "./pages/EventsPages/ScheduleEventMentorPage
 import ProfilePage from "./pages/UserPages/ProfilePage";
 import UpdateProfilePage from "./pages/UserPages/UpdateProfilePage";
 import ManageUsersPage from "./pages/UserPages/ManageUsersPage";
-
 
 // COMPONENTS
 import { AuthProvider } from "./components/AuthProvider.jsx";
