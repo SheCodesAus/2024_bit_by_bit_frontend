@@ -8,6 +8,7 @@ import postCreateEvent from "../../api/post-create-event";
 // COMPONENTS
 import ButtonElement from "../GlobalElements/Button";
 
+// TODO: Look at adding event language!
 function CreateEventForm() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -39,7 +40,8 @@ function CreateEventForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(eventDetails);
+    console.log("submitted: ", eventDetails);
+    navigate("/");
     // if (
     //   eventDetails.event_type &&
     //   eventDetails.event_name &&
@@ -61,7 +63,7 @@ function CreateEventForm() {
     <>
       <form>
         {/* SECTION  - Event Information */}
-        {/* TODO: Look at event type! */}
+        {/* TODO: Look at event language! */}
         <section>
           {/* HEADER */}
           <section>
@@ -79,8 +81,9 @@ function CreateEventForm() {
             <label htmlFor="eventType">Event Type</label>
             <select
               name="eventType"
-              value={eventType}
-              onChange={(e) => setEventType(e.target.value)}
+              value={eventDetails.event_type}
+              onChange={(e) => handleChange(e)}
+              id="event_type"
             >
               <option value="Select one">Select one</option>
               <option value="One day workshop">One day workshop</option>
@@ -95,18 +98,21 @@ function CreateEventForm() {
             <input
               type="text"
               name="event_name"
+              value={eventDetails.event_name}
               placeholder="Epic Event Name"
-              onChange={handleChange}
+              onChange={(e) => handleChange(e)}
+              id="event_name"
             />
           </section>
           {/* EVENT LANGUAGE */}
-          <section>
-            <label htmlFor="language">Event Language</label>
+          {/* <section>
+            <label htmlFor="event_language">Event Language</label>
             <p> Select as many as required</p>
             <select
-              name="language"
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
+              name="event_language"
+              value={eventDetails.event_language}
+              onChange={(e) => handleChange(e)}
+              id="event_language"
             >
               <option value="Select one">Select one</option>
               <option value="HTML/CSS">HTML/CSS</option>
@@ -115,18 +121,18 @@ function CreateEventForm() {
               <option value="Wordpress">Wordpress</option>
               <option value="JS/React">JS/React</option>
             </select>
-          </section>
+          </section> */}
         </section>
         {/* SECTION  - Location and Dates */}
-        {/* TODO: Look at location! */}
         <section>
           {/* LOCATION */}
           <section>
             <label htmlFor="location">Event Location</label>
             <select
               name="location"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
+              value={eventDetails.location}
+              onChange={(e) => handleChange(e)}
+              id="location"
             >
               <option value="Select one">Select one</option>
               <option value="Perth">Perth</option>
@@ -153,8 +159,9 @@ function CreateEventForm() {
           <input
             type="number"
             name="attendee_numbers"
-            autoComplete="attendee_numbers"
-            onChange={handleChange}
+            value={eventDetails.attendee_numbers}
+            onChange={(e) => handleChange(e)}
+            id="attendee_numbers"
           />
         </section>
         {/* SECTION  - Submit */}
