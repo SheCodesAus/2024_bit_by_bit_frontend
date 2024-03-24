@@ -23,6 +23,8 @@ function RegisterUserForm() {
     profilePic: "",
     bio: "",
     codingLanguage: "",
+    slack: "",
+    linkedIn: "",
   });
 
   const [password, setPassword] = useState("");
@@ -188,14 +190,6 @@ function RegisterUserForm() {
               placeholder="I am an incredible mentor with experience in X, Y and Z. When I am not coding or mentoring I am being a QUEEN!"
               onChange={handleChange}
             />
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              type="text"
-              name="lastName"
-              autoComplete="given-name"
-              placeholder="Swift"
-              onChange={handleChange}
-            />
           </section>
           {/* CODING LANGUAGES */}
           {/* TODO: Confirm how we want to allow users to select this/allowing multiple choices.*/}
@@ -212,6 +206,16 @@ function RegisterUserForm() {
               <option value="jsReact">Javascript and React</option>
               <option value="wordpress">Wordpress</option>
             </select>
+          </section>
+          {/* SLACK */}
+          <section>
+            <label htmlFor="slack">Slack</label>
+            <input
+              type="text"
+              name="slack"
+              placeholder="mySlack URL"
+              onChange={handleChange}
+            />
           </section>
           {/* LINKEDIN */}
           <section>
