@@ -27,6 +27,7 @@ import ManageUsersPage from "./pages/UserPages/ManageUsersPage";
 // COMPONENTS
 import { AuthProvider } from "./components/AuthProvider.jsx";
 import NavBar from "./components/GlobalElements/NavBar.jsx";
+import { NavbarProvider } from "./components/NavBarContext.jsx";
 
 const router = createBrowserRouter([
   {
@@ -59,7 +60,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+      <NavbarProvider>
+        <RouterProvider router={router} />
+      </NavbarProvider>
     </AuthProvider>
   </React.StrictMode>
 );
