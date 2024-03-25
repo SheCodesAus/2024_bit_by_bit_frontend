@@ -180,6 +180,7 @@ function RegisterUserForm() {
               />
             </div>
             {/* CODING LANGUAGES */}
+            {/* TODO: Confirm how we want to allow users to select this/allowing multiple choices */}
             <div>
               <label htmlFor="codingLanguage" className="block text-sm font-medium text-gray-700">Main Coding Language</label>
               <select
