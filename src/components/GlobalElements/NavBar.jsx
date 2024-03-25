@@ -18,20 +18,14 @@ function NavBar() {
   return (
     <>
       <header>
-        <section className="w-full bg-gray-800 text-white flex items-center justify-end px-4 h-12">
+        <section className="w-full text-white flex items-center justify-end px-4 h-12" style={{ backgroundColor: 'rgb(130, 70, 175)'}}>
           <h1 className="text-3xl font-bold">BYTE TIME</h1>
         </section>
 
         <nav
-          className={`fixed top-12 h-[calc(100vh-3rem)] bg-gray-800 p-3 ${
-            isNavbarOpen ? "w-60" : "w-20"
-          } flex flex-col transition-all duration-500 ease-in-out`}
-        >
+          className={`fixed top-12 h-[calc(100vh-3rem)] p-3 ${isNavbarOpen ? "w-60" : "w-20"} text-white flex flex-col transition-all duration-500 ease-in-out`} style={{ backgroundColor: 'rgb(130, 70, 175)'}}>
           <div
-            className={`flex justify-center items-center border border-red-500 ${
-              !isNavbarOpen ? "overflow-hidden" : ""
-            }`}
-          >
+            className={`flex justify-center items-center ${!isNavbarOpen ? "overflow-hidden" : ""}`}>
             <a href="#logo" className="logo-wrapper flex items-center gap-4">
               <img
                 src={logoPath}
@@ -45,7 +39,7 @@ function NavBar() {
             <button
               className="toggle-btn absolute top-2.5 right-[-12px] p-2 bg-white rounded-full flex items-center justify-center transform transition-transform ease-linear"
               onClick={toggleNavbar}
-            >
+              >
               <img
                 src={logoPath}
                 alt="expand button"
@@ -55,45 +49,45 @@ function NavBar() {
           </div>
 
           <div className="flex flex-col justify-center items-center overflow-hidden gap-2 pt-6 border border-red-500">
-            <a
-              href="#home"
-              className={`link flex items-center gap-4 p-2 rounded-md ${isNavbarOpen ? "bg-gray-200" : "hover:bg-gray-200"}`}
+            <Link
+              to="/home"
+              className={`link flex items-center gap-4 p-2 rounded-md ${isNavbarOpen ? "bg-gray-200" : "hover:bg-orange-600"}`}
             >
               <img src={logoPath} alt="Home" className="w-6 h-6" />
               <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>Home</span>
-            </a>
+            </Link>
           </div>
 
-          <div className="mt-auto flex flex-col justify-center items-center gap-2 pt-6 border-t border-gray-300 border border-red-500">
-            <a
-              href="#settings"
-              className="link flex items-center gap-4 p-2 rounded-md hover:bg-gray-200"
+          <div className="mt-auto flex flex-col justify-center items-center gap-2 pt-6 border-t border-orange-300">
+            <Link
+                to="/home"
+              className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
             >
               <img src={logoPath} alt="Settings" className="w-6 h-6" />
               <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>Home</span>
-            </a>
-            <a
-              href="#settings"
-              className="link flex items-center gap-4 p-2 rounded-md hover:bg-gray-200"
+            </Link>
+            <Link
+              to="/profile"
+              className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
             >
               <img src={logoPath} alt="Settings" className="w-6 h-6" />
               <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>Profile</span>
-            </a>
-            <a
-              href="#settings"
-              className="link flex items-center gap-4 p-2 rounded-md hover:bg-gray-200"
+            </Link>
+            <Link
+              to="/events"
+              className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
             >
               <img src={logoPath} alt="Settings" className="w-6 h-6" />
               <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>Events</span>
-            </a>
-            <a
-              href="#settings"
-              className="link flex items-center gap-4 p-2 rounded-md hover:bg-gray-200"
+            </Link>
+            <Link
+              to="/about"
+              className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
             >
               <img src={logoPath} alt="Settings" className="w-6 h-6" />
               <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>About</span>
-            </a>
-            <div className="user-profile flex justify-center items-center gap-4 pt-6 border border-red-500">
+            </Link>
+            <div className="user-profile flex justify-center items-center gap-4 pt-6">
               <div className="user-avatar w-12 h-12 cursor-pointer transition-transform duration-200 hover:scale-110">
                 <img
                   src={logoPath}
