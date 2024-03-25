@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth.js";
+import buttonElement from "../GlobalElements/Button.jsx";
 
 // STYLE/TAILWIND
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
@@ -23,6 +24,8 @@ function RegisterUserForm() {
     profilePic: "",
     bio: "",
     codingLanguage: "",
+    slack: "",
+    linkedIn: "",
   });
 
   const [password, setPassword] = useState("");
@@ -62,39 +65,37 @@ function RegisterUserForm() {
 
   return (
     <>
-      <form>
+      <form className="flex flex-col items-center justify-center py-8">
         {/* SECTION 1 - Account information */}
-        <section>
-          {/* HEADER */}
-          <section>
-            <h2>Account information</h2>
-            <p>
-              This username can be seen for all mentors. Make sure it is
-              appropriate!
-            </p>
-          </section>
-          {/* USERNAME */}
-          <section>
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              autoComplete="username"
-              placeholder="epicusername"
-              onChange={handleChange}
-            />
-          </section>
-          {/* PASSWORD */}
-          <section>
-            <label htmlFor="password">Password</label>
-            <input
-              type="text"
-              name="password"
-              autoComplete="password"
-              placeholder="epicpassword"
-              onChange={(e) => setPassword(e.target.value)}
-            />
+        <section className="w-full mb-4">
+          <h2 className="text-lg font-semibold mb-2">Account information</h2>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {/* USERNAME */}
             <div>
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
+              <input
+                type="text"
+                name="username"
+                autoComplete="username"
+                placeholder="epicusername"
+                onChange={handleChange}
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+            {/* PASSWORD */}
+            <div>
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+              <input
+                type="password"
+                name="password"
+                autoComplete="new-password"
+                placeholder="********"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+            <div className="col-span-2 flex items-center justify-center">
               <label htmlFor="check">Show Password</label>
               <input
                 type="checkbox"
@@ -102,131 +103,129 @@ function RegisterUserForm() {
                 onChange={() => setShowPassword((prev) => !prev)}
               />
             </div>
-          </section>
+          </div>
         </section>
         {/* SECTION 2 - Personal Information */}
-        <section>
-          {/* NOTE: This heading and information my need to change */}
-          {/* HEADER */}
-          <section>
-            <h2>Personal Information</h2>
-            <p>This information will be accessed by the admin team.</p>
-          </section>
-          {/* NAMES */}
-          <section>
-            <label htmlFor="firstName">First Name</label>
-            <input
-              type="text"
-              name="firstName"
-              autoComplete="given-name"
-              placeholder="Taylor"
-              onChange={handleChange}
-            />
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              type="text"
-              name="lastName"
-              autoComplete="given-name"
-              placeholder="Swift"
-              onChange={handleChange}
-            />
-          </section>
-          {/* CONTACT NUMBER*/}
-          <section>
-            <label htmlFor="contactNumber">Contact Number</label>
-            <input
-              type="text"
-              name="contactNumber"
-              autoComplete="contactNumber"
-              placeholder="555 2368"
-              onChange={handleChange}
-            />
-          </section>
-          {/* EMAIL */}
-          <section>
-            <label htmlFor="email">Email</label>
-            <input
-              type="text"
-              name="email"
-              autoComplete="email"
-              placeholder="tayloristhebest@swift.com"
-              onChange={handleChange}
-            />
-          </section>
-          {/* PROFILE PICTURE */}
-          <section>
-            <label htmlFor="profilePic">Profile Picture</label>
-            <svg
-              className="h-12 w-12 text-gray-300"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M18.685 19.097A9.723 9.723 0 0021.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 003.065 7.097A9.716 9.716 0 0012 21.75a9.716 9.716 0 006.685-2.653zm-12.54-1.285A7.486 7.486 0 0112 15a7.486 7.486 0 015.855 2.812A8.224 8.224 0 0112 20.25a8.224 8.224 0 01-5.855-2.438zM15.75 9a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
-                clip-rule="evenodd"
+        <section className="w-full mb-4">
+          <h2 className="text-lg font-semibold mb-2">Personal Information</h2>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {/* NAMES */}
+            <div>
+              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name</label>
+              <input
+                type="text"
+                name="firstName"
+                autoComplete="given-name"
+                placeholder="Taylor"
+                onChange={handleChange}
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
-            </svg>
-            <button type="button">Change</button>
-          </section>
+            </div>
+            <div>
+              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name</label>
+              <input
+                type="text"
+                name="lastName"
+                autoComplete="family-name"
+                placeholder="Swift"
+                onChange={handleChange}
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+            {/* CONTACT NUMBER */}
+            <div>
+              <label htmlFor="contactNumber" className="block text-sm font-medium text-gray-700">Contact Number</label>
+              <input
+                type="text"
+                name="contactNumber"
+                autoComplete="tel"
+                placeholder="555 2368"
+                onChange={handleChange}
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+            {/* EMAIL */}
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+              <input
+                type="text"
+                name="email"
+                autoComplete="email"
+                placeholder="tayloristhebest@swift.com"
+                onChange={handleChange}
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+            {/* PROFILE PICTURE */}
+            <div className="col-span-2 flex items-center justify-center">
+              <label htmlFor="profilePic" className="block text-sm font-medium text-gray-700 mr-2">Profile Picture</label>
+              <PhotoIcon className="h-6 w-6 text-gray-400" />
+              <button type="button" className="ml-2 text-sm text-blue-600 hover:text-blue-700 focus:outline-none">Change</button>
+            </div>
+          </div>
         </section>
         {/* SECTION 3 - Mentor Information */}
-        <section>
-          {/* NOTE: This heading and information my need to change */}
-          {/* HEADER */}
-          <section>
-            <h2>Mentor Information</h2>
-            <p>This information will be accessed by the admin team.</p>
-          </section>
-          {/* BIO */}
-          <section>
-            <label htmlFor="bio">Mentor Bio</label>
-            <input
-              type="text"
-              name="bio"
-              placeholder="I am an incredible mentor with experience in X, Y and Z. When I am not coding or mentoring I am being a QUEEN!"
-              onChange={handleChange}
-            />
-            <label htmlFor="lastName">Last Name</label>
-            <input
-              type="text"
-              name="lastName"
-              autoComplete="given-name"
-              placeholder="Swift"
-              onChange={handleChange}
-            />
-          </section>
-          {/* CODING LANGUAGES */}
-          {/* TODO: Confirm how we want to allow users to select this/allowing multiple choices.*/}
-          <section>
-            <label htmlFor="mainCodingLanguage">Main Coding Language</label>
-            <select
-              id="codingLanguage"
-              name="codingLanguage"
-              onChange={handleChange}
-            >
-              <option value="htmlCss">HTML/CSS</option>
-              <option value="python">Python</option>
-              <option value="django">Django</option>
-              <option value="jsReact">Javascript and React</option>
-              <option value="wordpress">Wordpress</option>
-            </select>
-          </section>
+        <section className="w-full mb-4">
+          <h2 className="text-lg font-semibold mb-2">Mentor Information</h2>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {/* BIO */}
+            <div>
+              <label htmlFor="bio" className="block text-sm font-medium text-gray-700">Mentor Bio</label>
+              <textarea
+                name="bio"
+                placeholder="I am an incredible mentor with experience in X, Y and Z. When I am not coding or mentoring I am being a QUEEN!"
+                onChange={handleChange}
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                rows="4"
+              />
+            </div>
+            {/* CODING LANGUAGES */}
+            <div>
+              <label htmlFor="codingLanguage" className="block text-sm font-medium text-gray-700">Main Coding Language</label>
+              <select
+                id="codingLanguage"
+                name="codingLanguage"
+                onChange={handleChange}
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              >
+                <option value="htmlCss">HTML/CSS</option>
+                <option value="python">Python</option>
+                <option value="django">Django</option>
+                <option value="jsReact">Javascript and React</option>
+                <option value="wordpress">Wordpress</option>
+              </select>
+            </div>
+            {/* SLACK */}
+            <div>
+              <label htmlFor="slack" className="block text-sm font-medium text-gray-700">Slack</label>
+              <input
+                type="text"
+                name="slack"
+                placeholder="mySlack URL"
+                onChange={handleChange}
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
           {/* LINKEDIN */}
-          <section>
-            <label htmlFor="linkedin">LinkedIn</label>
-            <input
-              type="text"
-              name="linkedin"
-              placeholder="myLinkedIn URL"
-              onChange={handleChange}
-            />
-          </section>
+            <div>
+              <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700">LinkedIn</label>
+              <input
+                type="text"
+                name="linkedin"
+                placeholder="myLinkedIn URL"
+                onChange={handleChange}
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+            </div>
         </section>
         {/* SECTION 4 - Submit */}
         <section>
-          <button type="submit" onClick={handleSubmit}>
+          <button 
+          type="submit" 
+          onClick={handleSubmit}
+          className="rounded-md bg-orange-500 px-3"
+          >
             Submit
           </button>
         </section>
