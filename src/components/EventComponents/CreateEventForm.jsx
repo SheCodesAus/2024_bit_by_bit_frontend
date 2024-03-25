@@ -66,9 +66,9 @@ function CreateEventForm() {
         {/* TODO: Look at event language! */}
         <section className="w-full mb-4">
           {/* HEADER */}
-          <section>
+          <section className="border-b p-4 border-gray-300">
             <h2 className="text-lg font-semibold mb-2">Event information</h2>
-            <p>
+            <p className="mb-3 ">
               Ensure all event detail is clear enough that a new mentor will
               understand the process! When organising events with multiple
               modules, like the Plus Program, create an event per module so that
@@ -77,7 +77,7 @@ function CreateEventForm() {
             </p>
           </section>
           {/* EVENT TYPE */}
-          <section>
+          <section className="mt-5">
             <label htmlFor="eventType">Event Type</label>
             <select
               name="eventType"

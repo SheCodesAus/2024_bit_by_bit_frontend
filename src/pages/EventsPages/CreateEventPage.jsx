@@ -10,8 +10,7 @@ function CreateEventPage() {
     <main className={`flex min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"}`}>
       {/* Adjust margin based on sidebar toggle */}
       <section className="w-3/5 flex justify-center items-center bg-white">
-        <div className="w-full max-w-md">
-          <h1>This is the Create Event page</h1>
+        <div className="w-4/5">
           <CreateEventForm />
         </div>
       </section>
