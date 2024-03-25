@@ -1,22 +1,25 @@
 // COMPONENTS
 import CreateEventForm from "../../components/EventComponents/CreateEventForm";
-import { useState } from "react";
 import { useNavbarContext } from "../../components/NavBarContext";
 
-function CreateEventPage({ isOpen }) {
+function CreateEventPage() {
 
   const { isNavbarOpen } = useNavbarContext();
 
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   return (
-    <main className={`p-10 ${isNavbarOpen ? "ml-60" : "ml-20"}`} style={{ paddingTop: "4rem" }}>
+    <main className={`flex min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"}`}>
       {/* Adjust margin based on sidebar toggle */}
-      <h1>This is the Create Event page</h1>
-      <CreateEventForm />
+      <section className="w-3/5 flex justify-center items-center bg-white">
+        <div className="w-full max-w-md">
+          <h1>This is the Create Event page</h1>
+          <CreateEventForm />
+        </div>
+      </section>
+
+      {/* RHS: image */}
+      <section 
+      className="w-2/5 bg-purple-500">
+      </section>
     </main>
   );
 }
