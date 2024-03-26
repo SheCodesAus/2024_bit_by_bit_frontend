@@ -1,5 +1,6 @@
 // COMPONENTS
 import LoginForm from "../../components/UserComponents/LoginForm";
+import { Link } from "react-router-dom";
 
 function LoginPage() {
   return (
@@ -9,6 +10,9 @@ function LoginPage() {
         <div className="w-full max-w-md">
           <h1 className="text-xl font-bold mb-4">Log In</h1>
           <LoginForm />
+          <p className="mt-4 text-center">
+            Don't have an account? <Link to="/register" className="text-blue-500 hover:text-blue-700">Click here to register</Link>
+          </p>
         </div>
       </div>
       

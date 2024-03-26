@@ -58,7 +58,7 @@ function LoginForm() {
         <section>
           {/* USERNAME */}
           <section>
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
             <input
               type="text"
               name="username"
@@ -66,17 +66,19 @@ function LoginForm() {
               autoComplete="username"
               placeholder="epicusername"
               onChange={(e) => setUsername(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </section>
           {/* PASSWORD */}
           <section>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
             <input
               type="password"
               name="password"
               autoComplete="password"
               placeholder="epicpassword"
               onChange={(e) => setPassword(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
             {/* REMOVED DUE TO MVP TIME CONSTRAINTS */}
             {/* <div>
@@ -90,8 +92,12 @@ function LoginForm() {
           </section>
         </section>
         {/* SECTION 2 - Submit */}
-        <section>
-          <button type="submit" onClick={handleSubmit}>
+        <section className="mt-4">
+        <button 
+          type="submit" 
+          onClick={handleSubmit}
+          className="rounded-md bg-orange-500 px-3"
+          >
             Submit
           </button>
         </section>
