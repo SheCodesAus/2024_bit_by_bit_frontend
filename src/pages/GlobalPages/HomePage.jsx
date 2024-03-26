@@ -6,6 +6,7 @@ import GlobalAlertModal from "../../components/GlobalElements/GlobalAlertModal";
 import ButtonElement from "../../components/GlobalElements/Button";
 
 function HomePage() {
+  const { projects } = useProjects();
   const navigate = useNavigate();
   // MODAL Variables
   const modalTitle = "Global Modal Template";
