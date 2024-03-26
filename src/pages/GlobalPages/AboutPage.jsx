@@ -9,7 +9,7 @@ function AboutPage() {
 
                 <div className="flex flex-col items-center w-full">
                     <br/>
-                    <p>Welcome to !</p>
+                    <p>Welcome to ABOUT !</p>
                 </div>
                 <br/>
             </div>
