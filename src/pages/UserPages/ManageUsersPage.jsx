@@ -1,6 +1,13 @@
-function ManageUsersPage() {
+// COMPONENTS
+import ManageUserDetails from "../../components/UserComponents/manageUsers/ManageUsersDetails";
 
-	return <h1>This is the login page</h1>;
+function ManageUsersPage() {
+  return (
+    <main>
+      <h1>This is the Manage users page</h1>
+      <ManageUserDetails />
+    </main>
+  );
 }
 
 export default ManageUsersPage;

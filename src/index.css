@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.item .activeIcon {
+  @apply hidden;
+}
+
+.item.active .inactiveIcon {
+  @apply hidden;
+}
+
+.item.active .activeIcon {
+  @apply block;
+}
+
+.item:not(.active) .content {
+  @apply h-0 overflow-hidden py-0;
+}
+
+.item.active .content {
+  @apply p-8;
+}

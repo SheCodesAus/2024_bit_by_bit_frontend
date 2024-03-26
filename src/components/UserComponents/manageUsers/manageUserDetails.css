@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind components;
+
+.item.active .inactiveIcon {
+  @apply hidden;
+}
