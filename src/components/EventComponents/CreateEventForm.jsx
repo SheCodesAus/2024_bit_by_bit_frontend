@@ -61,14 +61,14 @@ function CreateEventForm() {
 
   return (
     <>
-      <form>
+      <form className="flex flex-col items-center justify-center py-8">
         {/* SECTION  - Event Information */}
         {/* TODO: Look at event language! */}
-        <section>
+        <section className="w-full mb-4">
           {/* HEADER */}
-          <section>
-            <h2>Event information</h2>
-            <p>
+          <section className="border-b p-4 border-gray-300">
+            <h2 className="text-lg font-semibold mb-2">Event information</h2>
+            <p className="mb-3 ">
               Ensure all event detail is clear enough that a new mentor will
               understand the process! When organising events with multiple
               modules, like the Plus Program, create an event per module so that
@@ -77,13 +77,14 @@ function CreateEventForm() {
             </p>
           </section>
           {/* EVENT TYPE */}
-          <section>
+          <section className="mt-5">
             <label htmlFor="eventType">Event Type</label>
             <select
               name="eventType"
               value={eventDetails.event_type}
               onChange={(e) => handleChange(e)}
               id="event_type"
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             >
               <option value="Select one">Select one</option>
               <option value="One day workshop">One day workshop</option>
@@ -102,6 +103,7 @@ function CreateEventForm() {
               placeholder="Epic Event Name"
               onChange={(e) => handleChange(e)}
               id="event_name"
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
           </section>
           {/* EVENT LANGUAGE */}
@@ -124,7 +126,7 @@ function CreateEventForm() {
           </section> */}
         </section>
         {/* SECTION  - Location and Dates */}
-        <section>
+        <section className="w-full mb-4">
           {/* LOCATION */}
           <section>
             <label htmlFor="location">Event Location</label>
@@ -133,6 +135,7 @@ function CreateEventForm() {
               value={eventDetails.location}
               onChange={(e) => handleChange(e)}
               id="location"
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             >
               <option value="Select one">Select one</option>
               <option value="Perth">Perth</option>
@@ -146,15 +149,25 @@ function CreateEventForm() {
             <label htmlFor="event_start_date">
               When does your event start?
             </label>
-            <input type="date" id="event_start_date" onChange={handleChange} />
+            <input 
+            type="date" 
+            id="event_start_date" 
+            onChange={handleChange} 
+            className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
           </section>
           <section>
             <label htmlFor="event_end_date">When does your event end?</label>
-            <input type="date" id="event_end_date" onChange={handleChange} />
+            <input 
+            type="date" 
+            id="event_end_date" 
+            onChange={handleChange} 
+            className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
           </section>
         </section>
         {/* SECTION  - Attendees */}
-        <section>
+        <section className="w-full mb-4">
           <label htmlFor="attendee_numbers">Attendee Numbers</label>
           <input
             type="number"
@@ -162,6 +175,7 @@ function CreateEventForm() {
             value={eventDetails.attendee_numbers}
             onChange={(e) => handleChange(e)}
             id="attendee_numbers"
+            className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
         </section>
         {/* SECTION  - Submit */}
