@@ -9,7 +9,7 @@ function EventCard(props) {
             <Link to={eventLink} >
                 <h3 className="font-bold">{eventData.program}</h3>
                 <h3>{new Date(eventData.date).toLocaleDateString('en-GB')}</h3>
-                <h3 className="font-bold">{eventData.city}</h3> {/* There was a typo here: 'locatin' */}
+                <h3 className="font-bold">{eventData.city}</h3>
                 <h3 className="font-bold">{eventData.time}</h3>
                 </Link>
                 <div>
@@ -17,7 +17,7 @@ function EventCard(props) {
                         <option value="">Select Role</option>
                         {/* Populate with actual roles */}
                     </select>
-                    <label className="flex items-center mt-2"> {/* Added mt-2 for spacing */}
+                    <label className="flex items-center mt-2">
                         <input type="checkbox" /> Available
                     </label>
                 </div>
