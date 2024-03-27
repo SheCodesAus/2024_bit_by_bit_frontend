@@ -2,7 +2,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.item .activeIcon {
+/* .item .activeIcon {
   @apply hidden;
 }
 
@@ -20,4 +20,4 @@
 
 .item.active .content {
   @apply p-8;
-}
+} */
