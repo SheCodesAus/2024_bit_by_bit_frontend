@@ -11,6 +11,21 @@ export const mockUserData = [
     linkedIn:
       "https://parallels.com/nam/dui/proin/leo/odio.js?velit=lacinia&id=aenean&pretium=sit&iaculis=amet&diam=justo&erat=morbi&fermentum=ut&justo=odio&nec=cras&condimentum=mi&neque=pede&sapien=malesuada&placerat=in&ante=imperdiet&nulla=et&justo=commodo&aliquam=vulputate&quis=justo&turpis=in&eget=blandit&elit=ultrices&sodales=enim&scelerisque=lorem&mauris=ipsum&sit=dolor&amet=sit&eros=amet&suspendisse=consectetuer&accumsan=adipiscing&tortor=elit&quis=proin&turpis=interdum&sed=mauris&ante=non&vivamus=ligula&tortor=pellentesque&duis=ultrices&mattis=phasellus&egestas=id",
     bio: "Donec dapibus. Duis at velit eu est congue elementum.",
+    user_process: {
+      user_onboarding_task: {
+        "Slack provided": false,
+        "LinkedIn provided": true,
+        "Mentor code of conduct provided": false,
+        "Mentor t-shirt provided": false,
+      },
+      user_offboarding_task: {
+        "Feedback asked for": true,
+        "Feedback recieved": true,
+        "Mentor t-shirt returned": false,
+      },
+      is_completed: "false",
+      timestamps: "2023-07-18T02:00:17Z",
+    },
   },
   {
     id: "2",
@@ -25,6 +40,21 @@ export const mockUserData = [
     linkedIn:
       "https://omniture.com/nam/congue/risus/semper/porta/volutpat/quam.js?nibh=sapien&in=iaculis&quis=congue&justo=vivamus&maecenas=metus&rhoncus=arcu&aliquam=adipiscing&lacus=molestie&morbi=hendrerit&quis=at&tortor=vulputate&id=vitae&nulla=nisl&ultrices=aenean&aliquet=lectus&maecenas=pellentesque&leo=eget&odio=nunc&condimentum=donec&id=quis&luctus=orci&nec=eget&molestie=orci&sed=vehicula&justo=condimentum&pellentesque=curabitur&viverra=in&pede=libero&ac=ut&diam=massa&cras=volutpat&pellentesque=convallis&volutpat=morbi&dui=odio&maecenas=odio&tristique=elementum&est=eu&et=interdum&tempus=eu&semper=tincidunt&est=in&quam=leo&pharetra=maecenas",
     bio: '"Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo',
+    user_process: {
+      user_onboarding_task: {
+        "Slack provided": false,
+        "LinkedIn provided": true,
+        "Mentor code of conduct provided": false,
+        "Mentor t-shirt provided": false,
+      },
+      user_offboarding_task: {
+        "Feedback asked for": true,
+        "Feedback recieved": true,
+        "Mentor t-shirt returned": false,
+      },
+      is_completed: "false",
+      timestamps: "2023-07-18T02:00:17Z",
+    },
   },
   {
     id: "3",
@@ -39,6 +69,21 @@ export const mockUserData = [
     linkedIn:
       "https://printfriendly.com/accumsan/odio/curabitur.json?donec=nullam&vitae=sit&nisi=amet&nam=turpis&ultrices=elementum&libero=ligula&non=vehicula&mattis=consequat&pulvinar=morbi&nulla=a&pede=ipsum&ullamcorper=integer&augue=a&a=nibh&suscipit=in&nulla=quis&elit=justo&ac=maecenas&nulla=rhoncus&sed=aliquam&vel=lacus&enim=morbi&sit=quis&amet=tortor&nunc=id&viverra=nulla&dapibus=ultrices&nulla=aliquet&suscipit=maecenas&ligula=leo&in=odio&lacus=condimentum&curabitur=id",
     bio: '"Cum sociis natoque penatibus et magnis dis parturient montes',
+    user_process: {
+      user_onboarding_task: {
+        Slack_provided: false,
+        LinkedIn_provided: true,
+        code_of_conduct_provided: false,
+        Mentor_tshirt_)provided: false,
+      },
+      user_offboarding_task: {
+        Feedback_asked_for: true,
+        Feedback recieved: true,
+        Mentor t-shirt returned: false,
+      },
+      is_completed: "false",
+      timestamps: "2023-07-18T02:00:17Z",
+    },
   },
   {
     id: "4",
@@ -52,6 +97,21 @@ export const mockUserData = [
     linkedIn:
       "https://arstechnica.com/fusce/congue/diam.json?quis=in&tortor=est&id=risus&nulla=auctor&ultrices=sed&aliquet=tristique&maecenas=in",
     bio: '"Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio',
+    user_process: {
+      user_onboarding_task: {
+        "Slack provided": false,
+        "LinkedIn provided": true,
+        "Mentor code of conduct provided": false,
+        "Mentor t-shirt provided": false,
+      },
+      user_offboarding_task: {
+        "Feedback asked for": true,
+        "Feedback recieved": true,
+        "Mentor t-shirt returned": false,
+      },
+      is_completed: "false",
+      timestamps: "2023-07-18T02:00:17Z",
+    },
   },
   {
     id: "5",
@@ -65,6 +125,21 @@ export const mockUserData = [
     linkedIn:
       "http://nhs.uk/dolor/vel/est/donec.xml?commodo=penatibus&vulputate=et&justo=magnis&in=dis&blandit=parturient&ultrices=montes&enim=nascetur&lorem=ridiculus&ipsum=mus&dolor=etiam&sit=vel&amet=augue&consectetuer=vestibulum&adipiscing=rutrum&elit=rutrum&proin=neque&interdum=aenean&mauris=auctor&non=gravida&ligula=sem&pellentesque=praesent&ultrices=id&phasellus=massa&id=id&sapien=nisl&in=venenatis&sapien=lacinia&iaculis=aenean&congue=sit&vivamus=amet&metus=justo&arcu=morbi&adipiscing=ut&molestie=odio&hendrerit=cras&at=mi&vulputate=pede&vitae=malesuada&nisl=in&aenean=imperdiet&lectus=et&pellentesque=commodo&eget=vulputate&nunc=justo&donec=in&quis=blandit&orci=ultrices&eget=enim&orci=lorem&vehicula=ipsum&condimentum=dolor&curabitur=sit&in=amet",
     bio: '"Fusce lacus purus',
+    user_process: {
+      user_onboarding_task: {
+        "Slack provided": false,
+        "LinkedIn provided": true,
+        "Mentor code of conduct provided": false,
+        "Mentor t-shirt provided": false,
+      },
+      user_offboarding_task: {
+        "Feedback asked for": true,
+        "Feedback recieved": true,
+        "Mentor t-shirt returned": false,
+      },
+      is_completed: "false",
+      timestamps: "2023-07-18T02:00:17Z",
+    },
   },
   {
     id: "6",
