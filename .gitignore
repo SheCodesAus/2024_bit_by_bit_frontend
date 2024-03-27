@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 .env
+
+package-lock.json
+
+working_notes.txt
