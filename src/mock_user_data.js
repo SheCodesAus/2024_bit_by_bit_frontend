@@ -13,15 +13,15 @@ export const mockUserData = [
     bio: "Donec dapibus. Duis at velit eu est congue elementum.",
     user_process: {
       user_onboarding_task: {
-        "Slack provided": false,
-        "LinkedIn provided": true,
-        "Mentor code of conduct provided": false,
-        "Mentor t-shirt provided": false,
+        Slack_provided: false,
+        LinkedIn_provided: true,
+        code_of_conduct_provided: false,
+        Mentor_tshirt_provided: false,
       },
       user_offboarding_task: {
-        "Feedback asked for": true,
-        "Feedback recieved": true,
-        "Mentor t-shirt returned": false,
+        Feedback_asked_for: true,
+        Feedback_recieved: true,
+        Mentor_tshirt_returned: false,
       },
       is_completed: "false",
       timestamps: "2023-07-18T02:00:17Z",
@@ -42,15 +42,15 @@ export const mockUserData = [
     bio: '"Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo',
     user_process: {
       user_onboarding_task: {
-        "Slack provided": false,
-        "LinkedIn provided": true,
-        "Mentor code of conduct provided": false,
-        "Mentor t-shirt provided": false,
+        Slack_provided: false,
+        LinkedIn_provided: true,
+        code_of_conduct_provided: false,
+        Mentor_tshirt_provided: false,
       },
       user_offboarding_task: {
-        "Feedback asked for": true,
-        "Feedback recieved": true,
-        "Mentor t-shirt returned": false,
+        Feedback_asked_for: true,
+        Feedback_recieved: true,
+        Mentor_tshirt_returned: false,
       },
       is_completed: "false",
       timestamps: "2023-07-18T02:00:17Z",
@@ -74,12 +74,12 @@ export const mockUserData = [
         Slack_provided: false,
         LinkedIn_provided: true,
         code_of_conduct_provided: false,
-        Mentor_tshirt_)provided: false,
+        Mentor_tshirt_provided: false,
       },
       user_offboarding_task: {
         Feedback_asked_for: true,
-        Feedback recieved: true,
-        Mentor t-shirt returned: false,
+        Feedback_recieved: true,
+        Mentor_tshirt_returned: false,
       },
       is_completed: "false",
       timestamps: "2023-07-18T02:00:17Z",
@@ -99,15 +99,15 @@ export const mockUserData = [
     bio: '"Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio',
     user_process: {
       user_onboarding_task: {
-        "Slack provided": false,
-        "LinkedIn provided": true,
-        "Mentor code of conduct provided": false,
-        "Mentor t-shirt provided": false,
+        Slack_provided: false,
+        LinkedIn_provided: true,
+        code_of_conduct_provided: false,
+        Mentor_tshirt_provided: false,
       },
       user_offboarding_task: {
-        "Feedback asked for": true,
-        "Feedback recieved": true,
-        "Mentor t-shirt returned": false,
+        Feedback_asked_for: true,
+        Feedback_recieved: true,
+        Mentor_tshirt_returned: false,
       },
       is_completed: "false",
       timestamps: "2023-07-18T02:00:17Z",
@@ -127,15 +127,15 @@ export const mockUserData = [
     bio: '"Fusce lacus purus',
     user_process: {
       user_onboarding_task: {
-        "Slack provided": false,
-        "LinkedIn provided": true,
-        "Mentor code of conduct provided": false,
-        "Mentor t-shirt provided": false,
+        Slack_provided: false,
+        LinkedIn_provided: true,
+        code_of_conduct_provided: false,
+        Mentor_tshirt_provided: false,
       },
       user_offboarding_task: {
-        "Feedback asked for": true,
-        "Feedback recieved": true,
-        "Mentor t-shirt returned": false,
+        Feedback_asked_for: true,
+        Feedback_recieved: true,
+        Mentor_tshirt_returned: false,
       },
       is_completed: "false",
       timestamps: "2023-07-18T02:00:17Z",
@@ -153,6 +153,21 @@ export const mockUserData = [
     linkedIn:
       "http://bluehost.com/velit/nec/nisi/vulputate/nonummy/maecenas.png?cras=purus&pellentesque=phasellus&volutpat=in&dui=felis&maecenas=donec&tristique=semper&est=sapien&et=a&tempus=libero&semper=nam&est=dui&quam=proin&pharetra=leo&magna=odio&ac=porttitor&consequat=id&metus=consequat&sapien=in&ut=consequat&nunc=ut&vestibulum=nulla&ante=sed&ipsum=accumsan&primis=felis&in=ut",
     bio: '"Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo',
+    user_process: {
+      user_onboarding_task: {
+        Slack_provided: false,
+        LinkedIn_provided: true,
+        code_of_conduct_provided: false,
+        Mentor_tshirt_provided: false,
+      },
+      user_offboarding_task: {
+        Feedback_asked_for: true,
+        Feedback_recieved: true,
+        Mentor_tshirt_returned: false,
+      },
+      is_completed: "false",
+      timestamps: "2023-07-18T02:00:17Z",
+    },
   },
   {
     id: "7",
@@ -167,6 +182,21 @@ export const mockUserData = [
     linkedIn:
       "http://gov.uk/rhoncus/sed/vestibulum.png?a=sed&pede=tincidunt&posuere=eu&nonummy=felis&integer=fusce&non=posuere&velit=felis&donec=sed&diam=lacus&neque=morbi&vestibulum=sem&eget=mauris&vulputate=laoreet&ut=ut&ultrices=rhoncus&vel=aliquet&augue=pulvinar&vestibulum=sed&ante=nisl&ipsum=nunc&primis=rhoncus&in=dui&faucibus=vel&orci=sem&luctus=sed&et=sagittis&ultrices=nam&posuere=congue&cubilia=risus&curae=semper&donec=porta&pharetra=volutpat&magna=quam&vestibulum=pede&aliquet=lobortis",
     bio: '"Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes',
+    user_process: {
+      user_onboarding_task: {
+        Slack_provided: false,
+        LinkedIn_provided: true,
+        code_of_conduct_provided: false,
+        Mentor_tshirt_provided: false,
+      },
+      user_offboarding_task: {
+        Feedback_asked_for: true,
+        Feedback_recieved: true,
+        Mentor_tshirt_returned: false,
+      },
+      is_completed: "false",
+      timestamps: "2023-07-18T02:00:17Z",
+    },
   },
   {
     id: "8",
@@ -181,6 +211,21 @@ export const mockUserData = [
     linkedIn:
       "http://intel.com/dignissim/vestibulum/vestibulum/ante.png?sit=interdum&amet=mauris&cursus=non&id=ligula&turpis=pellentesque&integer=ultrices&aliquet=phasellus&massa=id&id=sapien&lobortis=in&convallis=sapien&tortor=iaculis&risus=congue&dapibus=vivamus&augue=metus&vel=arcu&accumsan=adipiscing&tellus=molestie&nisi=hendrerit&eu=at&orci=vulputate&mauris=vitae&lacinia=nisl&sapien=aenean&quis=lectus&libero=pellentesque&nullam=eget&sit=nunc&amet=donec&turpis=quis&elementum=orci&ligula=eget&vehicula=orci&consequat=vehicula&morbi=condimentum&a=curabitur&ipsum=in&integer=libero&a=ut&nibh=massa&in=volutpat&quis=convallis&justo=morbi&maecenas=odio&rhoncus=odio&aliquam=elementum&lacus=eu&morbi=interdum&quis=eu&tortor=tincidunt&id=in&nulla=leo&ultrices=maecenas&aliquet=pulvinar&maecenas=lobortis&leo=est&odio=phasellus&condimentum=sit&id=amet&luctus=erat&nec=nulla&molestie=tempus&sed=vivamus&justo=in&pellentesque=felis&viverra=eu&pede=sapien&ac=cursus&diam=vestibulum&cras=proin&pellentesque=eu&volutpat=mi&dui=nulla&maecenas=ac&tristique=enim",
     bio: '"Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero',
+    user_process: {
+      user_onboarding_task: {
+        Slack_provided: false,
+        LinkedIn_provided: true,
+        code_of_conduct_provided: false,
+        Mentor_tshirt_provided: false,
+      },
+      user_offboarding_task: {
+        Feedback_asked_for: true,
+        Feedback_recieved: true,
+        Mentor_tshirt_returned: false,
+      },
+      is_completed: "false",
+      timestamps: "2023-07-18T02:00:17Z",
+    },
   },
   {
     id: "9",
@@ -194,6 +239,21 @@ export const mockUserData = [
     linkedIn:
       "https://craigslist.org/mauris/laoreet/ut/rhoncus/aliquet/pulvinar/sed.xml?sem=morbi&mauris=odio&laoreet=odio&ut=elementum&rhoncus=eu&aliquet=interdum&pulvinar=eu&sed=tincidunt&nisl=in&nunc=leo&rhoncus=maecenas&dui=pulvinar&vel=lobortis&sem=est&sed=phasellus&sagittis=sit&nam=amet&congue=erat&risus=nulla&semper=tempus&porta=vivamus",
     bio: '"Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam',
+    user_process: {
+      user_onboarding_task: {
+        Slack_provided: false,
+        LinkedIn_provided: true,
+        code_of_conduct_provided: false,
+        Mentor_tshirt_provided: false,
+      },
+      user_offboarding_task: {
+        Feedback_asked_for: true,
+        Feedback_recieved: true,
+        Mentor_tshirt_returned: false,
+      },
+      is_completed: "false",
+      timestamps: "2023-07-18T02:00:17Z",
+    },
   },
   {
     id: "10",
@@ -207,5 +267,20 @@ export const mockUserData = [
       "https://feedburner.com/adipiscing/elit/proin/interdum/mauris/non.json?urna=fusce&pretium=posuere&nisl=felis&ut=sed&volutpat=lacus&sapien=morbi&arcu=sem&sed=mauris&augue=laoreet&aliquam=ut&erat=rhoncus&volutpat=aliquet&in=pulvinar&congue=sed&etiam=nisl&justo=nunc&etiam=rhoncus&pretium=dui&iaculis=vel&justo=sem&in=sed&hac=sagittis&habitasse=nam&platea=congue&dictumst=risus&etiam=semper&faucibus=porta&cursus=volutpat&urna=quam&ut=pede&tellus=lobortis",
     linkedIn: "",
     bio: '"In tempor',
+    user_process: {
+      user_onboarding_task: {
+        Slack_provided: false,
+        LinkedIn_provided: true,
+        code_of_conduct_provided: false,
+        Mentor_tshirt_provided: false,
+      },
+      user_offboarding_task: {
+        Feedback_asked_for: true,
+        Feedback_recieved: true,
+        Mentor_tshirt_returned: false,
+      },
+      is_completed: "false",
+      timestamps: "2023-07-18T02:00:17Z",
+    },
   },
 ];
