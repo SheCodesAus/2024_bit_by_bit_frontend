@@ -33,14 +33,15 @@ function ManageUserDetails(item) {
           <div>{isActive ? "-" : "+"}</div>
 
           {isActive && (
-            {item.item.user_process((process, index)=>(
-            <div className="accordian-content" key={index}>
+            // {item.item.user_process((process, index)=>(
+            // <div className="accordian-content" key={index}>
+            <div className="accordian-content">
               <tr>
-                <td>{process.}</td>
+                {/* <td>{process.}</td> */}
                 <td>YES</td>
               </tr>
             </div>
-            ))}
+            // ))}
           )}
         </tbody>
       </div>
