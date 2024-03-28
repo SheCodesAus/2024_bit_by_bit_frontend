@@ -67,7 +67,7 @@ function NavBar() {
               <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>Home</span>
             </Link>
             <Link
-              to="/profile"
+              to="/users/"
               className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
             >
               <img src={logoPath} alt="Settings" className="w-6 h-6" />
