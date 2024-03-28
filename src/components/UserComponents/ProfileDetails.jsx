@@ -56,52 +56,52 @@ function ProfileInformation() {
     <>
       <section>
         {/* SECTION  - Basic Info */}
-        <section>
+        <section >
           {/* NAMES */}
-          <dl>
-            <dt>First Name</dt>
-            <dd>{user.firstName}</dd>
-            <dt>Last Name</dt>
-            <dd>{user.lastName}</dd>
+          <dl className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <dt className="text-sm font-medium text-gray-500">First Name</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.firstName}</dd>
+            <dt className="text-sm font-medium text-gray-500">Last Name</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.lastName}</dd>
           </dl>
           {/* CONTACT NUMBER*/}
-          <dl>
-            <dt>Contact Number</dt>
-            <dd>{user.contactNumber}</dd>
+          <dl className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <dt className="text-sm font-medium text-gray-500">Contact Number</dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.contactNumber}</dd>
           </dl>
           {/* EMAIL */}
-          <dl>
-            <dt>Email</dt>
+          <dl className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <dt className="text-sm font-medium text-gray-500">Email</dt>
             <dd>{user.email}</dd>
           </dl>
         </section>
         {/* SECTION  - Mentor Information */}
         <section>
           {/* BIO */}
-          <section>
-            <dt>Mentor Bio</dt>
+          <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <dt className="text-sm font-medium text-gray-500">Mentor Bio</dt>
             <dd>{user.bio}</dd>
           </section>
           {/* CODING LANGUAGES */}
           {/* TODO: Confirm how we want to allow users to select this/allowing multiple choices.*/}
-          <section>
-            <dt>Main Coding Language</dt>
+          <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <dt className="text-sm font-medium text-gray-500">Main Coding Language</dt>
             <dd>{user.language}</dd>
           </section>
           {/* Slack */}
-          <section>
-            <dt>Slack</dt>
+          <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <dt className="text-sm font-medium text-gray-500">Slack</dt>
             <dd>{user.slack}</dd>
           </section>
           {/* LINKEDIN */}
-          <section>
-            <dt>LinkedIn</dt>
+          <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <dt className="text-sm font-medium text-gray-500">LinkedIn</dt>
             <dd>{user.linkedIn}</dd>
           </section>
         </section>
         {/* SECTION  - Onboarding Information */}
-        <section>
-          <h2>Mentor Onboarding</h2>
+        <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <h2 >Mentor Onboarding</h2>
           <dt>Slack username provided?</dt>
           <input
             type="checkbox"

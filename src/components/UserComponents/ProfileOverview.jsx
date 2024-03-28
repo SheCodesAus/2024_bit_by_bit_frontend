@@ -60,11 +60,11 @@ function ProfileOverview() {
   return (
     <>
       {/* SECTION  - Profile Image */}
-      <section>
-        <img src={UserCircleIcon} />
+      <section className="p-4">
+        <img src={UserCircleIcon} className="mx-auto h-64 w-64 rounded-full object-cover" />
       </section>
       {/* SECTION  - Update/Delete Buttons */}
-      <section>
+      <section className="mt-4 justify-center gap-2">
         <ButtonElement message={updateMessage} btnClick={updateBtnOnClick} />
         <ButtonElement message={deleteMessage} btnClick={deleteBtnOnClick} />
       </section>

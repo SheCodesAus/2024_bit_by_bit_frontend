@@ -46,7 +46,7 @@ function AllEventsPage() {
 			</section>
 			<section className="border-b p-4 border-gray-300">
 				<div className="flex overflow-x-auto gap-4">
-					{filteredEvents.map(eventData => ( // Use filteredEvents instead of events
+					{filteredEvents.map(eventData => (
 						<EventCard key={eventData.id} eventData={eventData} />
 					))}
 				</div>
