@@ -1,5 +1,5 @@
-async function getUser(userID) {
-  const url = `${import.meta.env.VITE_API_URL}/users/${userID}`;
+async function getUser(user_id) {
+  const url = `${import.meta.env.VITE_API_URL}/users/${user_id}`;
   const token = window.localStorage.getItem("token");
   const response = await fetch(url, {
     method: "GET",
@@ -9,7 +9,7 @@ async function getUser(userID) {
     },
   });
   if (!response.ok) {
-    const fallbackError = `Error fetching event with id ${userID}`;
+    const fallbackError = `Error fetching event with id ${user_id}`;
     const data = await response.json().catch(() => {
       throw new Error(fallbackError);
     });

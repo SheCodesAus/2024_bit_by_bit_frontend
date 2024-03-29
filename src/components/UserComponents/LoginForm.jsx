@@ -44,8 +44,10 @@ function LoginForm() {
     event.preventDefault();
     if (username && password) {
       postLogin(username, password).then((response) => {
+        console.log(response);
         window.localStorage.setItem("token", response.token);
-        window.localStorage.setItem("userID", response.userID);
+        window.localStorage.setItem("user_id", response.user_id);
+        window.localStorage.setItem("username", response.username);
       });
       navigate("/");
     }
@@ -58,7 +60,12 @@ function LoginForm() {
         <section>
           {/* USERNAME */}
           <section>
-            <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
+            <label
+              htmlFor="username"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Username
+            </label>
             <input
               type="text"
               name="username"
@@ -71,7 +78,12 @@ function LoginForm() {
           </section>
           {/* PASSWORD */}
           <section>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Password
+            </label>
             <input
               type="password"
               name="password"
@@ -93,10 +105,10 @@ function LoginForm() {
         </section>
         {/* SECTION 2 - Submit */}
         <section className="mt-4">
-        <button 
-          type="submit" 
-          onClick={handleSubmit}
-          className="rounded-md bg-orange-500 px-3"
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="rounded-md bg-orange-500 px-3"
           >
             Submit
           </button>

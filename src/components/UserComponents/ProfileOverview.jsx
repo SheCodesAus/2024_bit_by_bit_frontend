@@ -30,10 +30,10 @@ function ProfileOverview() {
     navigate("/");
 
     // const {data} = await deleteUserProfile({
-    //   userID: auth.userID,
+    //   user_id: auth.user_id,
     // });
     // localStorage.removeItem("token");
-    // localStorage.removeItem("userID");
+    // localStorage.removeItem("user_id");
   };
 
   const handleCancelBtnClick = (event) => {
@@ -61,7 +61,10 @@ function ProfileOverview() {
     <>
       {/* SECTION  - Profile Image */}
       <section className="p-4">
-        <img src={UserCircleIcon} className="mx-auto h-64 w-64 rounded-full object-cover" />
+        <img
+          src={UserCircleIcon}
+          className="mx-auto h-64 w-64 rounded-full object-cover"
+        />
       </section>
       {/* SECTION  - Update/Delete Buttons */}
       <section className="mt-4 justify-center gap-2">
