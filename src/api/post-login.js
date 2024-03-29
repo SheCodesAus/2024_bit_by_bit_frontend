@@ -7,7 +7,7 @@ async function postLogin(username, password) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ username: username, passowrd: password }),
+    body: JSON.stringify({ username: username, password: password }),
   });
 
   console.log(response);
