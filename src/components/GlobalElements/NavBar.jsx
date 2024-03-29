@@ -18,7 +18,7 @@ function NavBar() {
   return (
     <>
       <header>
-        <section className="w-full text-white flex items-center justify-end px-4 h-12" style={{ backgroundColor: 'rgb(130, 70, 175)'}}>
+        <section className="fixed w-full text-white flex items-center justify-end px-4 h-12" style={{ backgroundColor: 'rgb(130, 70, 175)'}}>
           <h1 className="text-3xl font-bold">BYTE TIME</h1>
         </section>
 
@@ -26,7 +26,7 @@ function NavBar() {
           className={`fixed top-12 h-[calc(100vh-3rem)] p-3 ${isNavbarOpen ? "w-60" : "w-20"} text-white flex flex-col transition-all duration-500 ease-in-out`} style={{ backgroundColor: 'rgb(130, 70, 175)'}}>
           <div
             className={`flex justify-center items-center ${!isNavbarOpen ? "overflow-hidden" : ""}`}>
-            <a href="#logo" className="logo-wrapper flex items-center gap-4">
+            {/* <a href="#logo" className="logo-wrapper flex items-center gap-4">
               <img
                 src={logoPath}
                 alt="Logo"
@@ -35,8 +35,8 @@ function NavBar() {
                 }`}
               />
               <h2 className={`${isNavbarOpen ? "inline" : "hidden"}`}>LOGO</h2>
-            </a>
-            <button
+            </a> */}
+            <a
               className="toggle-btn absolute top-2.5 right-[-12px] p-2 bg-white rounded-full flex items-center justify-center transform transition-transform ease-linear"
               onClick={toggleNavbar}
               >
@@ -45,17 +45,7 @@ function NavBar() {
                 alt="expand button"
                 className={`${isNavbarOpen ? "rotate-0" : "rotate-180"}`}
               />
-            </button>
-          </div>
-
-          <div className="flex flex-col justify-center items-center overflow-hidden gap-2 pt-6 border border-red-500">
-            <Link
-              to="/home"
-              className={`link flex items-center gap-4 p-2 rounded-md ${isNavbarOpen ? "bg-gray-200" : "hover:bg-orange-600"}`}
-            >
-              <img src={logoPath} alt="Home" className="w-6 h-6" />
-              <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>Home</span>
-            </Link>
+            </a>
           </div>
 
           <div className="mt-auto flex flex-col justify-center items-center gap-2 pt-6 border-t border-orange-300">
