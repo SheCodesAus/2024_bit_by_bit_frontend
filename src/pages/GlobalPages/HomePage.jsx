@@ -5,18 +5,13 @@ import { Link } from "react-router-dom";
 import { useNavbarContext } from "../../components/NavBarContext";
 
 function HomePage() {
-  // const { projects } = useProjects();
-  // const navigate = useNavigate();
 
   const { isNavbarOpen } = useNavbarContext();
   const bannerPath = "/imgs/banner_img.jpg";
 
   return (
-    <main
-      className={`min-h-screen ${
-        isNavbarOpen ? "ml-60" : "ml-20"
-      } justify-center`}
-    >
+    <main className={`min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"} justify-center`}>
+
       <section className="border-b p-4 border-gray-300">
         <img src={bannerPath} />
         <div className="flex justify-center border-b p-4 border-gray-300 mb-4">
@@ -26,9 +21,11 @@ function HomePage() {
           <h3>Scheduling Success for She Codes Events!</h3>
         </div>
       </section>
+
       <section className="flex justify-center pt-4">
         <h3> click on one of the programs below for more information </h3>
       </section>
+
       <section className="flex flex-row justify-center border-b p-8 border-gray-300 mb-4">
         <div
           className="event-card bg-white shadow-md p-8 rounded-lg mx-4 flex justify-center border border-orange-300"
@@ -58,6 +55,7 @@ function HomePage() {
           </Link>
         </div>
       </section>
+      
     </main>
   );
 }
