@@ -39,7 +39,7 @@ const router = createBrowserRouter([
       { path: "home", element: <HomePage /> },
       { path: "/about", element: <AboutPage /> },
       { path: "/events", element: <AllEventsPage /> },
-      { path: "/event/:id", element: <EventPage /> },
+      { path: "/events/:id", element: <EventPage /> },
       { path: "/create-event", element: <CreateEventPage /> },
       { path: "/event/:id/update", element: <UpdateEventPage /> },
       { path: "/event/:id/schedule", element: <ScheduleEventMentorPage /> },
