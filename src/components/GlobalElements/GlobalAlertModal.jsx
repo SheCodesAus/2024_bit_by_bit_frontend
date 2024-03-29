@@ -24,10 +24,10 @@ function globalAlertModal({ title, message, btnTxt, btnAPICall }) {
     await btnAPICall().then(navigate("/"));
 
     // const {data} = await deleteUserProfile({
-    //   userID: auth.userID,
+    //   user_id: auth.user_id,
     // });
     // localStorage.removeItem("token");
-    // localStorage.removeItem("userID");
+    // localStorage.removeItem("user_id");
   };
 
   return (

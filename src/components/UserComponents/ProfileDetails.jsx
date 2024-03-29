@@ -9,13 +9,13 @@ import useUserProcess from "../../hooks/use-user-process.js";
 
 function ProfileInformation() {
   const { auth, setAuth } = useAuth();
-  const { userID } = useParams();
+  const { user_id } = useParams();
 
   const token = window.localStorage.getItem("token");
 
-  // const { user, isLoading, error } = useUser(userID);
+  // const { user, isLoading, error } = useUser(user_id);
   // console.log(user);
-  // const { userProcess, isLoading, error } = useUserProcess(userID);
+  // const { userProcess, isLoading, error } = useUserProcess(user_id);
   // console.log(userProcess);
 
   // DUMMY DATA
@@ -56,18 +56,26 @@ function ProfileInformation() {
     <>
       <section>
         {/* SECTION  - Basic Info */}
-        <section >
+        <section>
           {/* NAMES */}
           <dl className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">First Name</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.firstName}</dd>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              {user.firstName}
+            </dd>
             <dt className="text-sm font-medium text-gray-500">Last Name</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.lastName}</dd>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              {user.lastName}
+            </dd>
           </dl>
           {/* CONTACT NUMBER*/}
           <dl className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            <dt className="text-sm font-medium text-gray-500">Contact Number</dt>
-            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{user.contactNumber}</dd>
+            <dt className="text-sm font-medium text-gray-500">
+              Contact Number
+            </dt>
+            <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+              {user.contactNumber}
+            </dd>
           </dl>
           {/* EMAIL */}
           <dl className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -85,7 +93,9 @@ function ProfileInformation() {
           {/* CODING LANGUAGES */}
           {/* TODO: Confirm how we want to allow users to select this/allowing multiple choices.*/}
           <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            <dt className="text-sm font-medium text-gray-500">Main Coding Language</dt>
+            <dt className="text-sm font-medium text-gray-500">
+              Main Coding Language
+            </dt>
             <dd>{user.language}</dd>
           </section>
           {/* Slack */}
@@ -101,7 +111,7 @@ function ProfileInformation() {
         </section>
         {/* SECTION  - Onboarding Information */}
         <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-          <h2 >Mentor Onboarding</h2>
+          <h2>Mentor Onboarding</h2>
           <dt>Slack username provided?</dt>
           <input
             type="checkbox"
