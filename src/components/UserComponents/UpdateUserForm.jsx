@@ -120,6 +120,7 @@ function UpdateUserForm() {
                                 <input
                                     type="text"
                                     name="firstName"
+                                    id="firstName"
                                     autoComplete="given-name"
                                     placeholder="Taylor"
                                     onChange={handleChange}
@@ -131,6 +132,7 @@ function UpdateUserForm() {
                                 <input
                                     type="text"
                                     name="lastName"
+                                    id="lastName"
                                     autoComplete="family-name"
                                     placeholder="Swift"
                                     onChange={handleChange}
@@ -143,6 +145,7 @@ function UpdateUserForm() {
                                 <input
                                     type="text"
                                     name="contactNumber"
+                                    id="contactNumber"
                                     autoComplete="tel"
                                     placeholder="555 2368"
                                     onChange={handleChange}
@@ -155,6 +158,7 @@ function UpdateUserForm() {
                                 <input
                                     type="text"
                                     name="email"
+                                    id="email"
                                     autoComplete="email"
                                     placeholder="tayloristhebest@swift.com"
                                     onChange={handleChange}
@@ -179,6 +183,7 @@ function UpdateUserForm() {
                                 <label htmlFor="bio" className="block text-sm font-medium text-gray-700">Mentor Bio</label>
                                 <textarea
                                     name="bio"
+                                    id="bio"
                                     placeholder="I am an incredible mentor with experience in X, Y and Z. When I am not coding or mentoring I am being a QUEEN!"
                                     onChange={handleChange}
                                     className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -208,6 +213,7 @@ function UpdateUserForm() {
                                 <input
                                     type="text"
                                     name="slack"
+                                    id="slack"
                                     placeholder="mySlack URL"
                                     onChange={handleChange}
                                     className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -219,6 +225,7 @@ function UpdateUserForm() {
                                 <input
                                     type="text"
                                     name="linkedin"
+                                    id="linkedin"
                                     placeholder="myLinkedIn URL"
                                     onChange={handleChange}
                                     className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
