@@ -56,10 +56,12 @@ function RegisterUserForm() {
         postLogin(newUser.username, password)
           .then((response) => {
             window.localStorage.setItem("token", response.token);
-            window.localStorage.setItem("userID", response.userID);
+            window.localStorage.setItem("user_id", response.user_id);
+            window.localStorage.setItem("username", response.username);
             setAuth({
               token: response.token,
-              userID: response.userID,
+              user_id: response.user_id,
+              username: response.username,
             });
           })
           .then(navigate("/home"));
