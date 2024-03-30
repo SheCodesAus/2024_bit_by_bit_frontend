@@ -288,11 +288,14 @@ function RegisterUserForm() {
                 onChange={handleChange}
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
               >
-                <option value="htmlCss">HTML/CSS</option>
-                <option value="python">Python</option>
-                <option value="django">Django</option>
-                <option value="jsReact">Javascript and React</option>
-                <option value="wordpress">Wordpress</option>
+                <option value="Select_language">Select a language</option>
+                <option value="HTML/CSS">HTML/CSS</option>
+                <option value="Python">Python</option>
+                <option value="Django">Django</option>
+                <option value="Javascript and React">
+                  Javascript and React
+                </option>
+                <option value="WordPress">WordPress</option>
               </select>
             </div>
             {/* SLACK */}
