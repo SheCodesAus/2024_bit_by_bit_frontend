@@ -9,7 +9,6 @@ function NavBar() {
   // const [isOpen, setIsOpen] = useState(true);
   // const toggleNavBar = () => setIsOpen(!isOpen);
   const logoPath = "/imgs/logo.png";
-  console.log(auth);
 
   const handleLogout = () => {
     window.localStorage.removeItem("token");
@@ -20,7 +19,11 @@ function NavBar() {
 
   return (
     <>
-      <header><section className="fixed w-full text-white flex items-center justify-end px-4 h-12" style={{ backgroundColor: 'rgb(130, 70, 175)'}}>
+      <header>
+        <section
+          className="fixed w-full text-white flex items-center justify-end px-4 h-12"
+          style={{ backgroundColor: "rgb(130, 70, 175)" }}
+        >
           <h1 className="text-3xl font-bold">BYTE TIME</h1>
         </section>
 
@@ -31,7 +34,10 @@ function NavBar() {
           style={{ backgroundColor: "rgb(130, 70, 175)" }}
         >
           <div
-            className={`flex justify-center items-center ${!isNavbarOpen ? "overflow-hidden" : ""}`}>
+            className={`flex justify-center items-center ${
+              !isNavbarOpen ? "overflow-hidden" : ""
+            }`}
+          >
             {/* <a href="#logo" className="logo-wrapper flex items-center gap-4">
               <img
                 src={logoPath}

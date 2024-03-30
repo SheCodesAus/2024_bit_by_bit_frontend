@@ -3,7 +3,7 @@ function buttonElement({ btnClick, message }) {
     <>
       <button
         type="submit"
-        className="rounded-md bg-orange-500"
+        className="rounded-md px-3 py-2 bg-orange-500"
         onClick={btnClick}
       >
         {message}
