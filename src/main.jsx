@@ -43,10 +43,9 @@ const router = createBrowserRouter([
   //     { path: "/create-event", element: <CreateEventPage /> },
   //     { path: "/event/:id/update", element: <UpdateEventPage /> },
   //     { path: "/event/:id/schedule", element: <ScheduleEventMentorPage /> },
-  //     // { path: "/users/:id", element: <ProfilePage /> },
-  //     { path: "/users/", element: <ProfilePage /> },
-  //     // { path: "/users/:id/update", element: <UpdateProfilePage /> },
-  //     { path: "/users/update", element: <UpdateProfilePage /> },
+  //     { path: "/users/:id", element: <ProfilePage /> },
+  //     { path: "/users/:id/update", element: <UpdateProfilePage /> },
+
   //     { path: "/users/manage", element: <ManageUsersPage /> },
   //   ],
   // },

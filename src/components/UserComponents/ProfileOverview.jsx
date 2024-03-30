@@ -1,6 +1,7 @@
 // HOOKs
 import { Fragment, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../../hooks/use-auth.js";
 
 // STYLE/TAILWIND
 import { UserCircleIcon } from "@heroicons/react/24/solid";
@@ -10,11 +11,15 @@ import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 // COMPONENTS
 import ButtonElement from "../GlobalElements/Button.jsx";
 
+// API
+import deleteUser from "../../api/delete-user.js";
+
 function ProfileOverview() {
   const navigate = useNavigate();
 
   // MODAL
   const { id } = useParams();
+  const { auth, setAuth } = useAuth();
   const [modalOpen, setModalOpen] = useState(false);
   const cancelBtnRef = useRef(null);
 
@@ -24,17 +29,17 @@ function ProfileOverview() {
   const modalBtnTxt = "Delete Profile";
   // const modalAPICall = console.log("This is an API call");
 
-  const handleRedBtnClick = async (event) => {
+  const handleModalBtnClick = async (event) => {
     setModalOpen(false);
-
     console.log("MODAL RED BUTTON");
-    navigate("/");
 
-    // const {data} = await deleteUserProfile({
-    //   user_id: auth.user_id,
-    // });
-    // localStorage.removeItem("token");
-    // localStorage.removeItem("user_id");
+    const { data } = await deleteUser({
+      user_id: auth.user_id,
+      token: auth.token,
+    });
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
+    navigate("/");
   };
 
   const handleCancelBtnClick = (event) => {
@@ -131,7 +136,7 @@ function ProfileOverview() {
                       <button
                         type="button"
                         className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                        onClick={handleRedBtnClick}
+                        onClick={handleModalBtnClick}
                       >
                         {modalBtnTxt}
                       </button>
