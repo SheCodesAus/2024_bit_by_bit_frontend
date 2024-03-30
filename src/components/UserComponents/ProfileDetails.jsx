@@ -9,28 +9,11 @@ import useUserProcess from "../../hooks/use-user-process.js";
 
 function ProfileInformation() {
   const { auth, setAuth } = useAuth();
-  const { user_id } = useParams();
 
-  const token = window.localStorage.getItem("token");
-
-  // const { user, isLoading, error } = useUser(user_id);
-  // console.log(user);
+  const { user, isLoading, error } = useUser(auth.user_id);
+  // console.log("user: ", user);
   // const { userProcess, isLoading, error } = useUserProcess(user_id);
   // console.log(userProcess);
-
-  // DUMMY DATA
-  const user = {
-    username: "dummyD",
-    firstName: "Dummy",
-    lastName: "User",
-    email: "dummy@test.com",
-    profilePic: "",
-    bio: "I am the best dummy data around.",
-    codingLanguage: "All of them!",
-    contactNumber: 1568473200,
-    slack: "DummySlack",
-    linkedIn: "linkedin.com/dummyuser",
-  };
 
   const userProcess = {
     user_onboarding_task: {
@@ -45,12 +28,12 @@ function ProfileInformation() {
       "Mentor t-shirt returned": false,
     },
   };
-  console.log("User Process: ", userProcess);
+  // console.log("User Process: ", userProcess);
 
   const [isOnboardingChecked, setIsOnboardingChecked] = useState({
     ...userProcess.user_onboarding_task,
   });
-  console.log("isOnboardingChecked: ", isOnboardingChecked);
+  // console.log("isOnboardingChecked: ", isOnboardingChecked);
 
   return (
     <>
@@ -61,11 +44,11 @@ function ProfileInformation() {
           <dl className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">First Name</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {user.firstName}
+              {user?.first_name}
             </dd>
             <dt className="text-sm font-medium text-gray-500">Last Name</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {user.lastName}
+              {user?.last_name}
             </dd>
           </dl>
           {/* CONTACT NUMBER*/}
@@ -74,13 +57,13 @@ function ProfileInformation() {
               Contact Number
             </dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              {user.contactNumber}
+              {user?.contact_number}
             </dd>
           </dl>
           {/* EMAIL */}
           <dl className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">Email</dt>
-            <dd>{user.email}</dd>
+            <dd>{user?.email}</dd>
           </dl>
         </section>
         {/* SECTION  - Mentor Information */}
@@ -88,7 +71,7 @@ function ProfileInformation() {
           {/* BIO */}
           <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">Mentor Bio</dt>
-            <dd>{user.bio}</dd>
+            <dd>{user?.bio}</dd>
           </section>
           {/* CODING LANGUAGES */}
           {/* TODO: Confirm how we want to allow users to select this/allowing multiple choices.*/}
@@ -96,17 +79,17 @@ function ProfileInformation() {
             <dt className="text-sm font-medium text-gray-500">
               Main Coding Language
             </dt>
-            <dd>{user.language}</dd>
+            <dd>{user?.coding_language}</dd>
           </section>
           {/* Slack */}
           <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">Slack</dt>
-            <dd>{user.slack}</dd>
+            {/* <dd>{user.slack}</dd> */}
           </section>
           {/* LINKEDIN */}
           <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">LinkedIn</dt>
-            <dd>{user.linkedIn}</dd>
+            {/* <dd>{user.linkedIn}</dd> */}
           </section>
         </section>
         {/* SECTION  - Onboarding Information */}

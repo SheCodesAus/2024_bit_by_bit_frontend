@@ -10,7 +10,6 @@ export default function useUser(user_id) {
     getUser(user_id)
       .then((user) => {
         setuser(user);
-        console.log(`User: ${user}`);
         setIsLoading(false);
       })
       .catch((error) => {

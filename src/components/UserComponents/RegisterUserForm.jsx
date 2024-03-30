@@ -15,7 +15,7 @@ import postLogin from "../../api/post-login.js";
 function RegisterUserForm() {
   const navigate = useNavigate();
   const { auth, setAuth } = useAuth();
-  const [userProcessDetails, setUserProcessDetails] = useState("");
+  // const [userProcessDetails, setUserProcessDetails] = useState("");
   const [userDetails, setUserDetails] = useState({
     username: "",
     first_name: "",
@@ -54,22 +54,18 @@ function RegisterUserForm() {
     ) {
       postCreateUser(userDetails, password).then((newUser) => {
         console.log("new user: ", newUser);
-        setUserProcessDetails({
+        const userProcessDetails = {
           mentor: newUser.id,
-          user_onboarding_task: {
-            Slack_provided: false,
-            LinkedIn_provided: false,
-            code_of_conduct_provided: false,
-            Mentor_tshirt_provided: false,
-          },
-          user_offboarding_task: {
-            Feedback_asked_for: false,
-            Feedback_recieved: false,
-            Mentor_tshirt_returned: false,
-          },
+          user_onboarding_task_slack: false,
+          user_onboarding_task_linkedin: false,
+          user_onboarding_task_CodeofConduct: false,
+          user_onboarding_task_tshirtsent: false,
+          user_offboarding_task_feedbackrequested: false,
+          user_offboarding_task_feedbackreceived: false,
+          user_offboarding_task_tshirtreceived: false,
           is_completed: false,
           timestamps: new Date(),
-        });
+        };
 
         postCreateUserProcess(userProcessDetails)
           .then(
@@ -288,11 +284,14 @@ function RegisterUserForm() {
                 onChange={handleChange}
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
               >
-                <option value="htmlCss">HTML/CSS</option>
-                <option value="python">Python</option>
-                <option value="django">Django</option>
-                <option value="jsReact">Javascript and React</option>
-                <option value="wordpress">Wordpress</option>
+                <option value="Select_language">Select a language</option>
+                <option value="HTML/CSS">HTML/CSS</option>
+                <option value="Python">Python</option>
+                <option value="Django">Django</option>
+                <option value="Javascript and React">
+                  Javascript and React
+                </option>
+                <option value="WordPress">WordPress</option>
               </select>
             </div>
             {/* SLACK */}

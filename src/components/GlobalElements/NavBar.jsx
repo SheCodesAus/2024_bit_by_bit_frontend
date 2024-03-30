@@ -71,7 +71,7 @@ function NavBar() {
               </span>
             </Link>
             <Link
-              to="/users/"
+              to={`/users/${auth.user_id}`}
               className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
             >
               <img src={logoPath} alt="Settings" className="w-6 h-6" />
