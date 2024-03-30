@@ -98,16 +98,29 @@ function NavBar() {
               </span>
             </Link>
             {auth.token && (
-              <Link
-                to="/"
-                className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
-                onClick={handleLogout}
-              >
-                <img src={logoPath} alt="Settings" className="w-6 h-6" />
-                <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
-                  Logout
-                </span>
-              </Link>
+              <>
+                {auth.is_admin == true && (
+                  <Link
+                    to="/users/manage"
+                    className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
+                  >
+                    <img src={logoPath} alt="Settings" className="w-6 h-6" />
+                    <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
+                      Manage Users
+                    </span>
+                  </Link>
+                )}
+                <Link
+                  to="/"
+                  className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
+                  onClick={handleLogout}
+                >
+                  <img src={logoPath} alt="Settings" className="w-6 h-6" />
+                  <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
+                    Logout
+                  </span>
+                </Link>
+              </>
             )}
             <div className="user-profile flex justify-center items-center gap-4 pt-6">
               <div className="user-avatar w-12 h-12 cursor-pointer transition-transform duration-200 hover:scale-110">
