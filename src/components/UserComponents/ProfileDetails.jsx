@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth.js";
-import useUser from "../../hooks/use_user.js";
+import useUser from "../../hooks/use-user.js";
 import useUserProcess from "../../hooks/use-user-process.js";
 
 // 🌟 STYLE REFERNCE: https://tailwindui.com/components/application-ui/data-display/description-lists 🌟
