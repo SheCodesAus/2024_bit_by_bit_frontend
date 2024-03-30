@@ -76,6 +76,7 @@ function RegisterUserForm() {
             window.localStorage.setItem("token", response.token);
             window.localStorage.setItem("user_id", response.user_id);
             window.localStorage.setItem("username", response.username);
+            window.localStorage.setItem("is_admin", response.is_admin);
             setAuth({
               token: response.token,
               user_id: response.user_id,
