@@ -9,12 +9,13 @@ import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 
 // API
 import postCreateUser from "../../api/post-create-user.js";
+import postCreateUserProcess from "../../api/post-create-userProcess.js";
 import postLogin from "../../api/post-login.js";
 
 function RegisterUserForm() {
   const navigate = useNavigate();
   const { auth, setAuth } = useAuth();
-
+  const [userProcessDetails, setUserProcessDetails] = useState("");
   const [userDetails, setUserDetails] = useState({
     username: "",
     first_name: "",
@@ -29,7 +30,6 @@ function RegisterUserForm() {
     linkedIn: "",
     is_admin: false,
   });
-
   const [password, setPassword] = useState("");
   const [showpassword, setShowPassowrd] = useState(false); //used to hide passwords when loging in.
 
@@ -53,7 +53,29 @@ function RegisterUserForm() {
       password
     ) {
       postCreateUser(userDetails, password).then((newUser) => {
-        postLogin(newUser.username, password)
+        console.log("new user: ", newUser);
+        setUserProcessDetails({
+          mentor: newUser.id,
+          user_onboarding_task: {
+            Slack_provided: false,
+            LinkedIn_provided: false,
+            code_of_conduct_provided: false,
+            Mentor_tshirt_provided: false,
+          },
+          user_offboarding_task: {
+            Feedback_asked_for: false,
+            Feedback_recieved: false,
+            Mentor_tshirt_returned: false,
+          },
+          is_completed: false,
+          timestamps: new Date(),
+        });
+
+        postCreateUserProcess(userProcessDetails)
+          .then(
+            console.log("new user: ", newUser),
+            postLogin(newUser.username, password)
+          )
           .then((response) => {
             window.localStorage.setItem("token", response.token);
             window.localStorage.setItem("user_id", response.user_id);
@@ -64,7 +86,21 @@ function RegisterUserForm() {
               username: response.username,
             });
           })
+          .then()
           .then(navigate("/home"));
+        // postLogin(newUser.username, password)
+        //   .then((response) => {
+        //     window.localStorage.setItem("token", response.token);
+        //     window.localStorage.setItem("user_id", response.user_id);
+        //     window.localStorage.setItem("username", response.username);
+        //     setAuth({
+        //       token: response.token,
+        //       user_id: response.user_id,
+        //       username: response.username,
+        //     });
+        //   })
+        //   .then()
+        //   .then(navigate("/home"));
       });
     }
   };
