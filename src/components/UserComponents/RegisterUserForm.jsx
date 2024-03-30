@@ -15,7 +15,7 @@ import postLogin from "../../api/post-login.js";
 function RegisterUserForm() {
   const navigate = useNavigate();
   const { auth, setAuth } = useAuth();
-  const [userProcessDetails, setUserProcessDetails] = useState("");
+  // const [userProcessDetails, setUserProcessDetails] = useState("");
   const [userDetails, setUserDetails] = useState({
     username: "",
     first_name: "",
@@ -54,22 +54,18 @@ function RegisterUserForm() {
     ) {
       postCreateUser(userDetails, password).then((newUser) => {
         console.log("new user: ", newUser);
-        setUserProcessDetails({
+        const userProcessDetails = {
           mentor: newUser.id,
-          user_onboarding_task: {
-            Slack_provided: false,
-            LinkedIn_provided: false,
-            code_of_conduct_provided: false,
-            Mentor_tshirt_provided: false,
-          },
-          user_offboarding_task: {
-            Feedback_asked_for: false,
-            Feedback_recieved: false,
-            Mentor_tshirt_returned: false,
-          },
+          user_onboarding_task_slack: false,
+          user_onboarding_task_linkedin: false,
+          user_onboarding_task_CodeofConduct: false,
+          user_onboarding_task_tshirtsent: false,
+          user_offboarding_task_feedbackrequested: false,
+          user_offboarding_task_feedbackreceived: false,
+          user_offboarding_task_tshirtreceived: false,
           is_completed: false,
           timestamps: new Date(),
-        });
+        };
 
         postCreateUserProcess(userProcessDetails)
           .then(
