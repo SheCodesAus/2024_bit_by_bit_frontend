@@ -1,11 +1,5 @@
 // HOOKS
 import { useState } from "react";
-// import { useParams } from "react-router-dom";
-// import { useAuth } from "../../../hooks/use-auth";
-
-// // DUMMY DATA
-// import { mockUserData } from "../../../mock_user_data";
-// import { mockUserProcessData } from "../../mock_user_process_data";
 
 // https://www.youtube.com/watch?v=IW_AYg3kUIY
 // https://www.sitepoint.com/react-js-accordion-component/
@@ -13,39 +7,92 @@ import { useState } from "react";
 
 function ManageUserDetails(item) {
   console.log(item);
+
   const [isActive, setIsActive] = useState(false);
 
-  return (
-    <section className="accordion bg-slate-200">
-      <div className="accordian-item">
-        <tbody
-          className="accordian-header bg-slate-500"
-          onClick={() => setIsActive(!isActive)}
-        >
-          <tr>
-            <td>{item.item.first_name}</td>
-            <td>{item.item.last_name}</td>
-            <td>{item.item.email}</td>
-            <td>{item.item.contactNumber}</td>
-            <td>{item.item.slack}</td>
-            <td>{item.item.linkedIn}</td>
-          </tr>
-          <div>{isActive ? "-" : "+"}</div>
+  const userProcess = {
+    user_onboarding_task: {
+      "Slack provided": item.item.user_process.user_onboarding_task_slack,
+      "LinkedIn provided": item.item.user_process.user_onboarding_task_linkedIn,
+      "Mentor Code of Conduct provided":
+        item.item.user_process.user_onboarding_CodeofConduct,
+      "Mentor t-shirt provided":
+        item.item.user_process.user_offboarding_tshirtsent,
+    },
+    user_offboarding_task: {
+      "Feedback asked for":
+        item.item.user_process.user_offboarding_feedbackrequested,
+      "Feedback recieved":
+        item.item.user_process.user_offboarding_feedbackrecieved,
+      "Mentor t-shirt returned":
+        item.item.user_process.user_offboarding_tshirtrecieved,
+    },
+  };
+  const [isOnboardingChecked, setIsOnboardingChecked] = useState({
+    ...userProcess.user_onboarding_task,
+  });
 
-          {isActive && (
-            // {item.item.user_process((process, index)=>(
-            // <div className="accordian-content" key={index}>
-            <div className="accordian-content">
-              <tr>
-                {/* <td>{process.}</td> */}
-                <td>YES</td>
-              </tr>
-            </div>
-            // ))}
-          )}
-        </tbody>
-      </div>
-    </section>
+  return (
+    // <section>
+    <>
+      <tbody
+        className="accordian-header bg-slate-200"
+        onClick={() => setIsActive(!isActive)}
+      >
+        {/* <> */}
+        <tr>
+          <td>{item.item.first_name}</td>
+          <td>{item.item.last_name}</td>
+          <td>{item.item.email}</td>
+          <td>{item.item.contact_number}</td>
+          <td>{item.item.slack}</td>
+          <td>{item.item.linkedIn}</td>
+          <td>{isActive ? "-" : "+"}</td>
+        </tr>
+      </tbody>
+
+      <>
+        {isActive && (
+          // {item.item.user_process((process, index)=>(
+          // <div className="accordian-content" key={index}>
+          <tr className="accordian-content  bg-slate-300">
+            <td>
+              <label>Mentor t-shirt provided?</label>
+              <input
+                type="checkbox"
+                checked={isOnboardingChecked["Mentor t-shirt provided"]}
+              />
+            </td>
+            <td>
+              <label>Slack link Provided?</label>
+              <input
+                type="checkbox"
+                checked={isOnboardingChecked["Slack provided"]}
+              />
+            </td>
+            <td>
+              <label>LinkedIn link Provided?</label>
+              <input
+                type="checkbox"
+                checked={isOnboardingChecked["LinkedIn provided"]}
+              />
+            </td>
+            <td>
+              <label>Mentor Code of Conduct provided?</label>
+              <input
+                type="checkbox"
+                checked={
+                  isOnboardingChecked["Mentor Code of Conduct provided "]
+                }
+              />
+            </td>
+          </tr>
+          // ))}
+        )}
+        ;
+      </>
+    </>
+    // </section>
   );
 }
 

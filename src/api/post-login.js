@@ -1,6 +1,4 @@
 async function postLogin(username, password) {
-  console.log(JSON.stringify({ username: username, password: password }));
-
   const url = `${import.meta.env.VITE_API_URL}/api-token-auth/`;
   const response = await fetch(url, {
     method: "POST",
@@ -9,8 +7,6 @@ async function postLogin(username, password) {
     },
     body: JSON.stringify({ username: username, password: password }),
   });
-
-  console.log(response);
 
   if (!response.ok) {
     const fallbackError = "Error tryting to login";

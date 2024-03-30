@@ -3,7 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { AuthContext } from "../AuthProvider";
 import { useAuth } from "../../hooks/use-auth";
 import { useNavigate, useParams } from "react-router-dom";
-import useUser from "../../hooks/use_user";
+import useUser from "../../hooks/use-user";
 
 // API
 import putUpdateUser from "../../api/put-update-user";
