@@ -49,7 +49,7 @@ function LoginForm() {
         window.localStorage.setItem("user_id", response.user_id);
         window.localStorage.setItem("username", response.username);
       });
-      navigate("/");
+      navigate("/home");
     }
   };
 
