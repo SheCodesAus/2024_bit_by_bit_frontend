@@ -5,11 +5,13 @@ import useEvents from "../../hooks/use-events";
 // COMPONENTS
 import { useNavbarContext } from "../../components/NavBarContext";
 import EventCard from "../../components/GlobalElements/EventCard";
+import buttonElement from "../../components/GlobalElements/Button";
 
 function AllEventsPage() {
   const { isNavbarOpen } = useNavbarContext();
   const [selectedCity, setSelectedCity] = useState("");
   const { events } = useEvents();
+  const bannerPath = "/imgs/banner3_img.jpg";
 
   // Example events data
   // const events = [
@@ -87,16 +89,18 @@ function AllEventsPage() {
 
   const filteredEvents = selectedCity
     ? events.filter(
-        (event) => event.location.toLowerCase() === selectedCity.toLowerCase()
-      )
+      (event) => event.location.toLowerCase() === selectedCity.toLowerCase()
+    )
     : events;
 
   return (
     <main className={`min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"}`}>
+
       {/* Adjust margin based on sidebar toggle */}
       <section className="border-b p-4 border-gray-300">
+        <img id="bannerAllEvents" src={bannerPath} />
         <div className="flex justify-center border-b p-4 border-gray-300 mb-4">
-          <h1 className="font-bold">Events Page</h1>
+          <h1 className="font-bold text-5xl">SHE CODES EVENTS</h1>
         </div>
         <div className="flex justify-center space-x-2">
           {/* Filter buttons */}
@@ -104,17 +108,23 @@ function AllEventsPage() {
             <button
               key={city}
               onClick={() => setSelectedCity(city)}
-              className={`px-4 py-2 rounded ${
-                selectedCity === city ? "bg-blue-500 text-white" : "bg-gray-200"
-              }`}
+              className={`px-4 py-2 rounded ${selectedCity === city ? "bg-orange-500 text-white" : "bg-purple-500 text-white"
+                }`}
             >
               {city}
             </button>
           ))}
         </div>
       </section>
-      <section className="border-b p-4 border-gray-300">
-        <div className="flex overflow-x-auto gap-4">
+
+      <section className="text-center border-b p-4 border-gray-300">
+        {/* TODO: restrict to only admin view for create event button */}
+        <button
+          className="inline-flex w-full justify-center rounded-md px-3 py-2 bg-orange-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto">
+          Create New Event
+        </button>
+        {/* TODO: create if statement for: if no events available, display text to say "XYZ" */}
+        <div className="flex justify-center overflow-x-auto gap-4 pt-4">
           {filteredEvents.map((eventData) => (
             <EventCard key={eventData.id} eventData={eventData} />
           ))}
