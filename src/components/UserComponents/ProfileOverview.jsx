@@ -1,6 +1,6 @@
 // HOOKs
 import { Fragment, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 // STYLE/TAILWIND
 import { UserCircleIcon } from "@heroicons/react/24/solid";
@@ -14,6 +14,7 @@ function ProfileOverview() {
   const navigate = useNavigate();
 
   // MODAL
+  const { id } = useParams();
   const [modalOpen, setModalOpen] = useState(false);
   const cancelBtnRef = useRef(null);
 
@@ -46,7 +47,7 @@ function ProfileOverview() {
   const updateBtnOnClick = (event) => {
     event.preventDefault();
     console.log("going to update profile page");
-    navigate("/users/update"); //TODO: update this when API is working
+    navigate(`/users/${id}/update`); //TODO: update this when API is working
   };
 
   //DELETE BUTTON
