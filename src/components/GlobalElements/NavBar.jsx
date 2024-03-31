@@ -3,6 +3,9 @@ import { useAuth } from "../../hooks/use-auth";
 import React, { useState } from "react";
 import { useNavbarContext } from "../NavBarContext";
 
+// STYLE/TAILWIND
+import { HomeIcon, CalendarDaysIcon, InformationCircleIcon, IdentificationIcon, CogIcon, UserGroupIcon } from "@heroicons/react/24/solid";
+
 function NavBar() {
   const { auth, setAuth } = useAuth();
   const { isNavbarOpen, toggleNavbar } = useNavbarContext();
@@ -24,7 +27,7 @@ function NavBar() {
           className="fixed w-full text-white flex items-center justify-end px-4 h-12"
           style={{ backgroundColor: "rgb(130, 70, 175)" }}
         >
-          <h1 className="text-3xl font-bold">BYTE TIME</h1>
+          <img id="text logo" src="/imgs/BTlogo.png" className="h-12" />
         </section>
 
         <nav
@@ -49,7 +52,7 @@ function NavBar() {
               <h2 className={`${isNavbarOpen ? "inline" : "hidden"}`}>LOGO</h2>
             </a> */}
             <a
-              className="toggle-btn absolute top-2.5 right-[-12px] p-2 bg-white rounded-full flex items-center justify-center transform transition-transform ease-linear"
+              className="toggle-btn absolute top-2.5 p-2 bg-white rounded-full flex items-center justify-center transform transition-transform ease-linear"
               onClick={toggleNavbar}
             >
               <img
@@ -65,7 +68,7 @@ function NavBar() {
               to="/home"
               className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
             >
-              <img src={logoPath} alt="Settings" className="w-6 h-6" />
+              <HomeIcon alt="Home" className="w-6 h-6" />
               <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
                 Home
               </span>
@@ -74,7 +77,7 @@ function NavBar() {
               to={`/users/${auth.user_id}`}
               className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
             >
-              <img src={logoPath} alt="Settings" className="w-6 h-6" />
+              <IdentificationIcon alt="Settings" className="w-6 h-6" />
               <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
                 Profile
               </span>
@@ -83,7 +86,7 @@ function NavBar() {
               to="/events"
               className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
             >
-              <img src={logoPath} alt="Settings" className="w-6 h-6" />
+              <CalendarDaysIcon alt="Events" className="w-6 h-6" />
               <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
                 Events
               </span>
@@ -92,7 +95,7 @@ function NavBar() {
               to="/about"
               className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
             >
-              <img src={logoPath} alt="Settings" className="w-6 h-6" />
+              <InformationCircleIcon alt="About" className="w-6 h-6" />
               <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
                 About
               </span>
@@ -104,7 +107,7 @@ function NavBar() {
                     to="/users/manage"
                     className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
                   >
-                    <img src={logoPath} alt="Settings" className="w-6 h-6" />
+                    <UserGroupIcon alt="manage" className="w-6 h-6" />
                     <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
                       Manage Users
                     </span>
@@ -124,9 +127,8 @@ function NavBar() {
             )}
             <div className="user-profile flex justify-center items-center gap-4 pt-6">
               <div className="user-avatar w-12 h-12 cursor-pointer transition-transform duration-200 hover:scale-110">
-                <img
-                  src={logoPath}
-                  alt=""
+                <CogIcon
+                  alt="logout"
                   className="w-full h-full rounded-full"
                 />
               </div>
