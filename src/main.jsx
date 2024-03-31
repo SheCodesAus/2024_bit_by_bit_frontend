@@ -30,12 +30,37 @@ import NavBar from "./components/GlobalElements/NavBar.jsx";
 import { NavbarProvider } from "./components/NavBarContext.jsx";
 
 const router = createBrowserRouter([
+  // {
+  //   path: "/",
+  //   element: <NavBar />,
+  //   children: [
+  //     { path: "/", element: <LoginPage /> },
+  //     { path: "/register", element: <RegisterPage /> },
+  //     { path: "home", element: <HomePage /> },
+  //     { path: "/about", element: <AboutPage /> },
+  //     { path: "/events", element: <AllEventsPage /> },
+  //     { path: "/events/:id", element: <EventPage /> },
+  //     { path: "/create-event", element: <CreateEventPage /> },
+  //     { path: "/event/:id/update", element: <UpdateEventPage /> },
+  //     { path: "/event/:id/schedule", element: <ScheduleEventMentorPage /> },
+  //     { path: "/users/:id", element: <ProfilePage /> },
+  //     { path: "/users/:id/update", element: <UpdateProfilePage /> },
+
+  //     { path: "/users/manage", element: <ManageUsersPage /> },
+  //   ],
+  // },
+
+  {
+    path: "/",
+    children: [
+      { path: "/", element: <LoginPage /> },
+      { path: "/register", element: <RegisterPage /> },
+    ],
+  },
   {
     path: "/",
     element: <NavBar />,
     children: [
-      { path: "/", element: <LoginPage /> },
-      { path: "/register", element: <RegisterPage /> },
       { path: "home", element: <HomePage /> },
       { path: "/about", element: <AboutPage /> },
       { path: "/events", element: <AllEventsPage /> },
@@ -43,10 +68,8 @@ const router = createBrowserRouter([
       { path: "/create-event", element: <CreateEventPage /> },
       { path: "/event/:id/update", element: <UpdateEventPage /> },
       { path: "/event/:id/schedule", element: <ScheduleEventMentorPage /> },
-      // { path: "/users/:id", element: <ProfilePage /> },
-      { path: "/users/", element: <ProfilePage /> },
-      // { path: "/users/:id/update", element: <UpdateProfilePage /> },
-      { path: "/users/update", element: <UpdateProfilePage /> },
+      { path: "/users/:id", element: <ProfilePage /> },
+      { path: "/users/:id/update", element: <UpdateProfilePage /> },
       { path: "/users/manage", element: <ManageUsersPage /> },
     ],
   },
@@ -61,31 +84,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </AuthProvider>
   </React.StrictMode>
 );
-
-// Previous Navbar configuration
-
-// {
-//   path: "/",
-//   children: [
-//     { path: "/", element: <LoginPage /> },
-//     { path: "/register", element: <RegisterPage /> },
-//   ],
-// },
-// {
-//   path: "/",
-//   element: <NavBar />,
-//   children: [
-//     { path: "home", element: <HomePage /> },
-//     { path: "/about", element: <AboutPage /> },
-//     { path: "/events", element: <AllEventsPage /> },
-//     { path: "/event/:id", element: <EventPage /> },
-//     { path: "/create-event", element: <CreateEventPage /> },
-//     { path: "/event/:id/update", element: <UpdateEventPage /> },
-//     { path: "/event/:id/schedule", element: <ScheduleEventMentorPage /> },
-//     // { path: "/users/:id", element: <ProfilePage /> },
-//     { path: "/users/", element: <ProfilePage /> },
-//     // { path: "/users/:id/update", element: <UpdateProfilePage /> },
-//     { path: "/users/update", element: <UpdateProfilePage /> },
-//     { path: "/users/manage", element: <ManageUsersPage /> },
-//   ],
-// },

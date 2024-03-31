@@ -1,6 +1,7 @@
 // HOOKs
 import { Fragment, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from "../../hooks/use-auth.js";
 
 // STYLE/TAILWIND
 import { UserCircleIcon } from "@heroicons/react/24/solid";
@@ -10,10 +11,15 @@ import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 // COMPONENTS
 import ButtonElement from "../GlobalElements/Button.jsx";
 
+// API
+import deleteUser from "../../api/delete-user.js";
+
 function ProfileOverview() {
   const navigate = useNavigate();
 
   // MODAL
+  const { id } = useParams();
+  const { auth, setAuth } = useAuth();
   const [modalOpen, setModalOpen] = useState(false);
   const cancelBtnRef = useRef(null);
 
@@ -23,17 +29,17 @@ function ProfileOverview() {
   const modalBtnTxt = "Delete Profile";
   // const modalAPICall = console.log("This is an API call");
 
-  const handleRedBtnClick = async (event) => {
+  const handleModalBtnClick = async (event) => {
     setModalOpen(false);
-
     console.log("MODAL RED BUTTON");
-    navigate("/");
 
-    // const {data} = await deleteUserProfile({
-    //   userID: auth.userID,
-    // });
-    // localStorage.removeItem("token");
-    // localStorage.removeItem("userID");
+    const { data } = await deleteUser({
+      user_id: auth.user_id,
+      token: auth.token,
+    });
+    localStorage.removeItem("token");
+    localStorage.removeItem("user_id");
+    navigate("/");
   };
 
   const handleCancelBtnClick = (event) => {
@@ -46,7 +52,7 @@ function ProfileOverview() {
   const updateBtnOnClick = (event) => {
     event.preventDefault();
     console.log("going to update profile page");
-    navigate("/users/update"); //TODO: update this when API is working
+    navigate(`/users/${id}/update`); //TODO: update this when API is working
   };
 
   //DELETE BUTTON
@@ -61,7 +67,10 @@ function ProfileOverview() {
     <>
       {/* SECTION  - Profile Image */}
       <section className="p-4">
-        <img src={UserCircleIcon} className="mx-auto h-64 w-64 rounded-full object-cover" />
+        <img
+          src={UserCircleIcon}
+          className="mx-auto h-64 w-64 rounded-full object-cover"
+        />
       </section>
       {/* SECTION  - Update/Delete Buttons */}
       <section className="mt-4 justify-center gap-2">
@@ -127,7 +136,7 @@ function ProfileOverview() {
                       <button
                         type="button"
                         className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                        onClick={handleRedBtnClick}
+                        onClick={handleModalBtnClick}
                       >
                         {modalBtnTxt}
                       </button>

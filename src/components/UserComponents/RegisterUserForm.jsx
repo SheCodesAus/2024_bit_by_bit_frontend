@@ -9,25 +9,27 @@ import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 
 // API
 import postCreateUser from "../../api/post-create-user.js";
+import postCreateUserProcess from "../../api/post-create-userProcess.js";
 import postLogin from "../../api/post-login.js";
 
 function RegisterUserForm() {
   const navigate = useNavigate();
   const { auth, setAuth } = useAuth();
-
+  // const [userProcessDetails, setUserProcessDetails] = useState("");
   const [userDetails, setUserDetails] = useState({
     username: "",
-    firstName: "",
-    lastName: "",
-    contactNumber: "",
+    first_name: "",
+    last_name: "",
+    contact_number: "",
     email: "",
-    profilePic: "",
+    profilePic:
+      "https://github.com/SheCodesAus/2024_bit_by_bit_frontend/blob/frontydevelopment/public/imgs/logo2.png",
     bio: "",
-    codingLanguage: "",
+    coding_language: "",
     slack: "",
     linkedIn: "",
+    is_admin: false,
   });
-
   const [password, setPassword] = useState("");
   const [showpassword, setShowPassowrd] = useState(false); //used to hide passwords when loging in.
 
@@ -38,27 +40,64 @@ function RegisterUserForm() {
       [id]: value,
     }));
   };
+  console.log(userDetails);
+  console.log("password: ", password);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (
-      userDetails.firstName &&
-      userDetails.lastName &&
+      userDetails.first_name &&
+      userDetails.last_name &&
       userDetails.email &&
       userDetails.username &&
       password
     ) {
       postCreateUser(userDetails, password).then((newUser) => {
-        postLogin(newUser.username, password)
+        console.log("new user: ", newUser);
+        const userProcessDetails = {
+          mentor: newUser.id,
+          user_onboarding_task_slack: false,
+          user_onboarding_task_linkedin: false,
+          user_onboarding_task_CodeofConduct: false,
+          user_onboarding_task_tshirtsent: false,
+          user_offboarding_task_feedbackrequested: false,
+          user_offboarding_task_feedbackreceived: false,
+          user_offboarding_task_tshirtreceived: false,
+          is_completed: false,
+          timestamps: new Date(),
+        };
+
+        postCreateUserProcess(userProcessDetails)
+          .then(
+            console.log("new user: ", newUser),
+            postLogin(newUser.username, password)
+          )
           .then((response) => {
             window.localStorage.setItem("token", response.token);
-            window.localStorage.setItem("userID", response.userID);
+            window.localStorage.setItem("user_id", response.user_id);
+            window.localStorage.setItem("username", response.username);
+            window.localStorage.setItem("is_admin", response.is_admin);
             setAuth({
               token: response.token,
-              userID: response.userID,
+              user_id: response.user_id,
+              username: response.username,
             });
           })
+          .then()
           .then(navigate("/home"));
+        // postLogin(newUser.username, password)
+        //   .then((response) => {
+        //     window.localStorage.setItem("token", response.token);
+        //     window.localStorage.setItem("user_id", response.user_id);
+        //     window.localStorage.setItem("username", response.username);
+        //     setAuth({
+        //       token: response.token,
+        //       user_id: response.user_id,
+        //       username: response.username,
+        //     });
+        //   })
+        //   .then()
+        //   .then(navigate("/home"));
       });
     }
   };
@@ -72,8 +111,14 @@ function RegisterUserForm() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {/* USERNAME */}
             <div>
-              <label htmlFor="username" className="block text-sm font-medium text-gray-700">Username</label>
+              <label
+                htmlFor="username"
+                className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-gray-700"
+              >
+                Username
+              </label>
               <input
+                id="username"
                 type="text"
                 name="username"
                 autoComplete="username"
@@ -84,8 +129,14 @@ function RegisterUserForm() {
             </div>
             {/* PASSWORD */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+              <label
+                htmlFor="password"
+                className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-gray-700"
+              >
+                Password
+              </label>
               <input
+                id="password"
                 type="password"
                 name="password"
                 autoComplete="new-password"
@@ -111,10 +162,16 @@ function RegisterUserForm() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {/* NAMES */}
             <div>
-              <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name</label>
+              <label
+                htmlFor="first_name"
+                className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-0.5 after:text-red-500"
+              >
+                First Name
+              </label>
               <input
+                id="first_name"
                 type="text"
-                name="firstName"
+                name="first_name"
                 autoComplete="given-name"
                 placeholder="Taylor"
                 onChange={handleChange}
@@ -122,10 +179,16 @@ function RegisterUserForm() {
               />
             </div>
             <div>
-              <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name</label>
+              <label
+                htmlFor="last_name"
+                className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-0.5 after:text-red-500"
+              >
+                Last Name
+              </label>
               <input
+                id="last_name"
                 type="text"
-                name="lastName"
+                name="last_name"
                 autoComplete="family-name"
                 placeholder="Swift"
                 onChange={handleChange}
@@ -134,10 +197,16 @@ function RegisterUserForm() {
             </div>
             {/* CONTACT NUMBER */}
             <div>
-              <label htmlFor="contactNumber" className="block text-sm font-medium text-gray-700">Contact Number</label>
+              <label
+                htmlFor="contact_number"
+                className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-0.5 after:text-red-500"
+              >
+                Contact Number
+              </label>
               <input
+                id="contact_number"
                 type="text"
-                name="contactNumber"
+                name="contact_number"
                 autoComplete="tel"
                 placeholder="555 2368"
                 onChange={handleChange}
@@ -146,8 +215,14 @@ function RegisterUserForm() {
             </div>
             {/* EMAIL */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-0.5 after:text-red-500"
+              >
+                Email
+              </label>
               <input
+                id="email"
                 type="text"
                 name="email"
                 autoComplete="email"
@@ -158,9 +233,19 @@ function RegisterUserForm() {
             </div>
             {/* PROFILE PICTURE */}
             <div className="col-span-2 flex items-center justify-center">
-              <label htmlFor="profilePic" className="block text-sm font-medium text-gray-700 mr-2">Profile Picture</label>
+              <label
+                htmlFor="profilePic"
+                className="block text-sm font-medium text-gray-700 mr-2"
+              >
+                Profile Picture
+              </label>
               <PhotoIcon className="h-6 w-6 text-gray-400" />
-              <button type="button" className="ml-2 text-sm text-blue-600 hover:text-blue-700 focus:outline-none">Change</button>
+              <button
+                type="button"
+                className="ml-2 text-sm text-blue-600 hover:text-blue-700 focus:outline-none"
+              >
+                Change
+              </button>
             </div>
           </div>
         </section>
@@ -170,8 +255,14 @@ function RegisterUserForm() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {/* BIO */}
             <div>
-              <label htmlFor="bio" className="block text-sm font-medium text-gray-700">Mentor Bio</label>
+              <label
+                htmlFor="bio"
+                className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-0.5 after:text-red-500"
+              >
+                Mentor Bio
+              </label>
               <textarea
+                id="bio"
                 name="bio"
                 placeholder="I am an incredible mentor with experience in X, Y and Z. When I am not coding or mentoring I am being a QUEEN!"
                 onChange={handleChange}
@@ -182,24 +273,38 @@ function RegisterUserForm() {
             {/* CODING LANGUAGES */}
             {/* TODO: Confirm how we want to allow users to select this/allowing multiple choices */}
             <div>
-              <label htmlFor="codingLanguage" className="block text-sm font-medium text-gray-700">Main Coding Language</label>
-              <select
-                id="codingLanguage"
-                name="codingLanguage"
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              <label
+                htmlFor="coding_language"
+                className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-0.5 after:text-red-500"
               >
-                <option value="htmlCss">HTML/CSS</option>
-                <option value="python">Python</option>
-                <option value="django">Django</option>
-                <option value="jsReact">Javascript and React</option>
-                <option value="wordpress">Wordpress</option>
+                Main Coding Language
+              </label>
+              <select
+                id="coding_language"
+                name="coding_language"
+                onChange={handleChange}
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
+              >
+                <option value="Select_language">Select a language</option>
+                <option value="HTML/CSS">HTML/CSS</option>
+                <option value="Python">Python</option>
+                <option value="Django">Django</option>
+                <option value="Javascript and React">
+                  Javascript and React
+                </option>
+                <option value="WordPress">WordPress</option>
               </select>
             </div>
             {/* SLACK */}
             <div>
-              <label htmlFor="slack" className="block text-sm font-medium text-gray-700">Slack</label>
+              <label
+                htmlFor="slack"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Slack
+              </label>
               <input
+                id="slack"
                 type="text"
                 name="slack"
                 placeholder="mySlack URL"
@@ -207,10 +312,16 @@ function RegisterUserForm() {
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
             </div>
-          {/* LINKEDIN */}
+            {/* LINKEDIN */}
             <div>
-              <label htmlFor="linkedin" className="block text-sm font-medium text-gray-700">LinkedIn</label>
+              <label
+                htmlFor="linkedin"
+                className="block text-sm font-medium text-gray-700"
+              >
+                LinkedIn
+              </label>
               <input
+                id="linkedin"
                 type="text"
                 name="linkedin"
                 placeholder="myLinkedIn URL"
@@ -218,14 +329,14 @@ function RegisterUserForm() {
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
             </div>
-            </div>
+          </div>
         </section>
         {/* SECTION 4 - Submit */}
         <section>
-          <button 
-          type="submit" 
-          onClick={handleSubmit}
-          className="rounded-md bg-orange-500 px-3"
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="rounded-md bg-orange-500 px-3"
           >
             Submit
           </button>
