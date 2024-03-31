@@ -81,9 +81,9 @@ function RegisterUserForm() {
               token: response.token,
               user_id: response.user_id,
               username: response.username,
+              is_admin: response.is_admin,
             });
           })
-          .then()
           .then(navigate("/home"));
         // postLogin(newUser.username, password)
         //   .then((response) => {

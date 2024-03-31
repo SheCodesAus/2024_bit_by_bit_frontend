@@ -4,7 +4,14 @@ import React, { useState } from "react";
 import { useNavbarContext } from "../NavBarContext";
 
 // STYLE/TAILWIND
-import { HomeIcon, CalendarDaysIcon, InformationCircleIcon, IdentificationIcon, CogIcon, UserGroupIcon } from "@heroicons/react/24/solid";
+import {
+  HomeIcon,
+  CalendarDaysIcon,
+  InformationCircleIcon,
+  IdentificationIcon,
+  CogIcon,
+  UserGroupIcon,
+} from "@heroicons/react/24/solid";
 
 function NavBar() {
   const { auth, setAuth } = useAuth();
@@ -17,6 +24,7 @@ function NavBar() {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("user_id");
     window.localStorage.removeItem("username");
+    window.localStorage.removeItem("is_admin");
     setAuth({ token: null, user_id: null, username: null });
   };
 
@@ -127,10 +135,7 @@ function NavBar() {
             )}
             <div className="user-profile flex justify-center items-center gap-4 pt-6">
               <div className="user-avatar w-12 h-12 cursor-pointer transition-transform duration-200 hover:scale-110">
-                <CogIcon
-                  alt="logout"
-                  className="w-full h-full rounded-full"
-                />
+                <CogIcon alt="logout" className="w-full h-full rounded-full" />
               </div>
               <div
                 className={`user-details ${isNavbarOpen ? "inline" : "hidden"}`}

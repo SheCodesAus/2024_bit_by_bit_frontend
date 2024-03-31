@@ -43,14 +43,21 @@ function LoginForm() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (username && password) {
-      postLogin(username, password).then((response) => {
-        console.log(response);
-        window.localStorage.setItem("token", response.token);
-        window.localStorage.setItem("user_id", response.user_id);
-        window.localStorage.setItem("username", response.username);
-        window.localStorage.setItem("is_admin", response.is_admin);
-      });
-      navigate("/home");
+      postLogin(username, password)
+        .then((response) => {
+          console.log(response);
+          window.localStorage.setItem("token", response.token);
+          window.localStorage.setItem("user_id", response.user_id);
+          window.localStorage.setItem("username", response.username);
+          window.localStorage.setItem("is_admin", response.is_admin);
+          setAuth({
+            token: response.token,
+            user_id: response.user_id,
+            username: response.username,
+            is_admin: response.is_admin,
+          });
+        })
+        .then(navigate("/home"));
     }
   };
 
