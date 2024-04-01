@@ -1,6 +1,6 @@
 // HOOKS
 import React, { useState } from "react";
-import useEvents from "../../hooks/use-events";
+import useAllEvents from "../../hooks/use-events";
 
 // COMPONENTS
 import { useNavbarContext } from "../../components/NavBarContext";
@@ -10,7 +10,7 @@ import buttonElement from "../../components/GlobalElements/Button";
 function AllEventsPage() {
   const { isNavbarOpen } = useNavbarContext();
   const [selectedCity, setSelectedCity] = useState("");
-  const { events } = useEvents();
+  const { events } = useAllEvents();
   const bannerPath = "/imgs/SCbanner4.jpg";
 
   // Example events data
@@ -89,16 +89,15 @@ function AllEventsPage() {
 
   const filteredEvents = selectedCity
     ? events.filter(
-      (event) => event.location.toLowerCase() === selectedCity.toLowerCase()
-    )
+        (event) => event.location.toLowerCase() === selectedCity.toLowerCase()
+      )
     : events;
 
   return (
     <main className={`min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"}`}>
-
       {/* Adjust margin based on sidebar toggle */}
       <section className="border-b p-4 border-gray-300 pt-16">
-        <img id="bannerAllEvents" src={bannerPath} className="w-full h-96"/>
+        <img id="bannerAllEvents" src={bannerPath} className="w-full h-96" />
         <div className="flex justify-center border-b p-4 border-gray-300 mb-4">
           <h1 className="font-bold text-5xl">SHE CODES EVENTS</h1>
         </div>
@@ -108,8 +107,11 @@ function AllEventsPage() {
             <button
               key={city}
               onClick={() => setSelectedCity(city)}
-              className={`px-4 py-2 rounded ${selectedCity === city ? "bg-orange-500 text-white" : "bg-purple-500 text-white"
-                }`}
+              className={`px-4 py-2 rounded ${
+                selectedCity === city
+                  ? "bg-orange-500 text-white"
+                  : "bg-purple-500 text-white"
+              }`}
             >
               {city}
             </button>
@@ -119,8 +121,7 @@ function AllEventsPage() {
 
       <section className="text-center border-b p-4 border-gray-300">
         {/* TODO: restrict to only admin view for create event button */}
-        <button
-          className="inline-flex w-full justify-center rounded-md px-3 py-2 bg-orange-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto">
+        <button className="inline-flex w-full justify-center rounded-md px-3 py-2 bg-orange-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto">
           Create New Event
         </button>
         {/* TODO: create if statement for: if no events available, display text to say "XYZ" */}
