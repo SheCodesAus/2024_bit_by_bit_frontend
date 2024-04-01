@@ -1,6 +1,8 @@
 // HOOKS
 import React, { useState } from "react";
 import useAllEvents from "../../hooks/use-events";
+import { useAuth } from "../../hooks/use-auth";
+import { Link } from "react-router-dom";
 
 // COMPONENTS
 import { useNavbarContext } from "../../components/NavBarContext";
@@ -11,6 +13,7 @@ function AllEventsPage() {
   const { isNavbarOpen } = useNavbarContext();
   const [selectedCity, setSelectedCity] = useState("");
   const { events } = useAllEvents();
+  const { auth, setAuth } = useAuth();
   const bannerPath = "/imgs/SCbanner4.jpg";
 
   // Example events data
@@ -89,8 +92,8 @@ function AllEventsPage() {
 
   const filteredEvents = selectedCity
     ? events.filter(
-        (event) => event.location.toLowerCase() === selectedCity.toLowerCase()
-      )
+      (event) => event.location.toLowerCase() === selectedCity.toLowerCase()
+    )
     : events;
 
   return (
@@ -102,16 +105,22 @@ function AllEventsPage() {
           <h1 className="font-bold text-5xl">SHE CODES EVENTS</h1>
         </div>
         <div className="flex justify-center space-x-2">
-          {/* Filter buttons */}
+          {/* All Events Button */}
+          <button
+            onClick={() => setSelectedCity("")}
+            className={`px-4 py-2 rounded ${selectedCity === "" ? "bg-orange-500 text-white" : "bg-purple-500 text-white"}`}
+          >
+            All
+          </button>
+          {/* City Filter buttons */}
           {["Brisbane", "Perth", "Sydney"].map((city) => (
             <button
               key={city}
               onClick={() => setSelectedCity(city)}
-              className={`px-4 py-2 rounded ${
-                selectedCity === city
-                  ? "bg-orange-500 text-white"
-                  : "bg-purple-500 text-white"
-              }`}
+              className={`px-4 py-2 rounded ${selectedCity === city
+                ? "bg-orange-500 text-white"
+                : "bg-purple-500 text-white"
+                }`}
             >
               {city}
             </button>
@@ -120,12 +129,21 @@ function AllEventsPage() {
       </section>
 
       <section className="text-center border-b p-4 border-gray-300">
-        {/* TODO: restrict to only admin view for create event button */}
-        <button className="inline-flex w-full justify-center rounded-md px-3 py-2 bg-orange-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto">
-          Create New Event
-        </button>
+        {/* Restricted to only admin view for create event button */}
+        {auth.token && (
+          <>
+            {auth.is_admin == true && (
+              <Link
+                to="/create-event"
+                className="inline-flex w-full justify-center rounded-md px-3 py-2 bg-orange-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto">
+                Create New Event
+              </Link>
+            )}
+          </>
+        )}
+
         {/* TODO: create if statement for: if no events available, display text to say "XYZ" */}
-        <div className="flex justify-center overflow-x-auto gap-4 pt-4">
+        <div className="flex flex-row overflow-x-auto gap-4 pt-4">
           {filteredEvents.map((eventData) => (
             <EventCard key={eventData.id} eventData={eventData} />
           ))}

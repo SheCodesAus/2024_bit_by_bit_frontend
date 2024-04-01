@@ -31,7 +31,8 @@ function RegisterUserForm() {
     is_admin: false,
   });
   const [password, setPassword] = useState("");
-  const [showpassword, setShowPassowrd] = useState(false); //used to hide passwords when loging in.
+  const [showPassword, setShowPassword] = useState(false); //used to hide passwords when loging in.
+  const [referralCode, setReferralCode] = useState("")
 
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -45,6 +46,11 @@ function RegisterUserForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (referralCode !== "cupcakes4days") {
+      alert("Incorrect referral code. Please enter the correct referral code to proceed.")
+      return;
+    }
+
     if (
       userDetails.first_name &&
       userDetails.last_name &&
@@ -84,7 +90,7 @@ function RegisterUserForm() {
               is_admin: response.is_admin,
             });
           })
-          .then(navigate("/home"));
+          .then(navigate("/"));
         // postLogin(newUser.username, password)
         //   .then((response) => {
         //     window.localStorage.setItem("token", response.token);
@@ -137,7 +143,7 @@ function RegisterUserForm() {
               </label>
               <input
                 id="password"
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 autoComplete="new-password"
                 placeholder="********"
@@ -150,8 +156,9 @@ function RegisterUserForm() {
               <label htmlFor="check">Show Password</label>
               <input
                 type="checkbox"
-                value={showpassword}
-                onChange={() => setShowPassword((prev) => !prev)}
+                value={showPassword}
+                onChange={() => setShowPassword(!showPassword)}
+                className="ml-2"
               />
             </div>
           </div>
@@ -331,7 +338,22 @@ function RegisterUserForm() {
             </div>
           </div>
         </section>
-        {/* SECTION 4 - Submit */}
+        <section className="w-full mb-4">
+          <h2 className="text-lg font-semibold mb-2">Referral Code</h2>
+          <div >
+            <input
+              id="referralCode"
+              type="text"
+              name="referralCode"
+              placeholder="Enter referral code"
+              value={referralCode}
+              onChange={(e) => setReferralCode(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              required
+            />
+          </div>
+        </section>
+        {/* SECTION 5 - Submit */}
         <section>
           <button
             type="submit"
