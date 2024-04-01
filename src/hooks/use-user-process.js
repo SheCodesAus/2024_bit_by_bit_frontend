@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import getUserProcess from "../api/get-user-process";
+import getAllUserProcesses from "../api/get-all-user-processes";
 
 export default function useUserProcess(user_id) {
   const [userProcess, setUserProcess] = useState();
@@ -7,7 +7,7 @@ export default function useUserProcess(user_id) {
   const [error, setError] = useState();
 
   useEffect(() => {
-    getUserProcess(user_id)
+    getAllUserProcesses(user_id)
       .then((userProcess) => {
         setUserProcess(userProcess);
         console.log(`UserProcess: ${userProcess}`);
