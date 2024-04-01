@@ -1,6 +1,6 @@
 // HOOKS
 import { useParams } from "react-router-dom";
-import useEvents from "../../hooks/use-events";
+import useAllEvents from "../../hooks/use-events";
 
 // COMPONENTS
 import { useNavbarContext } from "../../components/NavBarContext";

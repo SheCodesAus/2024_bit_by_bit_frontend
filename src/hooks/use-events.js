@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import getEvents from "../api/get-events";
 import { useAuth } from "./use-auth";
 
-export default function useEvents() {
+export default function useAllEvents() {
   const { auth, setAuth } = useAuth();
 
   const [events, setEvents] = useState([]);

@@ -9,7 +9,8 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-function ManageUserAccordion({ userData, processData }) {
+function ScheduleMentorAccordion({ eventData, userData, processData }) {
+  console.log("eventData: ", eventData);
   console.log("userData: ", userData);
   console.log("processData: ", processData);
 
@@ -19,18 +20,21 @@ function ManageUserAccordion({ userData, processData }) {
       ...user,
     }));
 
-  const mergedData = mergedUserById(userData, processData);
+  const mergedData = mergedUserById(eventData, processData);
   console.log("mergedData: ", mergedData);
 
   function mapProcesses(data) {
     return {
-      slack_provided: data.user_onboarding_task_slack,
-      linkedIn_provided: data.user_onboarding_task_linkedin,
-      CodeofConduct_provided: data.user_onboarding_task_CodeofConduct,
-      tshirtsent: data.user_onboarding_task_tshirtsent,
-      feedbackrequested: data.user_offboarding_task_feedbackrequested,
-      feedbackreceived: data.user_offboarding_task_feedbackreceived,
-      tshirtreceived: data.user_offboarding_task_tshirtreceived,
+      contract: data.event_onboarding_task_contrack,
+      slackinvite: data.event_onboarding_task_slackinvite,
+      googlecalendarinvite: data.event_onboarding_task_googlecalendarinvite,
+      lmsinvite: data.event_onboarding_task_lmsinvite,
+      mentorbio: data.event_onboarding_task_mentorbio,
+      createimgasset: data.event_onboarding_task_createimgasset,
+      reconfirmdates: data.event_onboarding_task_reconfirmdates,
+      buildinginformation: data.event_onboarding_task_buildinginformation,
+      invoicesent: data.event_offboarding_task_invoicesent,
+      invoicereceived: data.event_offboarding_task_invoicereceived,
     };
   }
   const mappedData = {};
@@ -45,7 +49,7 @@ function ManageUserAccordion({ userData, processData }) {
     ...mappedData,
   });
 
-  const userAccordion = mergedUserById(userData, processData).map(
+  const userAccordion = mergedUserById(eventData, processData).map(
     (user, index) => (
       <Accordion defaultIndex={[0]} allowMultiple key={index}>
         <AccordionItem>
@@ -60,8 +64,8 @@ function ManageUserAccordion({ userData, processData }) {
               <div className="px-4 py-2">{user.last_name}</div>
               <div className="px-4 py-2">{user.email}</div>
               <div className="px-4 py-2">{user.contact_number}</div>
-              <div className="px-4 py-2">{user.linkedIn}</div>
-              <div className="px-4 py-2">{user.slack}</div>
+              <div className="px-4 py-2">{user.role_requested}</div>
+              <div className="px-4 py-2">{user.role_asigned}</div>
             </Box>
             <AccordionIcon />
           </AccordionButton>
@@ -71,37 +75,65 @@ function ManageUserAccordion({ userData, processData }) {
               <Box as="span" flex="1" textAlign="left"></Box>
             </AccordionButton>
           </h2>
-          <AccordionPanel pb={4} className="flex bg-orange-300">
+          <AccordionPanel pb={4} className="flex bg-purple-300">
             <Box as="span" flex="1" textAlign="left"></Box>
             <div className="">
               <h2 className="font-semibold">Onboarding tasks</h2>
               <div className="flex">
                 <div className="grid grid-cols-1 px-4 py-2">
-                  <label>Slack link Provided?</label>
+                  <label>Contract Provided?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["slack_provided"]}
+                    checked={isProcessChecked["contract"]}
                   />
                 </div>
                 <div className="grid grid-cols-1  px-4 py-2">
-                  <label>LinkedIn link Provided?</label>
+                  <label>Slack invite Provided?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["linkedIn_provided"]}
+                    checked={isProcessChecked["slackinvite"]}
                   />
                 </div>
                 <div className="grid grid-cols-1 px-4 py-2">
-                  <label>Mentor Code of Conduct provided?</label>
+                  <label>Google Calendar Invite provided?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["CodeofConduct_provided"]}
+                    checked={isProcessChecked["googlecalendarinvite"]}
                   />
                 </div>
                 <div className="grid grid-cols-1 px-4 py-2">
-                  <label>Mentor t-shirt provided?</label>
+                  <label>LMS invite provided?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["tshirtsent"]}
+                    checked={isProcessChecked["lmsinvite"]}
+                  />
+                </div>
+                <div className="grid grid-cols-1 px-4 py-2">
+                  <label>Mentor Bio provided?</label>
+                  <input
+                    type="checkbox"
+                    checked={isProcessChecked["mentorbio"]}
+                  />
+                </div>
+                <div className="grid grid-cols-1 px-4 py-2">
+                  <label>Image asset created?</label>
+                  <input
+                    type="checkbox"
+                    checked={isProcessChecked["createimgasset"]}
+                  />
+                </div>
+                <div className="grid grid-cols-1 px-4 py-2">
+                  <label>Reconfirmed dates?</label>
+                  <input
+                    type="checkbox"
+                    checked={isProcessChecked["reconfirmdates"]}
+                  />
+                </div>
+                <div className="grid grid-cols-1 px-4 py-2">
+                  <label>Building information provided?</label>
+                  <input
+                    type="checkbox"
+                    checked={isProcessChecked["buildinginformation"]}
                   />
                 </div>
               </div>
@@ -110,24 +142,17 @@ function ManageUserAccordion({ userData, processData }) {
               <h2 className="font-semibold">Offboarding tasks</h2>
               <div className="flex">
                 <div className="grid grid-cols-1 px-4 py-2">
-                  <label>Feedback Requested?</label>
+                  <label>Invoice Requested?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["feedbackrequested"]}
+                    checked={isProcessChecked["invoicesent"]}
                   />
                 </div>
                 <div className="grid grid-cols-1  px-4 py-2">
-                  <label>Feedback Recieved?</label>
+                  <label>Invoice Recieved?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["feedbackreceived"]}
-                  />
-                </div>
-                <div className="grid grid-cols-1 px-4 py-2">
-                  <label>Mentor t-shirt returned?</label>
-                  <input
-                    type="checkbox"
-                    checked={isProcessChecked["tshirtreceived"]}
+                    checked={isProcessChecked["invoicereceived"]}
                   />
                 </div>
               </div>
@@ -145,12 +170,12 @@ function ManageUserAccordion({ userData, processData }) {
         <h2 className="font-semibold px-4 py-2">Second Name</h2>
         <h2 className="font-semibold px-4 py-2">Email</h2>
         <h2 className="font-semibold px-4 py-2">Contact Number</h2>
-        <h2 className="font-semibold px-4 py-2">Slack</h2>
-        <h2 className="font-semibold px-4 py-2">LinkedIn</h2>
+        <h2 className="font-semibold px-4 py-2">Role Requested</h2>
+        <h2 className="font-semibold px-4 py-2">Role Assigned</h2>
       </section>
       {userAccordion}
     </>
   );
 }
 
-export default ManageUserAccordion;
+export default ScheduleMentorAccordion;
