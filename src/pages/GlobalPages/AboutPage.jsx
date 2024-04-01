@@ -34,30 +34,31 @@ function AboutPage() {
           <figure>
             <div className="px-4 py-4 flex text-center">
               <div className="w-1/3 h-32 border-dotted border-2 border-orange-300">
-                <h1>Mentor fact/stats 1</h1>
+                <h1>72 PAID MENTORS LAST YEAR</h1>
               </div>
               <div className="w-1/3 border-dotted border-2 border-orange-300">
-                <h1>Mentor fact/stats 2</h1>
+                <h1>329 MENTORS IN THE COMMUNITY</h1>
               </div>
               <div className="w-1/3 border-dotted border-2 border-orange-300">
-                <h1>Mentor fact/stats 3</h1>
+                <h1>11,922 TOTAL HOURS SPENT MENTORING IN 22/23</h1>
               </div>
             </div>
           </figure>
 
           <article className="flex flex-col text-center w-11/12 border-solid border border-gray-300">
             <div className="py-4">
-              <h1 className="text-center font-bold text-xl">MENTORING INFO</h1>
-              <p>enter details here</p>
-              <p>enter details here</p>
-              <p>enter details here</p>
+              <h1 className="text-center font-bold text-xl">OUR MENTORS ARE...</h1>
+              <p>Willing to share their story.</p>
+              <p>Approachable and patient.</p>
+              <p>Contribute to improving the diversity in our industry</p>
             </div>
             <div className="py-4 border-solid border-t border-orange-300">
-              <h1 className="text-center font-bold text-xl pt-4">RESOURCES & LINKS</h1>
+              <h1 className="text-center font-bold text-xl pt-4">BENEFITS OF MENTORING</h1>
               <ul>
-                <li>Feature 1</li>
-                <li>Feature 2</li>
-                <li>Feature 3</li>
+                <li>Contribute to improving the diversity in our industry</li>
+                <li>Grow your own network by meeting other developers</li>
+                <li>Develop your communication skills</li>
+                <li>Improve your own technical skills</li>
                 {/* Add more features as needed */}
               </ul>
             </div>
