@@ -66,14 +66,15 @@ function ProfileOverview() {
   return (
     <>
       {/* SECTION  - Profile Image */}
-      <section className="p-4">
+      <section className="w-72 h-72 sm:w-96 sm:h-96 rounded-full overflow-hidden border border-orange-500">
         <img
-          src={UserCircleIcon}
-          className="mx-auto h-64 w-64 rounded-full object-cover"
+          id="defaultLogo"
+          src="/imgs/defaultLogo.png"
+          className="w-full h-full object-cover"
         />
       </section>
       {/* SECTION  - Update/Delete Buttons */}
-      <section className="mt-4 justify-center gap-2">
+      <section className="mt-4 flex flex-row justify-center gap-2">
         <ButtonElement message={updateMessage} btnClick={updateBtnOnClick} />
         <ButtonElement message={deleteMessage} btnClick={deleteBtnOnClick} />
       </section>

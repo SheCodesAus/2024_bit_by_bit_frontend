@@ -15,24 +15,25 @@ function ProfileInformation() {
   // const { userProcess, isLoading, error } = useUserProcess(user_id);
   // console.log(userProcess);
 
-  const userProcess = {
-    user_onboarding_task: {
-      "Slack provided": false,
-      "LinkedIn provided": true,
-      "Mentor code of conduct provided": false,
-      "Mentor t-shirt provided": false,
-    },
-    user_offboarding_task: {
-      "Feedback asked for": true,
-      "Feedback recieved": true,
-      "Mentor t-shirt returned": false,
-    },
-  };
-  // console.log("User Process: ", userProcess);
+  {/* MOVED SECTION TO PROFILE PAGE.JSX FOR BETTER LAYOUT */}
+  // const userProcess = {
+  //   user_onboarding_task: {
+  //     "Slack provided": false,
+  //     "LinkedIn provided": true,
+  //     "Mentor code of conduct provided": false,
+  //     "Mentor t-shirt provided": false,
+  //   },
+  //   user_offboarding_task: {
+  //     "Feedback asked for": true,
+  //     "Feedback recieved": true,
+  //     "Mentor t-shirt returned": false,
+  //   },
+  // };
+  // // console.log("User Process: ", userProcess);
 
-  const [isOnboardingChecked, setIsOnboardingChecked] = useState({
-    ...userProcess.user_onboarding_task,
-  });
+  // const [isOnboardingChecked, setIsOnboardingChecked] = useState({
+  //   ...userProcess.user_onboarding_task,
+  // });
   // console.log("isOnboardingChecked: ", isOnboardingChecked);
 
   return (
@@ -92,8 +93,9 @@ function ProfileInformation() {
             {/* <dd>{user.linkedIn}</dd> */}
           </section>
         </section>
+        
         {/* SECTION  - Onboarding Information */}
-        <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        {/* <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
           <h2>Mentor Onboarding</h2>
           <dt>Slack username provided?</dt>
           <input
@@ -115,7 +117,7 @@ function ProfileInformation() {
             type="checkbox"
             checked={isOnboardingChecked["Mentor t-shirt provided"]}
           />
-        </section>
+        </section> */}
 
         {/* SECTION  -  Stats (Extra if time) */}
         <section></section>
