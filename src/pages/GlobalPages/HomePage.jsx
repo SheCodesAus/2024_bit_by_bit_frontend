@@ -27,32 +27,32 @@ function HomePage() {
       </section>
 
       <section className="flex flex-row justify-center border-b p-8 border-gray-300 mb-4">
-        <div
-          className="event-card bg-orange-400 shadow-md p-8 rounded-lg mx-4 flex justify-center border border-orange-300"
-          style={{ minWidth: "300px" }}
-        >
-          <Link to="/about" className="font-bold text-white text-xl">
-            {" "}
-            PLUS{" "}
-          </Link>
+      <div>
+                <Link 
+              to="/about" 
+              className="event-card bg-orange-400 shadow-md p-8 rounded-lg mx-4 flex justify-center border border-orange-300 text-white text-xl font-bold"
+              style={{ minWidth: "300px", cursor: "pointer" }}
+            >
+              PLUS
+        </Link> 
         </div>
-        <div
-          className="event-card bg-orange-400 shadow-md p-8 rounded-lg mx-4 flex justify-center border border-orange-300"
-          style={{ minWidth: "300px" }}
-        >
-          <Link to="/about" className="font-bold text-white text-xl">
-            {" "}
-            ONE-DAY WORKSHOPS{" "}
-          </Link>
+        <div>
+                <Link 
+              to="/about" 
+              className="event-card bg-orange-400 shadow-md p-8 rounded-lg mx-4 flex justify-center border border-orange-300 text-white text-xl font-bold"
+              style={{ minWidth: "300px", cursor: "pointer" }}
+            >
+              ONE DAY WORKSHOPS
+        </Link> 
         </div>
-        <div
-          className="event-card bg-orange-400 shadow-md p-8 rounded-lg mx-4 flex justify-center border border-orange-300"
-          style={{ minWidth: "300px" }}
-        >
-          <Link to="/about" className="font-bold text-white text-xl">
-            {" "}
-            FLASH{" "}
-          </Link>
+        <div>
+        <Link 
+              to="/about" 
+              className="event-card bg-orange-400 shadow-md p-8 rounded-lg mx-4 flex justify-center border border-orange-300 text-white text-xl font-bold"
+              style={{ minWidth: "300px", cursor: "pointer" }}
+            >
+              FLASH
+        </Link> 
         </div>
       </section>
       
