@@ -19,10 +19,7 @@ function ManageUserAccordion({ userData, processData }) {
       ...user,
     }));
 
-  console.log("mergedUserById: ", mergedUserById(userData, processData));
-
   const mergedData = mergedUserById(userData, processData);
-
   console.log("mergedData: ", mergedData);
 
   function mapProcesses(data) {
@@ -75,7 +72,6 @@ function ManageUserAccordion({ userData, processData }) {
             </AccordionButton>
           </h2>
           <AccordionPanel pb={4} className="flex bg-orange-300">
-            {/* <AccordionButton> */}
             <Box as="span" flex="1" textAlign="left"></Box>
             <div className="">
               <h2 className="font-semibold">Onboarding tasks</h2>
@@ -136,7 +132,6 @@ function ManageUserAccordion({ userData, processData }) {
                 </div>
               </div>
             </div>
-            {/* </AccordionButton> */}
           </AccordionPanel>
         </AccordionItem>
       </Accordion>
@@ -159,56 +154,3 @@ function ManageUserAccordion({ userData, processData }) {
 }
 
 export default ManageUserAccordion;
-
-// <Accordion defaultIndex={[0]} allowMultiple>
-//   <AccordionItem>
-//     <h2>
-//       <AccordionButton>
-//         <Box
-//           as="span"
-//           flex="1"
-//           textAlign="left"
-//           className="grid grid-cols-6 text-wrap"
-//         >
-//           <div className="px-4 py-2">{mergedData.first_name}</div>
-//           <div className="px-4 py-2">{mergedData.last_name}</div>
-//           <div className="px-4 py-2">{mergedData.email}</div>
-//           <div className="px-4 py-2">{mergedData.contact_number}</div>
-//           <div className="px-4 py-2">{mergedData.linkedIn}</div>
-//           <div className="px-4 py-2">{mergedData.slack}</div>
-//         </Box>
-//         <AccordionIcon />
-//       </AccordionButton>
-//     </h2>
-//     <h2>
-//       <AccordionButton>
-//         <Box as="span" flex="1" textAlign="left"></Box>
-//         {/* <AccordionIcon /> */}
-//       </AccordionButton>
-//     </h2>
-//     <AccordionPanel pb={4}>
-//       <AccordionButton>
-//         <Box as="span" flex="1" textAlign="left"></Box>
-//         <div className="px-4 py-2">
-//           <label>Mentor Code of Conduct provided?</label>
-//           <input
-//             type="checkbox"
-//             checked={
-//               isOnboardingChecked["Mentor Code of Conduct provided "]
-//             }
-//           />
-//           {mergedData.user_onboarding_task_slack}
-//         </div>
-//         <div className="px-4 py-2">
-//           {mergedData.user_onboarding_task_linkedin}
-//         </div>
-//         <div className="px-4 py-2">
-//           {mergedData.user_onboarding_task_CodeofConduct}
-//         </div>
-//         <div className="px-4 py-2">
-//           {mergedData.user_onboarding_task_tshirtsent}
-//         </div>
-//       </AccordionButton>
-//     </AccordionPanel>
-//   </AccordionItem>
-// </Accordion>
