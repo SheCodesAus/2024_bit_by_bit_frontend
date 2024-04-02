@@ -38,11 +38,11 @@ function ProfileInformation() {
 
   return (
     <>
-      <section>
+      <section >
         {/* SECTION  - Basic Info */}
         <section>
           {/* NAMES */}
-          <dl className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <dl className="mt-1 w-full px-3 py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">First Name</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               {user?.first_name}
@@ -53,7 +53,7 @@ function ProfileInformation() {
             </dd>
           </dl>
           {/* CONTACT NUMBER*/}
-          <dl className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <dl className="mt-1 w-full px-3 py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">
               Contact Number
             </dt>
@@ -62,7 +62,7 @@ function ProfileInformation() {
             </dd>
           </dl>
           {/* EMAIL */}
-          <dl className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <dl className="mt-1 w-full px-3 py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">Email</dt>
             <dd>{user?.email}</dd>
           </dl>
@@ -70,25 +70,25 @@ function ProfileInformation() {
         {/* SECTION  - Mentor Information */}
         <section>
           {/* BIO */}
-          <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <section className="mt-1 w-full px-3 py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">Mentor Bio</dt>
             <dd>{user?.bio}</dd>
           </section>
           {/* CODING LANGUAGES */}
           {/* TODO: Confirm how we want to allow users to select this/allowing multiple choices.*/}
-          <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <section className="mt-1 w-full px-3 py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">
               Main Coding Language
             </dt>
             <dd>{user?.coding_language}</dd>
           </section>
           {/* Slack */}
-          <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <section className="mt-1 w-full px-3 py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">Slack</dt>
             {/* <dd>{user.slack}</dd> */}
           </section>
           {/* LINKEDIN */}
-          <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <section className="mt-1 w-full px-3 py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">LinkedIn</dt>
             {/* <dd>{user.linkedIn}</dd> */}
           </section>

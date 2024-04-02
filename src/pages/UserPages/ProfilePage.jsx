@@ -65,9 +65,9 @@ function ProfilePage() {
           <ProfileOverview />
         </div>
         {/* LHS top half - user details */}
-        <div className="md:w-1/2 md:pl-4">
+        <div  className="bg-gradient-to-b from-slate-100 to-stone-200 rounded hover:rounded-lg ">
           <ProfileInformation />
-        </div>
+         </div>
       </section>
 
       <section className="max-w-4xl mx-auto text-center border-t p-4 border-gray-300 mt-4">
