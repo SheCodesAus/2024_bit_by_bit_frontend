@@ -7,6 +7,7 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/react";
+
 import { Fragment, useState, useRef } from "react";
 import { useAuth } from "../../hooks/use-auth";
 
@@ -31,32 +32,6 @@ function ManageUserAccordion({ userData, processData }) {
       ...a2.find((process) => process.mentor === user.id && process),
       ...user,
     }));
-
-  const mergedData = mergedUserById(userData, processData);
-  console.log("mergedData: ", mergedData);
-
-  function mapProcesses(data) {
-    return {
-      slack_provided: data.user_onboarding_task_slack,
-      linkedIn_provided: data.user_onboarding_task_linkedin,
-      CodeofConduct_provided: data.user_onboarding_task_CodeofConduct,
-      tshirtsent: data.user_onboarding_task_tshirtsent,
-      feedbackrequested: data.user_offboarding_task_feedbackrequested,
-      feedbackreceived: data.user_offboarding_task_feedbackreceived,
-      tshirtreceived: data.user_offboarding_task_tshirtreceived,
-    };
-  }
-  const mappedData = {};
-  for (const key in mergedData) {
-    if (mergedData.hasOwnProperty(key)) {
-      mappedData[key] = mapProcesses(mergedData[key]);
-    }
-  }
-  console.log("mappedData: ", mappedData);
-
-  const [isProcessChecked, setIsProcessChecked] = useState({
-    ...mappedData,
-  });
 
   // MODALS & BUTTONS
   const [modalOpen, setModalOpen] = useState(false);
@@ -140,28 +115,28 @@ function ManageUserAccordion({ userData, processData }) {
                   <label>Slack link Provided?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["slack_provided"]}
+                    checked={user.user_onboarding_task_slack}
                   />
                 </div>
                 <div className="grid grid-cols-1  px-4 py-2">
                   <label>LinkedIn link Provided?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["linkedIn_provided"]}
+                    checked={user.user_onboarding_task_linkedin}
                   />
                 </div>
                 <div className="grid grid-cols-1 px-4 py-2">
                   <label>Mentor Code of Conduct provided?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["CodeofConduct_provided"]}
+                    checked={user.user_onboarding_task_CodeofConduct}
                   />
                 </div>
                 <div className="grid grid-cols-1 px-4 py-2">
                   <label>Mentor t-shirt provided?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["tshirtsent"]}
+                    checked={user.user_onboarding_task_tshirtsent}
                   />
                 </div>
               </div>
@@ -174,21 +149,21 @@ function ManageUserAccordion({ userData, processData }) {
                   <label>Feedback Requested?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["feedbackrequested"]}
+                    checked={user.user_offboarding_task_feedbackrequested}
                   />
                 </div>
                 <div className="grid grid-cols-1  px-4 py-2">
                   <label>Feedback Recieved?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["feedbackreceived"]}
+                    checked={user.user_offboarding_task_feedbackreceived}
                   />
                 </div>
                 <div className="grid grid-cols-1 px-4 py-2">
                   <label>Mentor t-shirt returned?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["tshirtreceived"]}
+                    checked={user.user_offboarding_task_tshirtreceived}
                   />
                 </div>
               </div>
