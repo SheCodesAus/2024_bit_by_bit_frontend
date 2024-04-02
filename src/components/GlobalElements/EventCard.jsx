@@ -99,23 +99,27 @@ function EventCard(props) {
             message={btnMessage}
             btnClick={handleSubmit}
             className="inline-flex w-full justify-center rounded-md bg-orange-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto"
-          > Submit Availability </Button>
+          >
+            {" "}
+            Submit Availability{" "}
+          </Button>
         </div>
       </div>
 
-      {/* TODO: link buttons to event id's */}
       {auth.token && (
         <>
           {auth.is_admin == true && (
             <div>
               <Link
-                to="/event/:id/update"
-                className="inline-flex w-full justify-center rounded-md bg-purple-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-2/5">
+                to={`/event/${eventData.id}/update`}
+                className="inline-flex w-full justify-center rounded-md bg-purple-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-2/5"
+              >
                 Update
               </Link>
               <Link
-                to="/event/:id/schedule"
-                className="inline-flex w-full justify-center rounded-md bg-purple-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-2/5 mt-2">
+                to={`/event/${eventData.id}/schedule`}
+                className="inline-flex w-full justify-center rounded-md bg-purple-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-2/5 mt-2"
+              >
                 Schedule
               </Link>
             </div>
