@@ -2,6 +2,7 @@ import { Link, Outlet, useParams } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth";
 import React, { useState } from "react";
 import { useNavbarContext } from "../NavBarContext";
+import useUser from "../../hooks/use-user.js";
 
 // STYLE/TAILWIND
 import {
@@ -10,15 +11,17 @@ import {
   InformationCircleIcon,
   IdentificationIcon,
   CogIcon,
-  UserGroupIcon,
+  UserCircleIcon,
 } from "@heroicons/react/24/solid";
 
 function NavBar() {
   const { auth, setAuth } = useAuth();
   const { isNavbarOpen, toggleNavbar } = useNavbarContext();
+  const { user, isLoading, error } = useUser(auth.user_id);
   // const [isOpen, setIsOpen] = useState(true);
   // const toggleNavBar = () => setIsOpen(!isOpen);
   const logoPath = "/imgs/logo.png";
+  const logOutIcon = "/imgs/logout.png";
 
   const handleLogout = () => {
     window.localStorage.removeItem("token");
@@ -115,9 +118,9 @@ function NavBar() {
                     to="/users/manage"
                     className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
                   >
-                    <UserGroupIcon alt="manage" className="w-6 h-6" />
+                    <CogIcon alt="logout" className="w-7 h-7" />
                     <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
-                      Manage Users
+                      Users
                     </span>
                   </Link>
                 )}
@@ -126,7 +129,7 @@ function NavBar() {
                   className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
                   onClick={handleLogout}
                 >
-                  <img src={logoPath} alt="Settings" className="w-6 h-6" />
+                  <img src={logOutIcon} alt="Settings" className="w-6 h-6" />
                   <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
                     Logout
                   </span>
@@ -134,14 +137,14 @@ function NavBar() {
               </>
             )}
             <div className="user-profile flex justify-center items-center gap-4 pt-6">
-              <div className="user-avatar w-12 h-12 cursor-pointer transition-transform duration-200 hover:scale-110">
-                <CogIcon alt="logout" className="w-full h-full rounded-full" />
+              <div className="user-avatar w-12 h-12">
+                <UserCircleIcon alt="logout" className="w-full h-full rounded-full" />
               </div>
               <div
-                className={`user-details ${isNavbarOpen ? "inline" : "hidden"}`}
+                className={`user-details ${isNavbarOpen ? "inline" : "hidden"} text-center`}
               >
                 {/* <p className="username font-semibold">[Firstname] [Lastname]</p> */}
-                <p className="username font-semibold">{auth.username}</p>
+                <p className="username font-semibold">{user?.first_name} <br/> {user?.last_name}</p>
               </div>
             </div>
           </div>

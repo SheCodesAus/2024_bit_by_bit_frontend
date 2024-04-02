@@ -68,7 +68,7 @@ SO THAT events can run smoothly.
 
 ![Admin page/view - profile](public/wireframes/bytetime_wireframe_admin_profile.png)
 
-![Admin page/view - create/update events](public/wireframes/bytetime_wireframe_admin_create:update_events.png)
+![Admin page/view - create/update events](public/wireframes/bytetime_wireframe_admin_create_update_events.png)
 
 ![Admin page/view - manage users](<public/wireframes/bytetime_wireframe_adminmanageUsers .png>)
 

@@ -8,6 +8,7 @@ import ButtonElement from "./Button";
 
 // API
 import postCreateEventMentor from "../../api/post-create-eventMentor";
+import { Button } from "@chakra-ui/button";
 
 function EventCard(props) {
   const navigate = useNavigate();
@@ -63,8 +64,8 @@ function EventCard(props) {
   };
 
   return (
-    <div
-      className="event-card bg-white shadow-md p-8 rounded-lg"
+    <section
+      className="event-card bg-white shadow-md p-8 rounded-lg flex-none"
       style={{ minWidth: "240px" }}
     >
       <Link to={eventLink}>
@@ -80,6 +81,7 @@ function EventCard(props) {
           <p className="font">{eventData.attendee_numbers}</p>
         </section>
       </Link>
+
       <div>
         <select
           id="role_requested"
@@ -93,10 +95,38 @@ function EventCard(props) {
           <option value="industry_participant">Industry Participant</option>
         </select>
         <div className=" py-2">
-          <ButtonElement message={btnMessage} btnClick={handleSubmit} />
+          <Button
+            message={btnMessage}
+            btnClick={handleSubmit}
+            className="inline-flex w-full justify-center rounded-md bg-orange-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto"
+          >
+            {" "}
+            Submit Availability{" "}
+          </Button>
         </div>
       </div>
-    </div>
+
+      {auth.token && (
+        <>
+          {auth.is_admin == true && (
+            <div>
+              <Link
+                to={`/event/${eventData.id}/update`}
+                className="inline-flex w-full justify-center rounded-md bg-purple-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-2/5"
+              >
+                Update
+              </Link>
+              <Link
+                to={`/event/${eventData.id}/schedule`}
+                className="inline-flex w-full justify-center rounded-md bg-purple-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-2/5 mt-2"
+              >
+                Schedule
+              </Link>
+            </div>
+          )}
+        </>
+      )}
+    </section>
   );
 }
 
