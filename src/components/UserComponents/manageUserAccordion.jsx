@@ -81,11 +81,11 @@ function ManageUserAccordion({ userData, processData }) {
   };
 
   const handleCancelBtnClick = (event) => {
-    console.log("cancel btn pressed");
+    console.log("cancel btn pressed on manage users page");
     setModalOpen(false);
   };
 
-  //UPDATE BUTTON
+  //UPDATE BUTTON //FIXME: this has not been updated at all
   const updateMessage = "Update Profile";
   const updateBtnClick = (event) => {
     event.preventDefault();
@@ -100,7 +100,7 @@ function ManageUserAccordion({ userData, processData }) {
   const deleteMessage = "Delete Profile";
   const deleteBtnClick = (event) => {
     event.preventDefault();
-    console.log("opening delete modal");
+    console.log("opening delete modal on manage users page");
     setModalOpen(true);
   };
 
