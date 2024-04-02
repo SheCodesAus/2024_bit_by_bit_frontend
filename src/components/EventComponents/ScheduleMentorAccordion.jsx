@@ -7,9 +7,21 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { Fragment, useState, useRef } from "react";
+import { useAuth } from "../../hooks/use-auth";
+
+// STYLE/TAILWIND
+import { UserCircleIcon } from "@heroicons/react/24/solid";
+import { Dialog, Transition } from "@headlessui/react";
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+
+// COMPONENTS
+import Button from "../GlobalElements/Button";
+
+// API
 
 function ScheduleMentorAccordion({ eventData, userData, processData }) {
+  const { auth, setAuth } = useAuth();
   console.log("eventData: ", eventData);
   console.log("userData: ", userData);
   console.log("processData: ", processData);
@@ -49,6 +61,52 @@ function ScheduleMentorAccordion({ eventData, userData, processData }) {
     ...mappedData,
   });
 
+  // MODALS & BUTTONS
+  const [modalOpen, setModalOpen] = useState(false);
+  const cancelBtnRef = useRef(null);
+
+  const modalTitle = "Delete Mentor Availability Confirmation";
+  const modalMessage =
+    "Are you sure you want to delete this mentor availability? All of the data will be permanently removed. This action cannot be undone. ";
+  const modalBtnTxt = "Delete availability";
+
+  const handleModalBtnClick = async (event) => {
+    // setModalOpen(false);
+    console.log("MODAL RED BUTTON");
+
+    const { data } = await deleteEventMentor({
+      //user_id: 4, // TODO: this needs to pull the index from the mapped mergedUserInfo to match the id of the user selected.
+      token: auth.token,
+    });
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
+  };
+
+  const handleCancelBtnClick = (event) => {
+    console.log("cancel btn pressed on schedule mentors page");
+    setModalOpen(false);
+  };
+
+  //UPDATE BUTTON //FIXME: this has not been updated at all
+  const updateMessage = "Update Mentor Availability";
+  const updateBtnClick = (event) => {
+    event.preventDefault();
+    console.log("going to update profile page");
+    //TODO: update this when API is working
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
+  };
+
+  //DELETE BUTTON
+  const deleteMessage = "Delete Availability";
+  const deleteBtnClick = (event) => {
+    event.preventDefault();
+    console.log("opening delete modal on schedule mentors page");
+    setModalOpen(true);
+  };
+
   const userAccordion = mergedUserById(eventData, processData).map(
     (user, index) => (
       <Accordion defaultIndex={[0]} allowMultiple key={index}>
@@ -77,6 +135,7 @@ function ScheduleMentorAccordion({ eventData, userData, processData }) {
           </h2>
           <AccordionPanel pb={4} className="flex bg-purple-300">
             <Box as="span" flex="1" textAlign="left"></Box>
+            {/* ONBOARDING TASKS */}
             <div className="">
               <h2 className="font-semibold">Onboarding tasks</h2>
               <div className="flex">
@@ -138,6 +197,7 @@ function ScheduleMentorAccordion({ eventData, userData, processData }) {
                 </div>
               </div>
             </div>
+            {/* OFFBOARDING TASKS */}
             <div className="">
               <h2 className="font-semibold">Offboarding tasks</h2>
               <div className="flex">
@@ -156,6 +216,90 @@ function ScheduleMentorAccordion({ eventData, userData, processData }) {
                   />
                 </div>
               </div>
+            </div>
+            {/* UPDATE/DELETE */}
+            <div className="m-4 flex flex-col justify-center gap-2">
+              <Button message={updateMessage} btnClick={updateBtnClick} />
+              <Button message={deleteMessage} btnClick={deleteBtnClick} />
+              {/* SECTION  - Modal */}
+              <section>
+                <Transition.Root show={modalOpen} as={Fragment}>
+                  <Dialog
+                    as="div"
+                    className="relative z-10"
+                    initialFocus={cancelBtnRef}
+                    onClose={setModalOpen}
+                  >
+                    <Transition.Child
+                      as={Fragment}
+                      enter="ease-out duration-300"
+                      enterFrom="opacity-0"
+                      enterTo="opacity-100"
+                      leave="ease-in duration-200"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                    >
+                      <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                    </Transition.Child>
+                    <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                      <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                        <Transition.Child
+                          as={Fragment}
+                          enter="ease-out duration-300"
+                          enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                          enterTo="opacity-100 translate-y-0 sm:scale-100"
+                          leave="ease-in duration-200"
+                          leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                          leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        >
+                          <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                            <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                              <div className="sm:flex sm:items-start">
+                                <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+                                  <ExclamationTriangleIcon
+                                    className="h-6 w-6 text-red-600"
+                                    aria-hidden="true"
+                                  />
+                                </div>
+                                <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                                  <Dialog.Title
+                                    as="h3"
+                                    className="text-base font-semibold leading-6 text-gray-900"
+                                  >
+                                    {modalTitle}
+                                  </Dialog.Title>
+                                  <div className="mt-2">
+                                    <p className="text-sm text-gray-500">
+                                      {modalMessage}
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                              <button
+                                type="button"
+                                className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                                onClick={handleModalBtnClick}
+                              >
+                                {modalBtnTxt}
+                              </button>
+                              <button
+                                type="button"
+                                className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+                                onClick={handleCancelBtnClick}
+                                ref={cancelBtnRef}
+                              >
+                                Cancel
+                              </button>
+                            </div>
+                          </Dialog.Panel>
+                        </Transition.Child>
+                      </div>
+                    </div>
+                  </Dialog>
+                </Transition.Root>
+              </section>
             </div>
           </AccordionPanel>
         </AccordionItem>
