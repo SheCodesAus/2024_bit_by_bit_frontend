@@ -7,7 +7,7 @@ import {
   AccordionPanel,
   AccordionIcon,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function ManageUserAccordion({ userData, processData }) {
   console.log("userData: ", userData);
@@ -80,28 +80,28 @@ function ManageUserAccordion({ userData, processData }) {
                   <label>Slack link Provided?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["slack_provided"]}
+                    checked={user.user_onboarding_task_slack}
                   />
                 </div>
                 <div className="grid grid-cols-1  px-4 py-2">
                   <label>LinkedIn link Provided?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["linkedIn_provided"]}
+                    checked={user.user_onboarding_task_linkedin}
                   />
                 </div>
                 <div className="grid grid-cols-1 px-4 py-2">
                   <label>Mentor Code of Conduct provided?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["CodeofConduct_provided"]}
+                    checked={user.user_onboarding_task_CodeofConduct}
                   />
                 </div>
                 <div className="grid grid-cols-1 px-4 py-2">
                   <label>Mentor t-shirt provided?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["tshirtsent"]}
+                    checked={user.user_onboarding_task_tshirtsent}
                   />
                 </div>
               </div>
@@ -113,21 +113,21 @@ function ManageUserAccordion({ userData, processData }) {
                   <label>Feedback Requested?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["feedbackrequested"]}
+                    checked={user.user_offboarding_task_feedbackrequested}
                   />
                 </div>
                 <div className="grid grid-cols-1  px-4 py-2">
                   <label>Feedback Recieved?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["feedbackreceived"]}
+                    checked={user.user_offboarding_task_feedbackreceived}
                   />
                 </div>
                 <div className="grid grid-cols-1 px-4 py-2">
                   <label>Mentor t-shirt returned?</label>
                   <input
                     type="checkbox"
-                    checked={isProcessChecked["tshirtreceived"]}
+                    checked={user.user_offboarding_task_tshirtreceived}
                   />
                 </div>
               </div>
