@@ -19,32 +19,6 @@ function ManageUserAccordion({ userData, processData }) {
       ...user,
     }));
 
-  const mergedData = mergedUserById(userData, processData);
-  console.log("mergedData: ", mergedData);
-
-  function mapProcesses(data) {
-    return {
-      slack_provided: data.user_onboarding_task_slack,
-      linkedIn_provided: data.user_onboarding_task_linkedin,
-      CodeofConduct_provided: data.user_onboarding_task_CodeofConduct,
-      tshirtsent: data.user_onboarding_task_tshirtsent,
-      feedbackrequested: data.user_offboarding_task_feedbackrequested,
-      feedbackreceived: data.user_offboarding_task_feedbackreceived,
-      tshirtreceived: data.user_offboarding_task_tshirtreceived,
-    };
-  }
-  const mappedData = {};
-  for (const key in mergedData) {
-    if (mergedData.hasOwnProperty(key)) {
-      mappedData[key] = mapProcesses(mergedData[key]);
-    }
-  }
-  console.log("mappedData: ", mappedData);
-
-  const [isProcessChecked, setIsProcessChecked] = useState({
-    ...mappedData,
-  });
-
   const userAccordion = mergedUserById(userData, processData).map(
     (user, index) => (
       <Accordion defaultIndex={[0]} allowMultiple key={index}>
