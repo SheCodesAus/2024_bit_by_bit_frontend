@@ -1,5 +1,5 @@
 // HOOKS
-import { useState } from "react";
+import { useState, useRef, Fragment } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth";
 
@@ -8,13 +8,16 @@ import ButtonElement from "./Button";
 
 // API
 import postCreateEventMentor from "../../api/post-create-eventMentor";
-import { Button } from "@chakra-ui/button";
 
-function EventCard(props) {
+// STYLE/TAILWIND
+import { Dialog, Transition } from "@headlessui/react";
+import { HandThumbUpIcon } from "@heroicons/react/24/outline";
+
+function EventCard({ eventData }) {
   const navigate = useNavigate();
-
-  const { eventData } = props;
-  const { auth, setAuth } = useAuth();
+  const { auth } = useAuth();
+  const [modalOpen, setModalOpen] = useState(false);
+  const cancelBtnRef = useRef(null);
   const eventLink = `/event/${eventData.id}`;
   const [eventMentorDetails, setEventMentorDetails] = useState({
     event_id: eventData.id,
@@ -36,7 +39,7 @@ function EventCard(props) {
       feedback_recieved: false,
     },
     role_requested: "",
-    role_assigned: "",
+    role_assigned: false,
     is_completed: false,
   });
 
@@ -47,20 +50,32 @@ function EventCard(props) {
       [id]: value,
     }));
   };
+  console.log("eventMentorDetails: ", eventMentorDetails);
 
-  const btnMessage = "Submit availability";
+  const availabilityBtnMessage = "Submit Availability";
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("availability submitted for: ", eventData.event_name);
+    setModalOpen(true);
     if (
       eventMentorDetails.event_id &&
       eventMentorDetails.mentor_id &&
-      role_requested
+      eventMentorDetails.role_requested
     ) {
       postCreateEventMentor(eventMentorDetails).then((newEventMentor) => {
-        navigate(`/eventmentors/${newEventMentor.id}`);
+        navigate(`/events`);
       });
     }
+  };
+
+  // MODAL
+  const modalTitle = "Availability Confirmation";
+  const modalMessage = `Thank you for submitting you availability for our ${eventData.event_type}: ${eventData.event_name}, in ${eventData.location}. Please check you profile for updates on the role you are assigned. If you have any questions, please get in touch with Kate Kirwin.`;
+  const modalBtnTxt = "Close";
+
+  const handleModalBtnClick = async (event) => {
+    setModalOpen(false);
+    console.log("pressing btn");
+    navigate("/events");
   };
 
   return (
@@ -95,14 +110,10 @@ function EventCard(props) {
           <option value="industry_participant">Industry Participant</option>
         </select>
         <div className=" py-2">
-          <Button
-            message={btnMessage}
+          <ButtonElement
+            message={availabilityBtnMessage}
             btnClick={handleSubmit}
-            className="inline-flex w-full justify-center rounded-md bg-orange-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto"
-          >
-            {" "}
-            Submit Availability{" "}
-          </Button>
+          />
         </div>
       </div>
 
@@ -126,6 +137,78 @@ function EventCard(props) {
           )}
         </>
       )}
+
+      {/* SECTION  - Modal */}
+      <section>
+        <Transition.Root show={modalOpen} as={Fragment}>
+          <Dialog
+            as="div"
+            className="relative z-10"
+            initialFocus={cancelBtnRef}
+            onClose={setModalOpen}
+          >
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            </Transition.Child>
+            <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+              <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                  enterTo="opacity-100 translate-y-0 sm:scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                  leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                >
+                  <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                    <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
+                      <div className="sm:flex sm:items-start">
+                        <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+                          <HandThumbUpIcon
+                            className="h-6 w-6 text-green-600 "
+                            aria-hidden="true"
+                          />
+                        </div>
+                        <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+                          <Dialog.Title
+                            as="h3"
+                            className="text-base font-semibold leading-6 text-gray-900"
+                          >
+                            {modalTitle}
+                          </Dialog.Title>
+                          <div className="mt-2">
+                            <p className="text-sm text-gray-500">
+                              {modalMessage}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                      <button
+                        type="button"
+                        className="inline-flex w-full justify-center rounded-md px-3 py-2 bg-orange-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto"
+                        onClick={handleModalBtnClick}
+                      >
+                        {modalBtnTxt}
+                      </button>
+                    </div>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition.Root>
+      </section>
     </section>
   );
 }
