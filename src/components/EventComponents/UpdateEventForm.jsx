@@ -3,14 +3,12 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/use-auth";
 import { useNavigate, useParams } from "react-router-dom";
 import useEvent from "../../hooks/use-event";
-// import { useNavbarContext } from "../NavBarContext";
 
 // API
-// import getUser from "../../api/get-user";
 import putUpdateEvent from "../../api/put-update-event";
 
 // COMPONENTS
-import buttonElement from "../GlobalElements/Button";
+import ButtonElement from "../GlobalElements/Button";
 
 function UpdateEventForm() {
   const navigate = useNavigate();
@@ -18,14 +16,7 @@ function UpdateEventForm() {
   const { id } = useParams();
   console.log("event id = ", id);
   const { event } = useEvent(id);
-  const user_id = auth.user_id;
   const token = auth.token;
-
-  // const { isNavbarOpen } = useNavbarContext();
-
-  // const [event_type, setevent_type] = useState("");
-  // const [location, setLocation] = useState("");
-  // const [language, setLanguage] = useState("");
 
   const [eventDetails, setEventDetails] = useState({
     event_type: "",
@@ -63,9 +54,6 @@ function UpdateEventForm() {
     }));
   };
 
-  {
-    /* TO-DO: CREATE & IMPORT PUT-UPDATEUSER FILE TO TEST WITH API CALLS WHEN WE CAN LOG IN */
-  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     const updated = await putUpdateEvent(token, id, eventDetails);
@@ -89,7 +77,7 @@ function UpdateEventForm() {
           <section className="border-b p-4 border-gray-300">
             <h2 className="text-lg font-semibold mb-2">Event Information</h2>
             <p className="mb-3 ">
-              Ensure all event detail is clear enough that a new mentor will
+              Ensure all event details are clear enough that a new mentor will
               understand the process! When organising events with multiple
               modules, like the Plus Program, create an event per module so that
               the mentors can register for the event that they have the
@@ -209,9 +197,7 @@ function UpdateEventForm() {
 
         {/* SECTION  - Submit */}
         <section>
-          <button className="inline-flex w-full justify-center rounded-md px-3 py-2 bg-orange-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto">
-            Submit Changes
-          </button>
+          <ButtonElement message="Submit Changes" btnClick={handleSubmit} />
         </section>
       </form>
     </main>
