@@ -37,9 +37,15 @@ function EventCard({ eventData }) {
   console.log("all eventMentors: ", allEventMentors);
 
   // TODO: Mentor ratio - count number of mentors signed up to event/event participants.
-  // const currentMentorNumber = allEventMentors.filter(
-  //   (mentor) => mentor.event_id === currentEvent
-  // ).length;
+  const mentorNumber = function (array) {
+    if (array !== null && array !== undefined) {
+      return array.filter((mentor) => mentor.event_id === currentEvent).length;
+    }
+  };
+
+  const currentMentorNumber = mentorNumber(allEventMentors);
+
+  console.log("currentMentorNumber: ", currentMentorNumber);
 
   const [eventMentorDetails, setEventMentorDetails] = useState({
     event_id: eventData.id,
@@ -120,9 +126,11 @@ function EventCard({ eventData }) {
         <p className="font">{eventData.attendee_numbers}</p>
       </section>
       <section className="py-2">
-        <h4 className="font-bold">Current number of Mentors</h4>
+        <h4 className="font-bold">Mentor to Attendee ratio</h4>
         {/* HIDDEN DUE TO ERROR */}
-        {/* <p className="font">{currentMentorNumber}</p> */}
+        <p className="font">
+          {`${currentMentorNumber}:${eventData.attendee_numbers}`}
+        </p>
       </section>
       {/* </Link> */}
 
