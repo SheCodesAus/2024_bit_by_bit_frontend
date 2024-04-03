@@ -71,7 +71,6 @@ function UpdateEventForm() {
         className="flex flex-col items-center justify-center py-8"
       >
         {/* SECTION  - Event Information */}
-        {/* TODO: Look at event language! */}
         <section className="w-full mb-4">
           {/* HEADER */}
           <section className="border-b p-4 border-gray-300">
