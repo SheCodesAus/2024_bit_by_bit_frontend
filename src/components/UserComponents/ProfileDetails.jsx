@@ -1,44 +1,15 @@
 // HOOKs
-import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth.js";
 import useUser from "../../hooks/use-user.js";
-import useUserProcess from "../../hooks/use-user-process.js";
-
-// 🌟 STYLE REFERNCE: https://tailwindui.com/components/application-ui/data-display/description-lists 🌟
 
 function ProfileInformation() {
-  const { auth, setAuth } = useAuth();
+  const { auth } = useAuth();
 
-  const { user, isLoading, error } = useUser(auth.user_id);
-  // console.log("user: ", user);
-  // const { userProcess, isLoading, error } = useUserProcess(user_id);
-  // console.log(userProcess);
-
-  {/* MOVED SECTION TO PROFILE PAGE.JSX FOR BETTER LAYOUT */}
-  // const userProcess = {
-  //   user_onboarding_task: {
-  //     "Slack provided": false,
-  //     "LinkedIn provided": true,
-  //     "Mentor code of conduct provided": false,
-  //     "Mentor t-shirt provided": false,
-  //   },
-  //   user_offboarding_task: {
-  //     "Feedback asked for": true,
-  //     "Feedback recieved": true,
-  //     "Mentor t-shirt returned": false,
-  //   },
-  // };
-  // // console.log("User Process: ", userProcess);
-
-  // const [isOnboardingChecked, setIsOnboardingChecked] = useState({
-  //   ...userProcess.user_onboarding_task,
-  // });
-  // console.log("isOnboardingChecked: ", isOnboardingChecked);
+  const { user } = useUser(auth.user_id);
 
   return (
     <>
-      <section >
+      <section>
         {/* SECTION  - Basic Info */}
         <section>
           {/* NAMES */}
@@ -85,42 +56,14 @@ function ProfileInformation() {
           {/* Slack */}
           <section className="mt-1 w-full px-3 py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">Slack</dt>
-            {/* <dd>{user.slack}</dd> */}
+            <dd>{user?.slack}</dd>
           </section>
           {/* LINKEDIN */}
           <section className="mt-1 w-full px-3 py-2 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <dt className="text-sm font-medium text-gray-500">LinkedIn</dt>
-            {/* <dd>{user.linkedIn}</dd> */}
+            <dd>{user?.linkedin}</dd>
           </section>
         </section>
-        
-        {/* SECTION  - Onboarding Information */}
-        {/* <section className="mt-1 w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-          <h2>Mentor Onboarding</h2>
-          <dt>Slack username provided?</dt>
-          <input
-            type="checkbox"
-            checked={isOnboardingChecked["Slack provided"]}
-          />
-          <dt>LinkedIn link Provided?</dt>
-          <input
-            type="checkbox"
-            checked={isOnboardingChecked["LinkedIn provided"]}
-          />
-          <dt>Mentor code of conduct provided?</dt>
-          <input
-            type="checkbox"
-            checked={isOnboardingChecked["Mentor code of conduct provided "]}
-          />
-          <dt>Mentor t-shirt provided?</dt>
-          <input
-            type="checkbox"
-            checked={isOnboardingChecked["Mentor t-shirt provided"]}
-          />
-        </section> */}
-
-        {/* SECTION  -  Stats (Extra if time) */}
-        <section></section>
       </section>
     </>
   );
