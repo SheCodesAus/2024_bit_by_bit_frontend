@@ -1,5 +1,5 @@
 // HOOKS
-import { useState, useRef, Fragment } from "react";
+import { useState, useRef, Fragment, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth";
 
@@ -8,6 +8,7 @@ import ButtonElement from "./Button";
 
 // API
 import postCreateEventMentor from "../../api/post-create-eventMentor";
+import getEventMentors from "../../api/get-event-mentors";
 
 // STYLE/TAILWIND
 import { Dialog, Transition } from "@headlessui/react";
@@ -18,7 +19,28 @@ function EventCard({ eventData }) {
   const { auth } = useAuth();
   const [modalOpen, setModalOpen] = useState(false);
   const cancelBtnRef = useRef(null);
-  const eventLink = `/event/${eventData.id}`;
+  // const eventLink = `/event/${eventData.id}`;
+  const [allEventMentors, setAllEventMentors] = useState();
+  const [allEventMentorsError, setAllEventMentorsError] = useState();
+  const currentEvent = eventData.id;
+
+  useEffect(() => {
+    getEventMentors(auth.token)
+      .then((eventMentors) => {
+        setAllEventMentors(eventMentors);
+      })
+      .catch((error) => {
+        setAllEventMentorsError(error);
+      });
+  }, []);
+
+  console.log("all eventMentors: ", allEventMentors);
+
+  // TODO: Mentor ratio - count number of mentors signed up to event/event participants.
+  // const currentMentorNumber = allEventMentors.filter(
+  //   (mentor) => mentor.event_id === currentEvent
+  // ).length;
+
   const [eventMentorDetails, setEventMentorDetails] = useState({
     event_id: eventData.id,
     mentor_id: auth.user_id,
@@ -83,19 +105,26 @@ function EventCard({ eventData }) {
       className="event-card bg-white shadow-md p-8 rounded-lg flex-none"
       style={{ minWidth: "240px" }}
     >
-      <Link to={eventLink}>
-        <h3 className="font-bold">{eventData.event_type}</h3>
-        <h4 className="font-bold">{eventData.event_name}</h4>
-        <h3>
-          {new Date(eventData.event_start_date).toLocaleDateString("en-GB")}
-        </h3>
-        <h3 className="font-bold">{eventData.location}</h3>
-        <h3 className="font-bold">{eventData.time}</h3>
-        <section className="py-2">
-          <h4 className="font-bold">Attendee numbers</h4>
-          <p className="font">{eventData.attendee_numbers}</p>
-        </section>
-      </Link>
+      {/* LINK REMOVED - FUTURE DEVELOPMENT */}
+      {/* <Link to={eventLink}> */}
+      <h3 className="font-bold">{eventData.event_type}</h3>
+      <h4 className="font-bold">{eventData.event_name}</h4>
+      <h3>
+        {new Date(eventData.event_start_date).toLocaleDateString("en-GB")}
+      </h3>
+      <h3 className="font-bold">{eventData.location}</h3>
+      <h3 className="font-bold">{eventData.time}</h3>
+
+      <section className="py-2">
+        <h4 className="font-bold">Attendee numbers</h4>
+        <p className="font">{eventData.attendee_numbers}</p>
+      </section>
+      <section className="py-2">
+        <h4 className="font-bold">Current number of Mentors</h4>
+        {/* HIDDEN DUE TO ERROR */}
+        {/* <p className="font">{currentMentorNumber}</p> */}
+      </section>
+      {/* </Link> */}
 
       <div>
         <select
