@@ -30,6 +30,9 @@ function NavBar() {
     window.localStorage.removeItem("is_admin");
     setAuth({ token: null, user_id: null, username: null });
   };
+  console.log("auth",auth.is_admin);
+  console.log("storage", localStorage);
+
 
   return (
     <>
@@ -39,29 +42,28 @@ function NavBar() {
           style={{ backgroundColor: "rgb(130, 70, 175)" }}
         >
           <img id="text logo" src="/imgs/BTlogo.png" className="h-12" />
+          <Link
+            to="/"
+            className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
+            onClick={handleLogout}
+          >
+           
+            <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
+              Logout
+            </span>
+            <img src={logOutIcon} alt="Settings" className="w-6 h-6" />
+          </Link>
         </section>
 
         <nav
-          className={`fixed top-12 h-[calc(100vh-3rem)] p-3 ${
-            isNavbarOpen ? "w-60" : "w-20"
-          } text-white flex flex-col transition-all duration-500 ease-in-out`}
+          className={`fixed top-12 h-[calc(100vh-3rem)] p-3 ${isNavbarOpen ? "w-60" : "w-20"
+            } text-white flex flex-col transition-all duration-500 ease-in-out`}
           style={{ backgroundColor: "rgb(130, 70, 175)" }}
         >
           <div
-            className={`flex justify-center items-center ${
-              !isNavbarOpen ? "overflow-hidden" : ""
-            }`}
+            className={`flex justify-center items-center ${!isNavbarOpen ? "overflow-hidden" : ""
+              }`}
           >
-            {/* <a href="#logo" className="logo-wrapper flex items-center gap-4">
-              <img
-                src={logoPath}
-                alt="Logo"
-                className={`transition-all duration-300 ${
-                  isNavbarOpen ? "w-8 h-8" : "w-6 h-6"
-                }`}
-              />
-              <h2 className={`${isNavbarOpen ? "inline" : "hidden"}`}>LOGO</h2>
-            </a> */}
             <a
               className="toggle-btn absolute top-2.5 p-2 bg-white rounded-full flex items-center justify-center transform transition-transform ease-linear"
               onClick={toggleNavbar}
@@ -124,7 +126,7 @@ function NavBar() {
                     </span>
                   </Link>
                 )}
-                <Link
+                {/* <Link
                   to="/"
                   className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
                   onClick={handleLogout}
@@ -133,18 +135,25 @@ function NavBar() {
                   <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
                     Logout
                   </span>
-                </Link>
+                </Link> */}
               </>
             )}
             <div className="user-profile flex justify-center items-center gap-4 pt-6">
               <div className="user-avatar w-12 h-12">
-                <UserCircleIcon alt="logout" className="w-full h-full rounded-full" />
+                <Link
+                  to={`/users/${auth.user_id}`}
+                >
+                  <UserCircleIcon alt="user" className="w-full h-full rounded-full" />
+                </Link>
               </div>
               <div
                 className={`user-details ${isNavbarOpen ? "inline" : "hidden"} text-center`}
               >
-                {/* <p className="username font-semibold">[Firstname] [Lastname]</p> */}
-                <p className="username font-semibold">{user?.first_name} <br/> {user?.last_name}</p>
+                <Link
+                  to={`/users/${auth.user_id}`}
+                >
+                  <p className="username font-semibold">{user?.first_name} <br /> {user?.last_name}</p>
+                </Link>
               </div>
             </div>
           </div>

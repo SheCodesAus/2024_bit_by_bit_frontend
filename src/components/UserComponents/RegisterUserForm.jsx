@@ -116,7 +116,7 @@ function RegisterUserForm() {
           <h2 className="text-lg font-semibold mb-2">Account information</h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {/* USERNAME */}
-            <div>
+            <div className="sm:col-span-2">
               <label
                 htmlFor="username"
                 className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-gray-700"
@@ -140,6 +140,24 @@ function RegisterUserForm() {
                 className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-gray-700"
               >
                 Password
+              </label>
+              <input
+                id="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                autoComplete="new-password"
+                placeholder="********"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="password"
+                className="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-gray-700"
+              >
+                Re-Type Password
               </label>
               <input
                 id="password"
@@ -261,7 +279,7 @@ function RegisterUserForm() {
           <h2 className="text-lg font-semibold mb-2">Mentor Information</h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {/* BIO */}
-            <div>
+            <div className="sm:col-span-2">
               <label
                 htmlFor="bio"
                 className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-0.5 after:text-red-500"
@@ -273,13 +291,13 @@ function RegisterUserForm() {
                 name="bio"
                 placeholder="I am an incredible mentor with experience in X, Y and Z. When I am not coding or mentoring I am being a QUEEN!"
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm"
                 rows="4"
               />
             </div>
             {/* CODING LANGUAGES */}
             {/* TODO: Confirm how we want to allow users to select this/allowing multiple choices */}
-            <div>
+            <div className="sm:col-span-2">
               <label
                 htmlFor="coding_language"
                 className="block text-sm font-medium text-gray-700 after:content-['*'] after:ml-0.5 after:text-red-500"
@@ -290,7 +308,7 @@ function RegisterUserForm() {
                 id="coding_language"
                 name="coding_language"
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm "
               >
                 <option value="Select_language">Select a language</option>
                 <option value="HTML/CSS">HTML/CSS</option>
@@ -316,7 +334,7 @@ function RegisterUserForm() {
                 name="slack"
                 placeholder="mySlack URL"
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm"
               />
             </div>
             {/* LINKEDIN */}
@@ -333,7 +351,7 @@ function RegisterUserForm() {
                 name="linkedin"
                 placeholder="myLinkedIn URL"
                 onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm"
               />
             </div>
           </div>
@@ -348,7 +366,7 @@ function RegisterUserForm() {
               placeholder="Enter referral code"
               value={referralCode}
               onChange={(e) => setReferralCode(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm"
               required
             />
           </div>

@@ -13,7 +13,7 @@ function AboutPage() {
     <main className={`flex flex-col items-center justify-center min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"}`}>
 
       <section className="flex flex-col items-center pt-16">
-        <img id="SCimage9" src="/imgs/SCbanner19.jpg" className="w-full px-4 h-auto sm:h-auto object-cover " />
+        <img id="SCimage9" src="/imgs/SCbanner19.jpg" className="w-full px-4 h-auto object-cover " />
         <div className="flex justify-center p-4 border-gray-300 mb-4">
           <h1 className="font-bold text-5xl">ABOUT</h1>
         </div>

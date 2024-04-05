@@ -13,7 +13,7 @@ function HomePage() {
     <main className={`min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"} justify-center`}>
 
       <section className="border-b p-4 border-gray-300 flex flex-col items-center pt-16">
-        <img src={bannerPath} className="w-full h-96"/>
+        <img src={bannerPath} className="w-full h-auto object-cover sm:h-96"/>
         <div className="flex justify-center border-b p-4 border-gray-300 mb-4">
           <h1 className="font-bold text-3xl">Welcome to BYTE TIME!</h1>
         </div>
