@@ -101,11 +101,12 @@ function AllEventsPage() {
     <main className={`min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"}`}>
       {/* Adjust margin based on sidebar toggle */}
       <section className="border-b p-4 border-gray-300 pt-16">
-        <img id="bannerAllEvents" src={bannerPath} className="w-full h-96" />
+        <img id="bannerAllEvents" src={bannerPath} className="w-full h-auto object-cover sm:h-96" />
         <div className="flex justify-center border-b p-4 border-gray-300 mb-4">
           <h1 className="font-bold text-5xl">SHE CODES EVENTS</h1>
         </div>
-        <div className="flex justify-center space-x-2">
+
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 justify-center mx-auto">
           {/* All Events Button */}
           <button
             onClick={() => setSelectedCity("")}
@@ -113,6 +114,7 @@ function AllEventsPage() {
           >
             All
           </button>
+
           {/* City Filter buttons */}
           {["Brisbane", "Perth", "Sydney"].map((city) => (
             <button

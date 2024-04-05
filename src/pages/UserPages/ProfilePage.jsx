@@ -49,8 +49,8 @@ function ProfilePage() {
 
   const filteredEvents = selectedCity
     ? events.filter(
-        (event) => event.location.toLowerCase() === selectedCity.toLowerCase()
-      )
+      (event) => event.location.toLowerCase() === selectedCity.toLowerCase()
+    )
     : events;
 
   // const userProcess = {
@@ -73,9 +73,8 @@ function ProfilePage() {
 
   return (
     <main
-      className={`min-h-screen ${
-        isNavbarOpen ? "ml-60" : "ml-20"
-      } flex flex-col items-center`}
+      className={`min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"
+        } flex flex-col items-center`}
     >
       <div className="flex justify-center p-4 border-gray-300 mb-8 pt-16">
         <h1 className="font-bold text-5xl ">hey there, {user?.username}!</h1>
@@ -96,35 +95,43 @@ function ProfilePage() {
 
       <section className="max-w-4xl mx-auto text-center border-t p-4 border-gray-300 mt-4">
         <h2 className="font-bold text-xl pb-4">Mentor Onboarding Checklist</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-8">
-          <dt>Slack username provided</dt>
-          <input
-            type="checkbox"
-            checked={userProcess?.user_onboarding_task_slack}
-            className="w-6 h-6"
-            readOnly
-          />
-          <dt>LinkedIn URL Provided</dt>
-          <input
-            type="checkbox"
-            checked={userProcess?.user_onboarding_task_linkedin}
-            className="w-6 h-6"
-            readOnly
-          />
-          <dt>Mentor Code of Conduct Read</dt>
-          <input
-            type="checkbox"
-            checked={userProcess?.user_onboarding_task_CodeofConduct}
-            className="w-6 h-6"
-            readOnly
-          />
-          <dt>Mentor t-shirt Received</dt>
-          <input
-            type="checkbox"
-            checked={userProcess?.user_onboarding_task_tshirtsent}
-            className="w-6 h-6"
-            readOnly
-          />
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+          <div className="flex flex-col items-center justify-center">
+            <input
+              type="checkbox"
+              checked={userProcess?.user_onboarding_task_slack}
+              className="w-6 h-6 block mb-2"
+              disabled={!auth.is_admin}
+            />
+            <label>Slack username provided</label>
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <input
+              type="checkbox"
+              checked={userProcess?.user_onboarding_task_linkedin}
+              className="w-6 h-6 block mb-2"
+              readOnly={!auth.is_admin}
+            />
+            <label>LinkedIn URL Provided</label>
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <input
+              type="checkbox"
+              checked={userProcess?.user_onboarding_task_CodeofConduct}
+              className="w-6 h-6 block mb-2"
+              readOnly={!auth.is_admin}
+            />
+            <label>Read the Code of Conduct</label>
+          </div>
+          <div className="flex flex-col items-center justify-center">
+            <input
+              type="checkbox"
+              checked={userProcess?.user_onboarding_task_tshirtsent}
+              className="w-6 h-6 block mb-2"
+              readOnly={!auth.is_admin}
+            />
+            <label>Mentor t-shirt Received</label>
+          </div>
         </div>
       </section>
 
