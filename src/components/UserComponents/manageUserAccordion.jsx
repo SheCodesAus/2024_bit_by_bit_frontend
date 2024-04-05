@@ -27,14 +27,14 @@ function ManageUserAccordion({ userData, processData }) {
   console.log("processData33: ", processData);
   const [userToManage, setUserToManage] = useState();
 
-  const mergedUserById = (a1, a2) =>
-    a1.map((user) => ({
-      ...a2.find((process) => process.mentor === user.id && process),
-      ...user,
-    }));
+  // const mergedUserById = (a1, a2) =>
+  //   a1.map((user) => ({
+  //     ...a2.find((process) => process.mentor === user.id && process),
+  //     ...user,
+  //   }));
 
-  const mergedData = mergedUserById(userData, processData);
-  console.log("mergedData: ", mergedData);
+  // const mergedData = mergedUserById(userData, processData);
+  // console.log("mergedData: ", mergedData);
 
   // MODALS & BUTTONS
   const [modalOpen, setModalOpen] = useState(false);
@@ -265,10 +265,10 @@ function ManageUserAccordion({ userData, processData }) {
   //   </Accordion>
   // ));
 
-  function createAccordion(mergedData) {
+  function createAccordion(userData) {
     return (
       <Accordion defaultIndex={[0]} allowMultiple>
-        {mergedData.map((user, index) => (
+        {userData.map((user, index) => (
           <AccordionItem key={index}>
             <AccordionButton>
               <Box
@@ -295,72 +295,95 @@ function ManageUserAccordion({ userData, processData }) {
             <AccordionPanel pb={4} className="flex bg-orange-300">
               <Box as="span" flex="1" textAlign="left"></Box>
               {/* ONBOARDING TASKS */}
-              <div className="">
-                <h2 className="font-semibold">Onboarding tasks</h2>
-                <div className="flex">
-                  <div className="grid grid-cols-1 px-4 py-2">
-                    <label>Slack link Provided?</label>
-                    <input
-                      type="checkbox"
-                      checked={user.user_onboarding_task_slack}
-                    />
+              {user.onboarded_mentor.map((onboard_process, i) => (
+                <>
+                  <div key={i} className="">
+                    <h2 className="font-semibold">Onboarding tasks</h2>
+                    <div className="flex">
+                      <div className="grid grid-cols-1 px-4 py-2">
+                        <label>Slack link Provided?</label>
+                        <input
+                          type="checkbox"
+                          checked={onboard_process.user_onboarding_task_slack}
+                        />
+                      </div>
+                      <div className="grid grid-cols-1  px-4 py-2">
+                        <label>LinkedIn link Provided?</label>
+                        <input
+                          type="checkbox"
+                          checked={
+                            onboard_process.user_onboarding_task_linkedin
+                          }
+                        />
+                      </div>
+                      <div className="grid grid-cols-1 px-4 py-2">
+                        <label>Mentor Code of Conduct provided?</label>
+                        <input
+                          type="checkbox"
+                          checked={
+                            onboard_process.user_onboarding_task_CodeofConduct
+                          }
+                        />
+                      </div>
+                      <div className="grid grid-cols-1 px-4 py-2">
+                        <label>Mentor t-shirt provided?</label>
+                        <input
+                          type="checkbox"
+                          checked={
+                            onboard_process.user_onboarding_task_tshirtsent
+                          }
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div className="grid grid-cols-1  px-4 py-2">
-                    <label>LinkedIn link Provided?</label>
-                    <input
-                      type="checkbox"
-                      checked={user.user_onboarding_task_linkedin}
-                    />
-                  </div>
-                  <div className="grid grid-cols-1 px-4 py-2">
-                    <label>Mentor Code of Conduct provided?</label>
-                    <input
-                      type="checkbox"
-                      checked={user.user_onboarding_task_CodeofConduct}
-                    />
-                  </div>
-                  <div className="grid grid-cols-1 px-4 py-2">
-                    <label>Mentor t-shirt provided?</label>
-                    <input
-                      type="checkbox"
-                      checked={user.user_onboarding_task_tshirtsent}
-                    />
-                  </div>
-                </div>
-              </div>
+                </>
+              ))}
               {/* OFFBOARDING TASKS */}
-              <div className="">
-                <h2 className="font-semibold">Offboarding tasks</h2>
-                <div className="flex">
-                  <div className="grid grid-cols-1 px-4 py-2">
-                    <label>Feedback Requested?</label>
-                    <input
-                      type="checkbox"
-                      checked={user.user_offboarding_task_feedbackrequested}
-                    />
+              {user.onboarded_mentor.map((offboard_process, i) => (
+                <>
+                  <div key={i} className="">
+                    <h2 className="font-semibold">Offboarding tasks</h2>
+                    <div className="flex">
+                      <div className="grid grid-cols-1 px-4 py-2">
+                        <label>Feedback Requested?</label>
+                        <input
+                          type="checkbox"
+                          checked={
+                            offboard_process.user_offboarding_task_feedbackrequested
+                          }
+                        />
+                      </div>
+                      <div className="grid grid-cols-1  px-4 py-2">
+                        <label>Feedback Recieved?</label>
+                        <input
+                          type="checkbox"
+                          checked={
+                            offboard_process.user_offboarding_task_feedbackreceived
+                          }
+                        />
+                      </div>
+                      <div className="grid grid-cols-1 px-4 py-2">
+                        <label>Mentor t-shirt returned?</label>
+                        <input
+                          type="checkbox"
+                          checked={
+                            offboard_process.user_offboarding_task_tshirtreceived
+                          }
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div className="grid grid-cols-1  px-4 py-2">
-                    <label>Feedback Recieved?</label>
-                    <input
-                      type="checkbox"
-                      checked={user.user_offboarding_task_feedbackreceived}
-                    />
-                  </div>
-                  <div className="grid grid-cols-1 px-4 py-2">
-                    <label>Mentor t-shirt returned?</label>
-                    <input
-                      type="checkbox"
-                      checked={user.user_offboarding_task_tshirtreceived}
-                    />
-                  </div>
-                </div>
-              </div>
+                </>
+              ))}
               {/* UPDATE/DELETE */}
               <div className="m-4 flex flex-col justify-center gap-2">
-                <Button message={updateMessage} btnClick={updateBtnClick} />
+                <Button
+                  message={updateMessage}
+                  btnClick={updateBtnClick} //TODO: - need to pass the user id from this function.
+                />
                 <Button
                   message={deleteMessage}
-                  btnClick={deleteBtnClick}
+                  btnClick={deleteBtnClick} //TODO: - need to pass the user id from this function.
                   // user_id={setUserToManage(user.id)}
                 />
                 {/* SECTION  - Modal */}
@@ -461,7 +484,7 @@ function ManageUserAccordion({ userData, processData }) {
         <h2 className="font-semibold px-4 py-2">Slack</h2>
         <h2 className="font-semibold px-4 py-2">LinkedIn</h2>
       </section>
-      {mergedData && createAccordion(mergedData)}
+      {userData && createAccordion(userData)}
       {/* {mergedData && userAccordion} */}
     </>
   );
