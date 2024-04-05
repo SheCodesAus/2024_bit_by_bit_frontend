@@ -71,6 +71,13 @@ function RegisterUserForm() {
       return;
     }
 
+  //   // Added to handle the profile image update - Cathy. 
+  // const handleImageChange = (e) => {
+  //   let newData = { ...data };
+  //   newData["image_url"] = e.target.files[0];
+  //   setData(newData);
+  // };
+
     if (
       userDetails.first_name &&
       userDetails.last_name &&
@@ -272,6 +279,17 @@ function RegisterUserForm() {
                 Profile Picture
               </label>
               <PhotoIcon className="h-6 w-6 text-gray-400" />
+              {/* Added input type - Cathy
+              <input
+                type="file"
+                name="image_url"
+                id="profilePic" 
+                accept="image/jpeg,image/png,image/gif"
+                onChange={(e) => {
+                  handleImageChange(e);
+                }}
+                className="hidden" // Hide the input visually
+              /> */}
               <button
                 type="button"
                 className="ml-2 text-sm text-blue-600 hover:text-blue-700 focus:outline-none"

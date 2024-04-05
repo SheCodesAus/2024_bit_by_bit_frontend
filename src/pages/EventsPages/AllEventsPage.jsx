@@ -12,7 +12,7 @@ import buttonElement from "../../components/GlobalElements/Button";
 
 function AllEventsPage() {
   const { isNavbarOpen } = useNavbarContext();
-  const [selectedCity, setSelectedCity] = useState("");
+  const [selectedCity, setSelectedCity] = useState("Perth");
   const { events } = useAllEvents();
   const { auth, setAuth } = useAuth();
   const bannerPath = "/imgs/SCbanner4.jpg";
