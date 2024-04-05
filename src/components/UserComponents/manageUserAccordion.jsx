@@ -361,7 +361,7 @@ function ManageUserAccordion({ userData, processData }) {
                 <Button
                   message={deleteMessage}
                   btnClick={deleteBtnClick}
-                  user_id={setUserToManage(user.id)}
+                  // user_id={setUserToManage(user.id)}
                 />
                 {/* SECTION  - Modal */}
                 <section>
