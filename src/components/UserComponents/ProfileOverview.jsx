@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth.js";
 
 // STYLE/TAILWIND
-import { UserCircleIcon } from "@heroicons/react/24/solid";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
@@ -19,7 +18,7 @@ function ProfileOverview() {
 
   // MODAL
   const { id } = useParams();
-  const { auth, setAuth } = useAuth();
+  const { auth } = useAuth();
   const [modalOpen, setModalOpen] = useState(false);
   const cancelBtnRef = useRef(null);
 
@@ -27,7 +26,6 @@ function ProfileOverview() {
   const modalMessage =
     "Are you sure you want to deactivate your account? All of your data will be permanently removed. This action cannot be undone. ";
   const modalBtnTxt = "Delete Profile";
-  // const modalAPICall = console.log("This is an API call");
 
   const handleModalBtnClick = async (event) => {
     setModalOpen(false);

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { useNavbarContext } from "../../components/NavBarContext";
 import EventCard from "../../components/GlobalElements/EventCard";
 import buttonElement from "../../components/GlobalElements/Button";
+// import ProtectedRoute from "../../components/UserComponents/ProtectedRoutes";
 
 function AllEventsPage() {
   const { isNavbarOpen } = useNavbarContext();
@@ -141,6 +142,7 @@ function AllEventsPage() {
             )}
           </>
         )}
+        
 
         {/* TODO: create if statement for: if no events available, display text to say "XYZ" */}
         <div className="flex flex-row overflow-x-auto gap-4 pt-4">

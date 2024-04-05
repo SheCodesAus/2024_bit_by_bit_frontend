@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import getUsers from "../api/get-users";
+import getAllUserProcesses from "../api/get-all-user-processes";
 
-export default function useAllUsers() {
-  const [users, setUsers] = useState([]);
+export default function useAllProcesses() {
+  const [processes, setprocesses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
 
   useEffect(() => {
-    getUsers()
-      .then((users) => {
-        setUsers(users);
+    getAllUserProcesses()
+      .then((processes) => {
+        setprocesses(processes);
         setIsLoading(false);
       })
       .catch((error) => {
@@ -17,5 +17,5 @@ export default function useAllUsers() {
         setIsLoading(false);
       });
   }, []);
-  return { users, isLoading, error };
+  return { processes, isLoading, error };
 }
