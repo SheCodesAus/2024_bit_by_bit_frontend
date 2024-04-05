@@ -30,7 +30,7 @@ function NavBar() {
     window.localStorage.removeItem("is_admin");
     setAuth({ token: null, user_id: null, username: null });
   };
-  console.log("auth",auth.is_admin);
+  console.log("auth", auth.is_admin);
   console.log("storage", localStorage);
 
 
@@ -47,7 +47,7 @@ function NavBar() {
             className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
             onClick={handleLogout}
           >
-           
+
             <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
               Logout
             </span>
@@ -61,20 +61,23 @@ function NavBar() {
           style={{ backgroundColor: "rgb(130, 70, 175)" }}
         >
           <div
-            className={`flex justify-center items-center ${!isNavbarOpen ? "overflow-hidden" : ""
-              }`}
+            className={`flex flex-col items-center justify-center ${!isNavbarOpen ? "overflow-hidden" : ""}`}
           >
-            <a
-              className="toggle-btn absolute top-2.5 p-2 bg-white rounded-full flex items-center justify-center transform transition-transform ease-linear"
-              onClick={toggleNavbar}
-            >
+            <a className="flex items-center justify-center">
               <img
                 src={logoPath}
-                alt="expand button"
-                className={`${isNavbarOpen ? "rotate-0" : "rotate-180"}`}
+                alt="Logo"
+                className={`transition-all duration-300 ${isNavbarOpen ? "w-52 h-52" : "w-12 h-12"}`}
               />
             </a>
+            <button
+              className="absolute top-4 right-0 bg-white rounded-full flex items-center justify-center shadow-sm w-10 h-10 transform translate-x-full"
+              onClick={toggleNavbar}
+            >
+              <img src="/imgs/arrows.png" alt="Toggle Button" className="w-4/5" />
+            </button>
           </div>
+
 
           <div className="mt-auto flex flex-col justify-center items-center gap-2 pt-6 border-t border-orange-300">
             <Link
@@ -126,16 +129,6 @@ function NavBar() {
                     </span>
                   </Link>
                 )}
-                {/* <Link
-                  to="/"
-                  className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
-                  onClick={handleLogout}
-                >
-                  <img src={logOutIcon} alt="Settings" className="w-6 h-6" />
-                  <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
-                    Logout
-                  </span>
-                </Link> */}
               </>
             )}
             <div className="user-profile flex justify-center items-center gap-4 pt-6">

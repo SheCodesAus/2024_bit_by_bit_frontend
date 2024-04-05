@@ -29,30 +29,33 @@ function AboutPage() {
 
       <section className="items-center">
 
-        <section id="mentoring-section" className="flex flex-col items-center py-8">
-          <h2 className="w-full text-center border-y border-gray-300 px-4 py-1 font-bold text-2xl">MENTORING WITH US</h2>
-          <figure>
-            <div className="px-4 py-4 flex text-center">
-              <div className="w-1/3 h-32 border-dotted border-2 border-orange-300">
-                <h1>72 PAID MENTORS LAST YEAR</h1>
+        <section id="mentoring-section" className="flex flex-col items-center py-8 w-full">
+          <h2 className="text-center border-y border-gray-300 px-4 py-1 font-bold text-2xl w-full">MENTORING WITH US</h2>
+          <figure className="w-full">
+            <div className="flex flex-col sm:flex-row justify-center text-center p-4 w-full">
+            <div className="w-full sm:w-1/3 h-auto border-dotted border-2 border-orange-300 flex flex-col justify-center p-4 sm:mb-0">
+                <span className="font-extrabold text-3xl block">329</span>
+                <span className="font-semibold text-lg">MENTORS IN THE SHE CODES COMMUNITY</span>
               </div>
-              <div className="w-1/3 border-dotted border-2 border-orange-300">
-                <h1>329 MENTORS IN THE COMMUNITY</h1>
+              <div className="w-full sm:w-1/3 h-auto border-dotted border-2 border-orange-300 flex flex-col justify-center p-4 sm:mb-0">
+                <span className="font-extrabold text-3xl block">72</span>
+                <span className="font-semibold text-lg">PAID MENTORS LAST YEAR</span>
               </div>
-              <div className="w-1/3 border-dotted border-2 border-orange-300">
-                <h1>11,922 TOTAL HOURS SPENT MENTORING IN 22/23</h1>
+              <div className="w-full sm:w-1/3 h-auto border-dotted border-2 border-orange-300 flex flex-col justify-center p-4 mb-4 sm:mb-0">
+                <span className="font-extrabold text-3xl block">11,922</span>
+                <span className="font-semibold text-lg">HOURS SPENT MENTORING IN 2022/23</span>
               </div>
             </div>
           </figure>
 
           <article className="flex flex-col text-center w-11/12 border-solid border border-gray-300">
-            <div className="py-4">
+            <div className="p-4">
               <h1 className="text-center font-bold text-xl">OUR MENTORS ARE...</h1>
               <p>Willing to share their story.</p>
               <p>Approachable and patient.</p>
               <p>Contribute to improving the diversity in our industry</p>
             </div>
-            <div className="py-4 border-solid border-t border-orange-300">
+            <div className="p-4 border-solid border-t border-orange-300">
               <h1 className="text-center font-bold text-xl pt-4">BENEFITS OF MENTORING</h1>
               <ul>
                 <li>Contribute to improving the diversity in our industry</li>
@@ -79,7 +82,7 @@ function AboutPage() {
               </p>
             </div>
             <div className="size-auto sm:size-1/2 px-4">
-              <img id="SCimageA" src="src/assets/SCimageA.jpeg" />
+              <img id="SCimageA" src="/imgs/SCimageA.jpeg" />
             </div>
           </article>
 
@@ -109,7 +112,7 @@ function AboutPage() {
               </p>
             </div>
             <div className="size-auto sm:size-1/2 px-4">
-              <img id="SCimage1" src="src/assets/SCimage1.jpeg" />
+              <img id="SCimage1" src="/imgs/SCimage1.jpeg" />
             </div>
           </article>
         </section>
