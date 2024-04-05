@@ -79,7 +79,7 @@ function AboutPage() {
               </p>
             </div>
             <div className="size-auto sm:size-1/2 px-4">
-              <img id="SCimageA" src="src/assets/SCimageA.jpeg" />
+              <img id="SCimageA" src="https://github.com/SheCodesAus/2024_bit_by_bit_frontend/blob/frontydevelopment/src/assets/SCimageA.jpeg?raw=true" />
             </div>
           </article>
 
@@ -109,7 +109,7 @@ function AboutPage() {
               </p>
             </div>
             <div className="size-auto sm:size-1/2 px-4">
-              <img id="SCimage1" src="src/assets/SCimage1.jpeg" />
+              <img id="SCimage1" src="https://github.com/SheCodesAus/2024_bit_by_bit_frontend/blob/frontydevelopment/src/assets/SCimage1.jpeg?raw=true" />
             </div>
           </article>
         </section>
