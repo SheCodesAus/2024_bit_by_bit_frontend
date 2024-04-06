@@ -1,5 +1,6 @@
-async function getEventMentors(token) {
+async function getEventMentors() {
   const url = `${import.meta.env.VITE_API_URL}/eventmentors`;
+  const token = window.localStorage.getItem("token");
   const eventMentors = await fetch(url, {
     method: "GET",
     headers: {

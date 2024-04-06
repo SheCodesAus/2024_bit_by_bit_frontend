@@ -1,4 +1,7 @@
 // HOOKS
+import { useEffect, useState } from "react";
+// import { useAuth } from "../../hooks/use-auth";
+import { useParams } from "react-router-dom";
 
 // COMPONENTS
 import ScheduleMentorAccordion from "../../components/EventComponents/ScheduleMentorAccordion";
@@ -7,19 +10,30 @@ import ScheduleMentorAccordion from "../../components/EventComponents/ScheduleMe
 import { useNavbarContext } from "../../components/NavBarContext";
 
 // API
-import useAllEvents from "../../hooks/use-events";
 import useAllUsers from "../../hooks/use-all-users";
-import useUserProcess from "../../hooks/use-user-process";
-
-// DUMMY DATA
-import { mockUserData } from "../../mock_user_data";
-import { mockUserProcessData } from "../../mock_user_process_data";
+import getEvent from "../../api/get-event";
 
 function ScheduleEventMentorPage() {
-  const { events } = useAllEvents();
+  const { id } = useParams();
+  console.log("id: ", id);
   const { users } = useAllUsers();
-  const { userProcess } = useUserProcess();
+  const [eventData, setEventData] = useState();
+  const [eventError, setEventError] = useState();
+
   const { isNavbarOpen } = useNavbarContext();
+
+  useEffect(() => {
+    getEvent(id)
+      .then((event) => {
+        setEventData(event);
+      })
+      .catch((error) => {
+        setEventError(error);
+      });
+  }, []);
+
+  console.log("eventData: ", eventData);
+  console.log("mentorData: ", eventData?.mentors);
 
   return (
     <main
@@ -30,12 +44,14 @@ function ScheduleEventMentorPage() {
       <h1 className="text-2xl font-semibold mb-4 pt-16">Schedule Mentors</h1>
 
       <ScheduleMentorAccordion
-        eventData={events}
+        eventData={eventData}
         userData={users}
-        processData={userProcess}
+        mentorData={eventData?.mentors}
       />
     </main>
   );
+
+  // return null;
 }
 
 export default ScheduleEventMentorPage;
