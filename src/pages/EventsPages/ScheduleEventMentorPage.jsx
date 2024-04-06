@@ -33,7 +33,7 @@ function ScheduleEventMentorPage() {
   }, []);
 
   console.log("eventData: ", eventData);
-  console.log("mentorData: ", eventData?.mentors);
+  console.log("mentorData inside page: ", eventData?.mentors);
 
   return (
     <main
