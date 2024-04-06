@@ -2,46 +2,36 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/use-auth";
 import { useNavigate, useParams } from "react-router-dom";
-import useUserProcess from "../../hooks/use-user-process";
+// import useUserProcess from "../../hooks/use-user-process";
 
 
 // COMPONENTS
 import ButtonElement from "../GlobalElements/Button";
 
 // API
+import getUserProcess from "../../api/get-user-process";
 import putUpdateUserProcess from "../../api/put-update-userprocess";
 
 function UpdateUserProcessForm() {
     const navigate = useNavigate();
     const { auth } = useAuth();
     const { id } = useParams();
-    const { userprocess } = useUserProcess(id);
+    // const { userprocess } = useUserProcess(id);
     const token = auth.token;
-  
+    const [userProcessError, setUserProcessError] = useState();
+      
 
-    const [userProcessDetails, setUserProcessDetails] = useState({
-        user_onboarding_task_slack: false,
-        user_onboarding_task_linkedin: false,
-        user_onboarding_task_CodeofConduct: false,
-        user_onboarding_task_tshirtsent: false,
-        user_offboarding_task_feedbackrequested: false,
-        user_offboarding_task_feedbackreceived: false,
-        user_offboarding_task_tshirtreceived: false,
-      });
+    const [userProcessDetails, setUserProcessDetails] = useState({     });
       
       useEffect(() => {
-        if (userprocess) {
-          setUserProcessDetails({
-            user_onboarding_task_slack: userprocess.user_onboarding_task_slack ?? "",
-            user_onboarding_task_linkedin: userprocess.user_onboarding_task_linkedin ?? "",
-            user_onboarding_task_CodeofConduct: userprocess.user_onboarding_task_CodeofConduct ?? "",
-            user_onboarding_task_tshirtsent: userprocess.user_onboarding_task_tshirtsent ?? "",
-            user_offboarding_task_feedbackrequested: userprocess.user_offboarding_task_feedbackrequested ?? "",
-            user_offboarding_task_feedbackreceived: userprocess.user_offboarding_task_feedbackreceived ?? "",
-            user_offboarding_task_tshirtreceived: userprocess.user_offboarding_task_tshirtreceived ?? "",
-          });
-        }
-      }, [userprocess]);
+        getUserProcess(id, token)
+        .then((process) => {
+          setUserProcessDetails(process);
+        })
+        .catch((error) => {
+          setUserProcessError(error);
+        });
+    }, []);
 
     const handleChange = (event) => {
         const { id, checked } = event.target;
@@ -65,7 +55,7 @@ function UpdateUserProcessForm() {
         }
       };
 
-  console.log(userProcessDetails.user_onboarding_task_slack)
+  console.log("User Process Details:", userProcessDetails)
 
   return (
     <main>
