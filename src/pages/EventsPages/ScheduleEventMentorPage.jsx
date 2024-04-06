@@ -1,6 +1,5 @@
 // HOOKS
 import { useEffect, useState } from "react";
-// import { useAuth } from "../../hooks/use-auth";
 import { useParams } from "react-router-dom";
 
 // COMPONENTS
@@ -50,8 +49,6 @@ function ScheduleEventMentorPage() {
       />
     </main>
   );
-
-  // return null;
 }
 
 export default ScheduleEventMentorPage;
