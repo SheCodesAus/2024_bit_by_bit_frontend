@@ -88,7 +88,7 @@ function ProfilePage() {
           <ProfileOverview />
         </div>
         {/* LHS top half - user details */}
-        <div className="bg-gradient-to-b from-slate-100 to-stone-200 rounded hover:rounded-lg ">
+        <div className="bg-gradient-to-b from-slate-100 to-stone-200 rounded hover:rounded-lg sm:w-2/3">
           <ProfileInformation />
         </div>
       </section>

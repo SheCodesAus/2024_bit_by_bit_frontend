@@ -12,6 +12,7 @@ import {
   IdentificationIcon,
   CogIcon,
   UserCircleIcon,
+  ChevronDoubleRightIcon,
 } from "@heroicons/react/24/solid";
 
 function NavBar() {
@@ -41,13 +42,19 @@ function NavBar() {
           className="fixed w-full text-white flex items-center justify-end px-4 h-12"
           style={{ backgroundColor: "rgb(130, 70, 175)" }}
         >
+          <button
+            className="flex items-center justify-start bg-orange-400 rounded-full p-1 shadow-sm"
+            onClick={toggleNavbar}
+            style={{ marginRight: 'auto' }}
+          >
+            <ChevronDoubleRightIcon alt="Toggle Navigation" className={`w-6 h-6 transition-transform duration-300 ${isNavbarOpen ? 'rotate-180' : ''}`} />
+          </button>
           <img id="text logo" src="/imgs/BTlogo.png" className="h-12" />
           <Link
             to="/"
             className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
             onClick={handleLogout}
           >
-
             <span className={`${isNavbarOpen ? "inline" : "hidden"}`}>
               Logout
             </span>
@@ -70,12 +77,6 @@ function NavBar() {
                 className={`transition-all duration-300 ${isNavbarOpen ? "w-52 h-52" : "w-12 h-12"}`}
               />
             </a>
-            <button
-              className="absolute top-4 right-0 bg-white rounded-full flex items-center justify-center shadow-sm w-10 h-10 transform translate-x-full"
-              onClick={toggleNavbar}
-            >
-              <img src="/imgs/arrows.png" alt="Toggle Button" className="w-4/5" />
-            </button>
           </div>
 
 
