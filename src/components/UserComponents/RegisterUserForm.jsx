@@ -35,7 +35,7 @@ function RegisterUserForm() {
   const [passwordValidation, setPasswordValidation] = useState(""); //to alert users if new PW not 'strong' enough
   const [retypePassword, setRetypePassword] = useState(""); //for advising if PW doesnt match when retyped
   const [retypePasswordValidation, setRetypePasswordValidation] = useState("");
-  const [referralCode, setReferralCode] = useState("")
+  const [referralCode, setReferralCode] = useState("");
 
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -61,22 +61,22 @@ function RegisterUserForm() {
       }));
     }
   };
-  console.log(userDetails);
-  console.log("password: ", password);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (referralCode !== "cupcakes4days") {
-      alert("Incorrect referral code. Please enter the correct referral code to proceed.")
+      alert(
+        "Incorrect referral code. Please enter the correct referral code to proceed."
+      );
       return;
     }
 
-  //   // Added to handle the profile image update - Cathy. 
-  // const handleImageChange = (e) => {
-  //   let newData = { ...data };
-  //   newData["image_url"] = e.target.files[0];
-  //   setData(newData);
-  // };
+    //   // Added to handle the profile image update - Cathy.
+    // const handleImageChange = (e) => {
+    //   let newData = { ...data };
+    //   newData["image_url"] = e.target.files[0];
+    //   setData(newData);
+    // };
 
     if (
       userDetails.first_name &&
@@ -86,7 +86,6 @@ function RegisterUserForm() {
       password
     ) {
       postCreateUser(userDetails, password).then((newUser) => {
-        console.log("new user: ", newUser);
         const userProcessDetails = {
           mentor: newUser.id,
           user_onboarding_task_slack: false,
@@ -101,10 +100,7 @@ function RegisterUserForm() {
         };
 
         postCreateUserProcess(userProcessDetails)
-          .then(
-            console.log("new user: ", newUser),
-            postLogin(newUser.username, password)
-          )
+          .then(postLogin(newUser.username, password))
           .then((response) => {
             window.localStorage.setItem("token", response.token);
             window.localStorage.setItem("user_id", response.user_id);
@@ -383,7 +379,7 @@ function RegisterUserForm() {
         </section>
         <section className="w-full mb-4">
           <h2 className="text-lg font-semibold mb-2">Referral Code</h2>
-          <div >
+          <div>
             <input
               id="referralCode"
               type="text"
@@ -394,7 +390,9 @@ function RegisterUserForm() {
               className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm"
               required
             />
-            <p className="block text-sm font-medium text-gray-700 mr-2" >Please check your mentor invitation email for your referral code. </p>
+            <p className="block text-sm font-medium text-gray-700 mr-2">
+              Please check your mentor invitation email for your referral code.{" "}
+            </p>
           </div>
         </section>
         {/* SECTION 5 - Submit */}

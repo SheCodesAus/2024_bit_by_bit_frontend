@@ -10,7 +10,6 @@ export default function useUserProcess(user_id) {
     getAllUserProcesses(user_id)
       .then((userProcess) => {
         setUserProcess(userProcess);
-        console.log(`UserProcess: ${userProcess}`);
         setIsLoading(false);
       })
       .catch((error) => {

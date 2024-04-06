@@ -19,10 +19,8 @@ import getEventMentors from "../../api/get-event-mentors.js";
 
 function ProfilePage() {
   const { auth } = useAuth();
-  const { user } = useUser(auth);
   const { token } = useUser(auth.token);
   const { id } = useParams();
-  console.log("user: ", user);
   const { isNavbarOpen } = useNavbarContext();
   const [selectedCity] = useState("");
 
@@ -75,10 +73,6 @@ function ProfilePage() {
       });
   }, []);
 
-  // console.log("event mentors: ", eventMentors);
-  // console.log("user data: ", userData);
-  // console.log("event data: ", eventData);
-
   let mentorApplications = [];
   eventMentors &&
     userData &&
@@ -95,17 +89,12 @@ function ProfilePage() {
       }
     });
 
-  console.log("mentorApplications after push: ", mentorApplications);
-
   let eventApplications = [];
   mentorApplications.length > 0 &&
     eventData &&
     mentorApplications.map((mentor) => {
-      console.log("map step 1");
       eventData.map((event) => {
-        console.log("map step 2");
         if (mentor.id == event.id) {
-          console.log("map if fnc");
           const addEventApplication = {
             mentor_id: mentorApplications.id,
             event_id: mentor.event_id,
@@ -121,8 +110,6 @@ function ProfilePage() {
       });
     });
 
-  console.log("eventApplications after push: ", eventApplications);
-
   const [userProcess, setUserProcess] = useState();
   const [processError, setProcessError] = useState();
 
@@ -135,7 +122,6 @@ function ProfilePage() {
         setProcessError(error);
       });
   }, [id, token]);
-  console.log("userProcess: ", userProcess);
 
   const filteredEvents = selectedCity
     ? events.filter(

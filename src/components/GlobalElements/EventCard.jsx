@@ -34,8 +34,6 @@ function EventCard({ eventData }) {
       });
   }, []);
 
-  console.log("all eventMentors: ", allEventMentors);
-
   const mentorNumber = function (array) {
     if (array !== null && array !== undefined) {
       return array.filter((mentor) => mentor.event_id === currentEvent).length;
@@ -43,8 +41,6 @@ function EventCard({ eventData }) {
   };
 
   const currentMentorNumber = mentorNumber(allEventMentors);
-
-  console.log("currentMentorNumber: ", currentMentorNumber);
 
   const [eventMentorDetails, setEventMentorDetails] = useState({
     event_id: eventData.id,
@@ -77,7 +73,6 @@ function EventCard({ eventData }) {
       [id]: value,
     }));
   };
-  console.log("eventMentorDetails: ", eventMentorDetails);
 
   const availabilityBtnMessage = "Submit Availability";
   const handleSubmit = (event) => {
@@ -101,7 +96,6 @@ function EventCard({ eventData }) {
 
   const handleModalBtnClick = async (event) => {
     setModalOpen(false);
-    console.log("pressing btn");
     window.location.reload();
   };
 
