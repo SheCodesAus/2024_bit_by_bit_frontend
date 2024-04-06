@@ -275,7 +275,7 @@ function ManageUserAccordion({ userData, processData }) {
                 as="span"
                 flex="1"
                 textAlign="left"
-                className="grid grid-cols-6 text-wrap"
+                className="grid grid-cols-6 text-wrap border-t border-orange-300"
               >
                 <div className="px-4 py-2">{user.first_name}</div>
                 <div className="px-4 py-2">{user.last_name}</div>
