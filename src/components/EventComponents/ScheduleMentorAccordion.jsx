@@ -20,7 +20,7 @@ import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import Button from "../GlobalElements/Button";
 
 // API
-import deleteUser from "../../api/delete-user";
+import deleteMentor from "../../api/delete-eventMentor";
 
 function ManageUserAccordion({ eventData, userData, mentorData }) {
   const { auth } = useAuth();
@@ -29,19 +29,14 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
   console.log("mentorData1: ", mentorData);
   const [mentorToManage, setMentorToManage] = useState();
 
-  // const [mentors, setMentors] = useState([]);
-
   let mentors = [];
   mentorData &&
     userData &&
     mentorData.map((mentor) => {
-      // console.log("in map step 1");
       userData.map((user) => {
-        // console.log("in map mentor id: ", mentor.mentor_id);
-        // console.log("user id: ", user.id);
         if (mentor.mentor_id == user.id) {
-          // console.log("in map step 2");
           const addMentor = {
+            id: mentor.id,
             name: `${user.first_name} ${user.last_name}`,
             email: user.email,
             slack: user.slack,
@@ -62,53 +57,9 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
               mentor.event_offboarding_task_feedbackreceived,
           };
           mentors.push(addMentor);
-        } else {
-          // console.log("map didn't work");
         }
       });
     });
-  // useEffect(() => {
-  //   mentorData &&
-  //     userData &&
-  //     mentorData.map((mentor) => {
-  //       // console.log("in map step 1");
-  //       userData.map((user) => {
-  //         // console.log("in map mentor id: ", mentor.mentor_id);
-  //         // console.log("user id: ", user.id);
-  //         if (mentor.mentor_id == user.id) {
-  //           // console.log("in map step 2");
-  //           const addMentor = {
-  //             name: `${user.first_name} ${user.last_name}`,
-  //             email: user.email,
-  //             slack: user.slack,
-  //             role_requested: mentor.role_requested,
-  //             role_assigned: mentor.role_assigned,
-  //             onboarding_slack: mentor.event_onboarding_task_slackinvite,
-  //             onboarding_lms: mentor.event_onboarding_task_lmsinvite,
-  //             onboarding_google:
-  //               mentor.event_onboarding_task_googlecalendarinvite,
-  //             onboarding_dates: mentor.event_onboarding_task_reconfirmdates,
-  //             onboarding_bio: mentor.event_onboarding_task_mentorbio,
-  //             onboarding_img: mentor.event_onboarding_task_createimgasset,
-  //             onboarding_contract: mentor.event_onboarding_task_contract,
-  //             onboarding_buildinginformation:
-  //               mentor.event_onboarding_task_buildinginformation,
-  //             offboarding_invoicesent:
-  //               mentor.event_offboarding_task_invoicesent,
-  //             offboarding_task_feedbackreceived:
-  //               mentor.event_offboarding_task_feedbackreceived,
-  //           };
-  //           // const isDuplicate = mentors.indexOf(addMentor);
-  //           // console.log("isDUplicate", isDuplicate);
-  //           // if (isDuplicate != -1) {
-  //           //   mentors.push(addMentor);
-  //           // }
-  //         } else {
-  //           // console.log("map didn't work");
-  //         }
-  //       });
-  //     });
-  // }, [mentorData, userData]);
 
   console.log("mentors after push: ", mentors);
 
@@ -124,8 +75,8 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
   const handleModalBtnClick = async (id) => {
     console.log("id in delete fnc: ", id);
 
-    const { data } = await deleteUser({
-      user_id: id,
+    const { data } = await deleteMentor({
+      mentor_id: id,
       token: auth.token,
     });
     setModalOpen(false);
@@ -139,10 +90,10 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
   };
 
   //UPDATE BUTTON //FIXME: this has not been updated at all
-  const updateMessage = "Update Profile";
+  const updateMessage = "Update Availability";
   const updateBtnClick = (event) => {
     event.preventDefault();
-    console.log("going to update profile page");
+    console.log("going to update availability page");
     //TODO: update this when API is working
     setTimeout(() => {
       window.location.reload();
@@ -150,7 +101,7 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
   };
 
   //DELETE BUTTON
-  const deleteMessage = "Delete Profile";
+  const deleteMessage = "Delete Availability";
   const deleteBtnClick = (id) => {
     console.log("id in delete btn click: ", id);
     setMentorToManage(id);
@@ -171,7 +122,7 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
                 textAlign="left"
                 className="grid grid-cols-6 text-wrap"
               >
-                <div className="px-4 py-2"> hello {m.name}</div>
+                <div className="px-4 py-2"> {m.name}</div>
                 <div className="px-4 py-2">{m.email}</div>
                 <div className="px-4 py-2">{m.role_requested}</div>
                 {/* TODO: Need to make the role assigned a text field, not boolean */}
@@ -334,7 +285,7 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
                       <button
                         type="button"
                         className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
-                        onClick={handleModalBtnClick}
+                        onClick={() => handleModalBtnClick(mentorToManage)}
                       >
                         {modalBtnTxt}
                       </button>
