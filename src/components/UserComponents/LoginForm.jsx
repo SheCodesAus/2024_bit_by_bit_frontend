@@ -74,7 +74,7 @@ function LoginForm() {
             is_admin: response.is_admin,
           });
           navigate("/home");
-          location.reload();
+          window.location.reload();
         })
         .catch((error) => {
           console.error("Login attempt failed: ", error);
