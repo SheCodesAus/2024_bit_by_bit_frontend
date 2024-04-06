@@ -1,8 +1,9 @@
 import { Link, Outlet, useParams } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth";
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavbarContext } from "../NavBarContext";
 import useUser from "../../hooks/use-user.js";
+import getUser from "../../api/get-user.js";
 
 // STYLE/TAILWIND
 import {
@@ -18,11 +19,22 @@ import {
 function NavBar() {
   const { auth, setAuth } = useAuth();
   const { isNavbarOpen, toggleNavbar } = useNavbarContext();
-  const { user, isLoading, error } = useUser(auth.user_id);
+  // const { user, isLoading, error } = useUser(auth.user_id);
+  const [user, setUser] = useState();
   // const [isOpen, setIsOpen] = useState(true);
   // const toggleNavBar = () => setIsOpen(!isOpen);
   const logoPath = "/imgs/logo.png";
   const logOutIcon = "/imgs/logout.png";
+
+  useEffect(() => {
+    getUser(auth.user_id)
+      .then((user) => {
+        setUser(user);
+      })
+      .catch((error) => {
+        setUserError(error);
+      });
+  }, []);
 
   const handleLogout = () => {
     window.localStorage.removeItem("token");
@@ -33,7 +45,6 @@ function NavBar() {
   };
   console.log("auth", auth.is_admin);
   console.log("storage", localStorage);
-
 
   return (
     <>
@@ -117,9 +128,8 @@ function NavBar() {
                 About
               </span>
             </Link>
-            {auth.token && (
-              <>
-                {auth.is_admin == true && (
+            {auth.token && 
+                auth.is_admin === 'true' && (
                   <Link
                     to="/users/manage"
                     className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
@@ -129,9 +139,8 @@ function NavBar() {
                       Users
                     </span>
                   </Link>
-                )}
-              </>
-            )}
+                )
+                }
             <div className="user-profile flex justify-center items-center gap-4 pt-6">
               <div className="user-avatar w-12 h-12">
                 <Link

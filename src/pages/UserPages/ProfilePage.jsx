@@ -9,6 +9,7 @@ import ProfileOverview from "../../components/UserComponents/ProfileOverview";
 import ProfileInformation from "../../components/UserComponents/ProfileDetails";
 import { useNavbarContext } from "../../components/NavBarContext";
 import EventCard from "../../components/GlobalElements/EventCard";
+import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 
 // API
 import getUserProcess from "../../api/get-user-process.js";
@@ -77,7 +78,7 @@ function ProfilePage() {
         } flex flex-col items-center`}
     >
       <div className="flex justify-center p-4 border-gray-300 mb-8 pt-16">
-        <h1 className="font-bold text-5xl ">hey there, {user?.username}!</h1>
+        <h1 className="font-bold text-5xl ">hey there! </h1>
         <img id="wavingIcon" src="/imgs/wavingIcon.png" className="w-14 h-14" />
       </div>
       {/* top half of page */}
@@ -93,47 +94,35 @@ function ProfilePage() {
         </div>
       </section>
 
-      <section className="max-w-4xl mx-auto text-center border-t p-4 border-gray-300 mt-4">
-        <h2 className="font-bold text-xl pb-4">Mentor Onboarding Checklist</h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
-          <div className="flex flex-col items-center justify-center">
-            <input
-              type="checkbox"
-              checked={userProcess?.user_onboarding_task_slack}
-              className="w-6 h-6 block mb-2"
-              disabled={!auth.is_admin}
-            />
-            <label>Slack username provided</label>
+      {/* <section className="max-w-4xl mx-auto text-center border-t p-4 border-gray-300 mt-4">
+        <h2 className="font-bold text-xl pb-4">Mentor Onboarding Tasks</h2>
+        <div className="grid grid-rows-4 gap-4 text-center">
+          <div>
+            <ul>Slack username provided</ul>
+            {userProcess?.user_onboarding_task_slack && (
+              <CheckBadgeIcon className="w-6 h-6" />
+            )}
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <input
-              type="checkbox"
-              checked={userProcess?.user_onboarding_task_linkedin}
-              className="w-6 h-6 block mb-2"
-              readOnly={!auth.is_admin}
-            />
-            <label>LinkedIn URL Provided</label>
+          <div>
+            <ul>LinkedIn URL Provided</ul>
+            {userProcess?.user_onboarding_task_linkedin && (
+              <CheckBadgeIcon className="w-6 h-6" />
+            )}
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <input
-              type="checkbox"
-              checked={userProcess?.user_onboarding_task_CodeofConduct}
-              className="w-6 h-6 block mb-2"
-              readOnly={!auth.is_admin}
-            />
-            <label>Read the Code of Conduct</label>
+          <div>
+            <ul>Read the Code of Conduct</ul>
+            {userProcess?.user_onboarding_task_CodeofConduct && (
+              <CheckBadgeIcon className="w-6 h-6" />
+            )}
           </div>
-          <div className="flex flex-col items-center justify-center">
-            <input
-              type="checkbox"
-              checked={userProcess?.user_onboarding_task_tshirtsent}
-              className="w-6 h-6 block mb-2"
-              readOnly={!auth.is_admin}
-            />
-            <label>Mentor t-shirt Received</label>
+          <div>
+            <ul>Mentor t-shirt Received</ul>
+            {userProcess?.onboard_process.user_onboarding_task_tshirtsent && (
+              <CheckBadgeIcon className="w-6 h-6" />
+            )}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* bottom half - event cards */}
       <section className="w-full max-w-4xl text-center border-t p-4 border-gray-300 mt-4">
