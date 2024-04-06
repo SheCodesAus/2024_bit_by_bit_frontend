@@ -23,11 +23,13 @@ import ScheduleEventMentorPage from "./pages/EventsPages/ScheduleEventMentorPage
 import ProfilePage from "./pages/UserPages/ProfilePage";
 import UpdateProfilePage from "./pages/UserPages/UpdateProfilePage";
 import ManageUsersPage from "./pages/UserPages/ManageUsersPage";
+import UpdateUserProcess from "./pages/UserPages/UpdateUserProcessPage.jsx";
 
 // COMPONENTS
 import { AuthProvider } from "./components/AuthProvider.jsx";
 import NavBar from "./components/GlobalElements/NavBar.jsx";
 import { NavbarProvider } from "./components/NavBarContext.jsx";
+import UpdateUserProcessPage from "./pages/UserPages/UpdateUserProcessPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +53,8 @@ const router = createBrowserRouter([
       { path: "/users/:id", element: <ProfilePage /> },
       { path: "/users/:id/update", element: <UpdateProfilePage /> },
       { path: "/users/manage", element: <ManageUsersPage /> },
+      { path: "/user-process/:id/update", element: <UpdateUserProcessPage /> },
+
     ],
   },
 ]);
