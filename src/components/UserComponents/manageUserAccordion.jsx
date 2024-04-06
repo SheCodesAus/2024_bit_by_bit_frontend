@@ -22,19 +22,10 @@ import Button from "../GlobalElements/Button";
 // API
 import deleteUser from "../../api/delete-user";
 
-function ManageUserAccordion({ userData, processData }) {
+function ManageUserAccordion({ userData }) {
   console.log("userData in accordion: ", userData);
   const { auth } = useAuth();
   const [userToManage, setUserToManage] = useState();
-
-  // const mergedUserById = (a1, a2) =>
-  //   a1.map((user) => ({
-  //     ...a2.find((process) => process.mentor === user.id && process),
-  //     ...user,
-  //   }));
-
-  // const mergedData = mergedUserById(userData, processData);
-  // console.log("mergedData: ", mergedData);
 
   // MODALS & BUTTONS
   const [modalOpen, setModalOpen] = useState(false);
@@ -303,7 +294,6 @@ function ManageUserAccordion({ userData, processData }) {
       </section>
     </>
   );
-  // return null;
 }
 
 export default ManageUserAccordion;
