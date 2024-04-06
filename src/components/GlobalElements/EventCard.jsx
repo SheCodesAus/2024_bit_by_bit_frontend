@@ -36,7 +36,6 @@ function EventCard({ eventData }) {
 
   console.log("all eventMentors: ", allEventMentors);
 
-  // TODO: Mentor ratio - count number of mentors signed up to event/event participants.
   const mentorNumber = function (array) {
     if (array !== null && array !== undefined) {
       return array.filter((mentor) => mentor.event_id === currentEvent).length;
@@ -67,7 +66,7 @@ function EventCard({ eventData }) {
       feedback_recieved: false,
     },
     role_requested: "",
-    role_assigned: false,
+    role_assigned: "Unassigned",
     is_completed: false,
   });
 
@@ -142,9 +141,9 @@ function EventCard({ eventData }) {
           className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
         >
           <option value="">Select Role</option>
-          <option value="lead_mentor">Lead Mentor</option>
-          <option value="mentor">Mentor</option>
-          <option value="industry_participant">Industry Participant</option>
+          <option value="Lead Mentor">Lead Mentor</option>
+          <option value="Mentor">Mentor</option>
+          <option value="Industry Participant">Industry Participant</option>
         </select>
         <div className=" py-2">
           <ButtonElement
