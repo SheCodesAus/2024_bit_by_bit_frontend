@@ -155,7 +155,7 @@ function EventCard({ eventData }) {
 
       {auth.token && (
         <>
-          {auth.is_admin == true && (
+          {auth.is_admin === 'true' && (
             <div>
               <Link
                 to={`/event/${eventData.id}/update`}
