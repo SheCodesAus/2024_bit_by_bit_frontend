@@ -1,26 +1,24 @@
 // HOOKS
-import { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../AuthProvider";
+import { useState, useEffect } from "react";
 import { useAuth } from "../../hooks/use-auth";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useUser from "../../hooks/use-user";
+
+// COMPONENTS
+import ButtonElement from "../GlobalElements/Button";
 
 // API
 import putUpdateUser from "../../api/put-update-user";
-import getUser from "../../api/get-user";
 
 // STYLE/TAILWIND
-import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import { PhotoIcon } from "@heroicons/react/24/solid";
 
 function UpdateUserForm() {
   const navigate = useNavigate();
-  //   const { id } = useParams();
-  const { auth, setAuth } = useAuth();
-  const { user, isLoading, error } = useUser(auth.user_id);
+  const { auth } = useAuth();
+  const { user } = useUser(auth.user_id);
   const user_id = auth.user_id;
   const token = auth.token;
-
-  //   console.log("user: ", user);
 
   const [userDetails, setUserDetails] = useState({
     username: "",
@@ -51,8 +49,6 @@ function UpdateUserForm() {
     }
   }, [user]);
 
-  //   console.log("userDetails: ", userDetails);
-
   const handleChange = (event) => {
     const { id, value } = event.target;
     setUserDetails((prevUserDetails) => ({
@@ -61,9 +57,6 @@ function UpdateUserForm() {
     }));
   };
 
-  {
-    /* TO-DO: CREATE & IMPORT PUT-UPDATEUSER FILE TO TEST WITH API CALLS WHEN WE CAN LOG IN */
-  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     const updated = await putUpdateUser(token, user_id, userDetails);
@@ -82,7 +75,6 @@ function UpdateUserForm() {
       >
         {/* SECTION 1 - Account information */}
         <section className="w-full mb-4">
-          {/* <h2 className="text-lg font-semibold mb-2">Account information</h2> */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {/* USERNAME */}
             {/* <div>
@@ -236,7 +228,7 @@ function UpdateUserForm() {
               />
             </div>
             {/* CODING LANGUAGES */}
-            {/* TODO: Confirm how we want to allow users to select this/allowing multiple choices */}
+            {/* FUTURE DEV: TODO: Confirm how we want to allow users to select this/allowing multiple choices */}
             <div>
               <label
                 htmlFor="coding_language"
@@ -245,9 +237,9 @@ function UpdateUserForm() {
                 Main Coding Language
               </label>
               <select
-                id="coding_language"
                 name="coding_language"
                 onChange={handleChange}
+                id="coding_language"
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               >
                 <option value="Select_language">Select a language</option>
@@ -299,13 +291,7 @@ function UpdateUserForm() {
 
         {/* SECTION 4 - Submit */}
         <section>
-          <button
-            type="submit"
-            onClick={handleSubmit}
-            className="rounded-md bg-orange-500 px-3"
-          >
-            Submit
-          </button>
+          <ButtonElement message="Update Profile" btnClick={handleSubmit} />
         </section>
       </form>
     </main>

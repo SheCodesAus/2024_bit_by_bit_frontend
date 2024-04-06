@@ -1,21 +1,21 @@
 import { useState, useEffect } from "react";
-import getUsers from "../api/get-users";
+import getEvent from "../api/get-event";
 
-export default function useAllUsers() {
-  const [users, setUsers] = useState([]);
+export default function useEvent(event_id) {
+  const [event, setEvent] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState();
 
   useEffect(() => {
-    getUsers()
-      .then((users) => {
-        setUsers(users);
+    getEvent(event_id)
+      .then((event) => {
+        setEvent(event);
         setIsLoading(false);
       })
       .catch((error) => {
         setError(error);
         setIsLoading(false);
       });
-  }, []);
-  return { users, isLoading, error };
+  }, [event_id]);
+  return { event, isLoading, error };
 }
