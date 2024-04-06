@@ -117,9 +117,8 @@ function NavBar() {
                 About
               </span>
             </Link>
-            {auth.token && (
-              <>
-                {auth.is_admin == true && (
+            {auth.token && 
+                auth.is_admin === 'true' && (
                   <Link
                     to="/users/manage"
                     className="link flex items-center gap-4 p-2 rounded-md hover:bg-orange-600"
@@ -129,9 +128,8 @@ function NavBar() {
                       Users
                     </span>
                   </Link>
-                )}
-              </>
-            )}
+                )
+                }
             <div className="user-profile flex justify-center items-center gap-4 pt-6">
               <div className="user-avatar w-12 h-12">
                 <Link
