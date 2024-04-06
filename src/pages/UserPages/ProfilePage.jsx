@@ -8,7 +8,8 @@ import { useParams } from "react-router-dom";
 import ProfileOverview from "../../components/UserComponents/ProfileOverview";
 import ProfileInformation from "../../components/UserComponents/ProfileDetails";
 import { useNavbarContext } from "../../components/NavBarContext";
-import EventCard from "../../components/GlobalElements/EventCard";
+// import EventCard from "../../components/GlobalElements/EventCard";
+import ProfileEventCard from "../../components/UserComponents/Profile-EventCard.jsx";
 import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 
 // API
@@ -75,10 +76,6 @@ function ProfilePage() {
       });
   }, []);
 
-  // console.log("event mentors: ", eventMentors);
-  // console.log("user data: ", userData);
-  // console.log("event data: ", eventData);
-
   let mentorApplications = [];
   eventMentors &&
     userData &&
@@ -104,11 +101,12 @@ function ProfilePage() {
       console.log("map step 1");
       eventData.map((event) => {
         console.log("map step 2");
-        if (mentor.id == event.id) {
+        if (mentor.event_id == event.id) {
           console.log("map if fnc");
           const addEventApplication = {
-            mentor_id: mentorApplications.id,
+            mentor_id: mentor.id,
             event_id: mentor.event_id,
+            user_id: mentor.user_id,
             name: event.event_name,
             location: event.location,
             date: event.event_start_date,
@@ -218,8 +216,8 @@ function ProfilePage() {
       <section className="w-full max-w-4xl text-center border-t p-4 border-gray-300 mt-4">
         <h1 className="font-bold text-2xl ">Your Upcoming Events</h1>
         <div className="flex flex-wrap justify-center gap-4 pt-4">
-          {filteredEvents.map((eventData) => (
-            <EventCard key={eventData.id} eventData={eventData} />
+          {eventApplications.map((event, index) => (
+            <ProfileEventCard key={index} eventData={event} />
           ))}
         </div>
       </section>
