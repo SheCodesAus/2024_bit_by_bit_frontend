@@ -102,7 +102,7 @@ function EventCard({ eventData }) {
   const handleModalBtnClick = async (event) => {
     setModalOpen(false);
     console.log("pressing btn");
-    navigate("/events");
+    window.location.reload();
   };
 
   return (
@@ -155,7 +155,7 @@ function EventCard({ eventData }) {
 
       {auth.token && (
         <>
-          {auth.is_admin === 'true' && (
+          {auth.is_admin === "true" && (
             <div>
               <Link
                 to={`/event/${eventData.id}/update`}
