@@ -1,5 +1,5 @@
-async function putUpdateUserProcess(userProcessDetails, mentor, token) {
-    const url = `${import.meta.env.VITE_API_URL}/user-process/${mentor}/`;
+async function putUpdateUserProcess(userProcessDetails, id , token) {
+    const url = `${import.meta.env.VITE_API_URL}/user-process/${id}/`;
   
     const updatedUserProcess = await fetch(url, {
       method: "PUT",
@@ -11,14 +11,16 @@ async function putUpdateUserProcess(userProcessDetails, mentor, token) {
         ...userProcessDetails,
       }),
     });
-  
+
     if (!updatedUserProcess.ok) {
       const fallbackError = "Error trying to update user process";
-  
+    
       const data = await updatedUserProcess.json().catch(() => {
         throw new Error(fallbackError);
       });
-  
+
+      console.log(userProcessDetails)
+    
       const errorMessage = data?.detail ?? fallbackError;
       throw new Error(errorMessage);
     }

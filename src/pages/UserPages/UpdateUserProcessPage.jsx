@@ -1,14 +1,11 @@
 // HOOKs
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../hooks/use-auth.js";
 import { useNavbarContext } from "../../components/NavBarContext";
 import UpdateUserProcessForm from "../../components/UserComponents/UpdateUserProcessForm.jsx";
-
+import { useParams } from "react-router-dom";
 
 
 function UpdateUserProcess() {
-
+  const { id } = useParams();
   const { isNavbarOpen } = useNavbarContext();
 
   return (
@@ -19,7 +16,7 @@ function UpdateUserProcess() {
       </section>
 
       <section>
-        <UpdateUserProcessForm/>
+      return <UpdateUserProcessForm id={id} />;
       </section>
     </main>
   );
