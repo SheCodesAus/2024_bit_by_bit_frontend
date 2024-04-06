@@ -78,7 +78,7 @@ function ProfilePage() {
         } flex flex-col items-center`}
     >
       <div className="flex justify-center p-4 border-gray-300 mb-8 pt-16">
-        <h1 className="font-bold text-5xl ">hey there, {user?.username}! </h1>
+        <h1 className="font-bold text-5xl ">hey there! </h1>
         <img id="wavingIcon" src="/imgs/wavingIcon.png" className="w-14 h-14" />
       </div>
       {/* top half of page */}
@@ -96,44 +96,33 @@ function ProfilePage() {
 
       {/* <section className="max-w-4xl mx-auto text-center border-t p-4 border-gray-300 mt-4">
         <h2 className="font-bold text-xl pb-4">Mentor Onboarding Tasks</h2>
-        <div className="grid grid-rows-1 md:gridrows-4 gap-4 text-center">
-          <ul>Slack username provided</ul>
-          <ul>LinkedIn URL Provided</ul>
-          <ul>Read the Code of Conduct</ul>
-          <ul>Mentor t-shirt Received</ul>
-        </div>
-      </section> */}
-
-      <section className="max-w-4xl mx-auto text-center border-t p-4 border-gray-300 mt-4">
-        <h2 className="font-bold text-xl pb-4">Mentor Onboarding Tasks</h2>
         <div className="grid grid-rows-4 gap-4 text-center">
           <div>
             <ul>Slack username provided</ul>
-            {userProcess?.slackUsernameProvided && (
+            {userProcess?.user_onboarding_task_slack && (
               <CheckBadgeIcon className="w-6 h-6" />
             )}
           </div>
           <div>
             <ul>LinkedIn URL Provided</ul>
-            {userProcess?.linkedInURLProvided && (
+            {userProcess?.user_onboarding_task_linkedin && (
               <CheckBadgeIcon className="w-6 h-6" />
             )}
           </div>
           <div>
             <ul>Read the Code of Conduct</ul>
-            {userProcess?.codeOfConductRead && (
+            {userProcess?.user_onboarding_task_CodeofConduct && (
               <CheckBadgeIcon className="w-6 h-6" />
             )}
           </div>
           <div>
             <ul>Mentor t-shirt Received</ul>
-            {userProcess?.tshirtReceived && (
+            {userProcess?.onboard_process.user_onboarding_task_tshirtsent && (
               <CheckBadgeIcon className="w-6 h-6" />
             )}
           </div>
         </div>
-      </section>
-
+      </section> */}
 
       {/* bottom half - event cards */}
       <section className="w-full max-w-4xl text-center border-t p-4 border-gray-300 mt-4">
