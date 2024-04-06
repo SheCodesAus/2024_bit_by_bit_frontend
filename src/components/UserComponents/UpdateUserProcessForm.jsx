@@ -32,13 +32,13 @@ function UpdateUserProcessForm() {
       useEffect(() => {
         if (userprocess) {
           setUserProcessDetails({
-            user_onboarding_task_slack: userprocess.user_onboarding_task_slack ?? false,
-            user_onboarding_task_linkedin: userprocess.user_onboarding_task_linkedin ?? false,
-            user_onboarding_task_CodeofConduct: userprocess.user_onboarding_task_CodeofConduct ?? false,
-            user_onboarding_task_tshirtsent: userprocess.user_onboarding_task_tshirtsent ?? false,
-            user_offboarding_task_feedbackrequested: userprocess.user_offboarding_task_feedbackrequested ?? false,
-            user_offboarding_task_feedbackreceived: userprocess.user_offboarding_task_feedbackreceived ?? false,
-            user_offboarding_task_tshirtreceived: userprocess.user_offboarding_task_tshirtreceived ?? false,
+            user_onboarding_task_slack: userprocess.user_onboarding_task_slack ?? "",
+            user_onboarding_task_linkedin: userprocess.user_onboarding_task_linkedin ?? "",
+            user_onboarding_task_CodeofConduct: userprocess.user_onboarding_task_CodeofConduct ?? "",
+            user_onboarding_task_tshirtsent: userprocess.user_onboarding_task_tshirtsent ?? "",
+            user_offboarding_task_feedbackrequested: userprocess.user_offboarding_task_feedbackrequested ?? "",
+            user_offboarding_task_feedbackreceived: userprocess.user_offboarding_task_feedbackreceived ?? "",
+            user_offboarding_task_tshirtreceived: userprocess.user_offboarding_task_tshirtreceived ?? "",
           });
         }
       }, [userprocess]);
