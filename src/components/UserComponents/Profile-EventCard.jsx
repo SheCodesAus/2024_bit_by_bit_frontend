@@ -94,14 +94,11 @@ function ProfileEventCard({ eventData }) {
 
   const deleteMessage = "Delete Availability";
   const deleteBtnClick = (id) => {
-    console.log("id in delete btn click: ", id);
     setMentorToManage(id);
     setDeleteModalOpen(true);
   };
 
   const handleDeleteModalBtnClick = async (id) => {
-    console.log("id in delete fnc: ", id);
-
     const { data } = await deleteMentor({
       mentor_id: id,
       token: auth.token,
