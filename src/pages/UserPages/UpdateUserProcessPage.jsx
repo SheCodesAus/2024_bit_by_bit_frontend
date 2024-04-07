@@ -16,7 +16,7 @@ function UpdateUserProcess() {
       </section>
 
       <section>
-      return <UpdateUserProcessForm id={id} />;
+      <UpdateUserProcessForm id={id} />;
       </section>
     </main>
   );

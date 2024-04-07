@@ -47,11 +47,12 @@ function ManageUsersPage() {
   }, []);
 
   return (
-    <main
-      className={`min-h-screen ${
-        isNavbarOpen ? "ml-60" : "ml-20"
-      } flex flex-col justify-center px-4`}
-    >
+    <main className={`min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"} flex flex-col justify-center px-4`}>
+
+      <style>
+        {`::-webkit-scrollbar {width: 8px;} ::-webkit-scrollbar-track {background: #ffffff;} ::-webkit-scrollbar-thumb {background-color: orange; border-radius: 10px; border: 2px solid #ffffff;}`}
+      </style>
+
       <section className="flex flex-col items-center pt-16">
         <img
           id="SCimage9"
