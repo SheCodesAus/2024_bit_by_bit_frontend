@@ -1,20 +1,16 @@
 // HOOKS
 import { useEffect, useState } from "react";
-import useUser from "../../hooks/use-user.js";
-import { useAuth } from "../../hooks/use-auth.js";
 import { useParams } from "react-router-dom";
 
 //COMPONENTS
 import ProfileOverview from "../../components/UserComponents/ProfileOverview";
 import ProfileInformation from "../../components/UserComponents/ProfileDetails";
 import { useNavbarContext } from "../../components/NavBarContext";
-import EventCard from "../../components/GlobalElements/EventCard";
-import { CheckBadgeIcon } from "@heroicons/react/24/solid";
+import ProfileEventCard from "../../components/UserComponents/Profile-EventCard.jsx";
 
 // API
 import getUser from "../../api/get-user.js";
 import getEvents from "../../api/get-events.js";
-import getUserProcess from "../../api/get-user-process.js";
 import getEventMentors from "../../api/get-event-mentors.js";
 
 function ProfilePage() {
@@ -35,17 +31,6 @@ function ProfilePage() {
         setUserError(error);
       });
   }, []);
-
-  // Example events data
-  const events = [
-    {
-      id: 1,
-      program: "Event 1",
-      date: "1/1/2024",
-      city: "brisbane",
-      time: "9am - 1pm",
-    },
-  ];
 
   // REGISTERED EVENTS
 
@@ -96,8 +81,9 @@ function ProfilePage() {
       eventData.map((event) => {
         if (mentor.id == event.id) {
           const addEventApplication = {
-            mentor_id: mentorApplications.id,
+            mentor_id: mentor.id,
             event_id: mentor.event_id,
+            user_id: mentor.user_id,
             name: event.event_name,
             location: event.location,
             date: event.event_start_date,
@@ -109,6 +95,7 @@ function ProfilePage() {
         }
       });
     });
+
 
   const [userProcess, setUserProcess] = useState();
   const [processError, setProcessError] = useState();
@@ -170,42 +157,12 @@ function ProfilePage() {
         </div>
       </section>
 
-      {/* <section className="max-w-4xl mx-auto text-center border-t p-4 border-gray-300 mt-4">
-        <h2 className="font-bold text-xl pb-4">Mentor Onboarding Tasks</h2>
-        <div className="grid grid-rows-4 gap-4 text-center">
-          <div>
-            <ul>Slack username provided</ul>
-            {userProcess?.user_onboarding_task_slack && (
-              <CheckBadgeIcon className="w-6 h-6" />
-            )}
-          </div>
-          <div>
-            <ul>LinkedIn URL Provided</ul>
-            {userProcess?.user_onboarding_task_linkedin && (
-              <CheckBadgeIcon className="w-6 h-6" />
-            )}
-          </div>
-          <div>
-            <ul>Read the Code of Conduct</ul>
-            {userProcess?.user_onboarding_task_CodeofConduct && (
-              <CheckBadgeIcon className="w-6 h-6" />
-            )}
-          </div>
-          <div>
-            <ul>Mentor t-shirt Received</ul>
-            {userProcess?.onboard_process.user_onboarding_task_tshirtsent && (
-              <CheckBadgeIcon className="w-6 h-6" />
-            )}
-          </div>
-        </div>
-      </section> */}
-
       {/* bottom half - event cards */}
       <section className="w-full max-w-4xl text-center border-t p-4 border-gray-300 mt-4">
         <h1 className="font-bold text-2xl ">Your Upcoming Events</h1>
         <div className="flex flex-wrap justify-center gap-4 pt-4">
-          {filteredEvents.map((eventData) => (
-            <EventCard key={eventData.id} eventData={eventData} />
+          {eventApplications.map((event, index) => (
+            <ProfileEventCard key={index} eventData={event} />
           ))}
         </div>
       </section>
