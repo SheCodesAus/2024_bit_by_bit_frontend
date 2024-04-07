@@ -53,30 +53,6 @@ function UpdateUserProcessForm() {
     }
   };
 
-const handleAdminStatusUpdate = async () => {
-  try {
-    const user_id = userProcessDetails.mentor;
-    const token = auth.token;
-
-    if (!token) {
-      console.error("Token not available.");
-      return;
-    }
-    const newAdminStatus = !auth.is_admin; // Toggle the admin status directly from the authentication context
-    const updatedUser = await putUpdateUser(token, user_id, { is_admin: newAdminStatus });
-
-    if (updatedUser) {
-      // Update the admin status directly in the authentication context
-      const updatedAuth = { ...auth, is_admin: newAdminStatus };
-      setAuth(updatedAuth);
-      window.localStorage.setItem("is_admin", newAdminStatus);
-    } else {
-      console.error("Failed to update user admin status.");
-    }
-  } catch (error) {
-    console.error("Error updating user admin status:", error);
-  }
-};
 
   return (
     <main>
@@ -187,18 +163,6 @@ const handleAdminStatusUpdate = async () => {
                 className="mt-1 block px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
             />
             </div>
-            <div>
-                
-                <label>
-                  Is Admin:
-                  <input
-                    type="checkbox"
-                    checked={userProcessDetails.is_admin} // Use is_admin from userProcessDetails for checkbox state
-                    onChange={handleAdminStatusUpdate} // Call handleAdminStatusUpdate on checkbox change
-                  />
-      </label>
-    </div>
-
         </section>
         <section>
           <ButtonElement message="Update user onboarding." btnClick={handleSubmit} />
