@@ -21,6 +21,7 @@ function HomePage() {
         <div className="flex justify-center p-4">
           <h1 className="font-bold text-5xl">WELCOME TO BYTE TIME!</h1>
         </div>
+        <p className="font-bold">Starting on a journey to mentorship magic!</p>
       </section>
 
       <section className="flex justify-center pt-4">
