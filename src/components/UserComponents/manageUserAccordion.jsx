@@ -10,7 +10,7 @@ import {
 
 import { Fragment, useState, useRef } from "react";
 import { useAuth } from "../../hooks/use-auth";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // STYLE/TAILWIND
 import { Dialog, Transition } from "@headlessui/react";
@@ -26,6 +26,7 @@ function ManageUserAccordion({ userData }) {
   console.log("userData in accordion: ", userData);
   const { auth } = useAuth();
   const [userToManage, setUserToManage] = useState();
+  const navigate = useNavigate();
 
   // MODALS & BUTTONS
   const [modalOpen, setModalOpen] = useState(false);
@@ -37,8 +38,6 @@ function ManageUserAccordion({ userData }) {
   const modalBtnTxt = "Delete Profile";
 
   const handleModalBtnClick = async (id) => {
-    console.log("id in delete fnc: ", id);
-
     const { data } = await deleteUser({
       user_id: id,
       token: auth.token,
@@ -55,23 +54,16 @@ function ManageUserAccordion({ userData }) {
 
   //UPDATE BUTTON //FIXME: this has not been updated at all
   const updateMessage = "Update Profile";
-  const updateBtnClick = (event) => {
-    event.preventDefault();
-    console.log("going to update profile page");
-    //TODO: update this when API is working
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
+  const updateBtnClick = (id) => {
+    navigate(`/user-process/${id}`);
   };
 
   //DELETE BUTTON
   const deleteMessage = "Delete Profile";
   const deleteBtnClick = (id) => {
-    console.log("id in delete btn click: ", id);
     setUserToManage(id);
     setModalOpen(true);
   };
-  console.log("userToManage: ", userToManage);
 
   function createAccordion(userData) {
     return (
@@ -112,6 +104,7 @@ function ManageUserAccordion({ userData }) {
                         <label>Slack link Provided?</label>
                         <input
                           type="checkbox"
+                          readOnly={true}
                           checked={onboard_process.user_onboarding_task_slack}
                         />
                       </div>
@@ -119,6 +112,7 @@ function ManageUserAccordion({ userData }) {
                         <label>LinkedIn link Provided?</label>
                         <input
                           type="checkbox"
+                          readOnly={true}
                           checked={
                             onboard_process.user_onboarding_task_linkedin
                           }
@@ -128,6 +122,7 @@ function ManageUserAccordion({ userData }) {
                         <label>Mentor Code of Conduct provided?</label>
                         <input
                           type="checkbox"
+                          readOnly={true}
                           checked={
                             onboard_process.user_onboarding_task_CodeofConduct
                           }
@@ -137,6 +132,7 @@ function ManageUserAccordion({ userData }) {
                         <label>Mentor t-shirt provided?</label>
                         <input
                           type="checkbox"
+                          readOnly={true}
                           checked={
                             onboard_process.user_onboarding_task_tshirtsent
                           }
@@ -156,6 +152,7 @@ function ManageUserAccordion({ userData }) {
                         <label>Feedback Requested?</label>
                         <input
                           type="checkbox"
+                          readOnly={true}
                           checked={
                             offboard_process.user_offboarding_task_feedbackrequested
                           }
@@ -165,6 +162,7 @@ function ManageUserAccordion({ userData }) {
                         <label>Feedback Recieved?</label>
                         <input
                           type="checkbox"
+                          readOnly={true}
                           checked={
                             offboard_process.user_offboarding_task_feedbackreceived
                           }
@@ -174,6 +172,7 @@ function ManageUserAccordion({ userData }) {
                         <label>Mentor t-shirt returned?</label>
                         <input
                           type="checkbox"
+                          readOnly={true}
                           checked={
                             offboard_process.user_offboarding_task_tshirtreceived
                           }
@@ -185,10 +184,16 @@ function ManageUserAccordion({ userData }) {
               ))}
               {/* UPDATE/DELETE */}
               <div className="m-4 flex flex-col justify-center gap-2">
-                <Button
-                  message={updateMessage}
-                  btnClick={updateBtnClick} //TODO: - need to pass the user id from this function.
-                />
+                {user.onboarded_mentor.map((offboard_process, i) => (
+                  <>
+                    <Button
+                      key={i}
+                      message={updateMessage}
+                      btnClick={() => updateBtnClick(offboard_process.id)} //TODO: - need to pass the user id from this function.
+                    />
+                  </>
+                ))}
+
                 <Button
                   message={deleteMessage}
                   btnClick={() => deleteBtnClick(user.id)}

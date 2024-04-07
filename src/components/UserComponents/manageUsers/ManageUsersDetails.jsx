@@ -1,13 +1,7 @@
 // HOOKS
 import { useState } from "react";
 
-// https://www.youtube.com/watch?v=IW_AYg3kUIY
-// https://www.sitepoint.com/react-js-accordion-component/
-// https://www.freecodecamp.org/news/build-accordion-menu-in-react-without-external-libraries/
-
 function ManageUserDetails(item) {
-  console.log(item);
-
   const [isActive, setIsActive] = useState(false);
 
   const userProcess = {
@@ -33,7 +27,6 @@ function ManageUserDetails(item) {
   });
 
   return (
-    // <section>
     <>
       <tbody
         className="accordian-header bg-slate-200"
@@ -53,8 +46,6 @@ function ManageUserDetails(item) {
 
       <>
         {isActive && (
-          // {item.item.user_process((process, index)=>(
-          // <div className="accordian-content" key={index}>
           <tr className="accordian-content  bg-slate-300">
             <td>
               <label>Mentor t-shirt provided?</label>
@@ -87,45 +78,11 @@ function ManageUserDetails(item) {
               />
             </td>
           </tr>
-          // ))}
         )}
         ;
       </>
     </>
-    // </section>
   );
 }
-
-// {
-
-//         <br />
-//       </section>
-//       <table className="w=[50%] ">
-//         <thead>
-//           <tr>
-//             <th>First Name</th>
-//             <th>Second Name</th>
-//             <th>Email</th>
-//             <th>Contact Number</th>
-//             <th>Slack</th>
-//             <th>LinkedIn</th>
-//           </tr>
-//         </thead>
-//         {mockUserData.map((userData, key) => {
-//           return (
-//             <tbody key={key}>
-//               <tr>
-//                 <td>{userData.first_name}</td>
-//                 <td>{userData.last_name}</td>
-//                 <td>{userData.email}</td>
-//                 <td>{userData.contactNumber}</td>
-//                 <td>{userData.slack}</td>
-//                 <td>{userData.linkedIn}</td>
-//               </tr>
-//             </tbody>
-//           );
-//         })}
-//       </table>
-// }
 
 export default ManageUserDetails;

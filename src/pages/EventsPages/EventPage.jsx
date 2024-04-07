@@ -8,7 +8,6 @@ import { useNavbarContext } from "../../components/NavBarContext";
 function EventPage() {
   const { isNavbarOpen } = useNavbarContext();
   const { id } = useParams();
-  console.log(id);
 
   return (
     <main className={`min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"}`}>

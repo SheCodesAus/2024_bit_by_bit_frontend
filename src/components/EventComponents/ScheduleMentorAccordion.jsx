@@ -24,9 +24,6 @@ import deleteMentor from "../../api/delete-eventMentor";
 
 function ManageUserAccordion({ eventData, userData, mentorData }) {
   const { auth } = useAuth();
-  console.log("eventData1: ", eventData);
-  console.log("userData1: ", userData);
-  console.log("mentorData1: ", mentorData);
   const [mentorToManage, setMentorToManage] = useState();
 
   let mentors = [];
@@ -61,8 +58,6 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
       });
     });
 
-  console.log("mentors after push: ", mentors);
-
   // MODALS & BUTTONS
   const [modalOpen, setModalOpen] = useState(false);
   const cancelBtnRef = useRef(null);
@@ -73,8 +68,6 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
   const modalBtnTxt = "Delete Availability";
 
   const handleModalBtnClick = async (id) => {
-    console.log("id in delete fnc: ", id);
-
     const { data } = await deleteMentor({
       mentor_id: id,
       token: auth.token,
@@ -93,8 +86,6 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
   const updateMessage = "Update Availability";
   const updateBtnClick = (event) => {
     event.preventDefault();
-    console.log("going to update availability page");
-    //TODO: update this when API is working
     setTimeout(() => {
       window.location.reload();
     }, 3000);
@@ -103,14 +94,11 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
   //DELETE BUTTON
   const deleteMessage = "Delete Availability";
   const deleteBtnClick = (id) => {
-    console.log("id in delete btn click: ", id);
     setMentorToManage(id);
     setModalOpen(true);
   };
-  console.log("mentorToManage: ", mentorToManage);
 
   function createAccordion(mentor) {
-    console.log("mentor data inside accordion: ", mentor);
     return (
       <Accordion defaultIndex={[0]} allowMultiple>
         {mentor.map((m, index) => (
@@ -125,7 +113,6 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
                 <div className="px-4 py-2"> {m.name}</div>
                 <div className="px-4 py-2">{m.email}</div>
                 <div className="px-4 py-2">{m.role_requested}</div>
-                {/* TODO: Need to make the role assigned a text field, not boolean */}
                 <div className="px-4 py-2">{m.role_assigned}</div>
               </Box>
               <AccordionIcon />

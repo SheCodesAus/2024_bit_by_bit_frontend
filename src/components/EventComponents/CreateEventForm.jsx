@@ -36,11 +36,9 @@ function CreateEventForm() {
       [id]: value,
     }));
   };
-  console.log(eventDetails);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("submitted: ", eventDetails);
     navigate("/");
     if (
       eventDetails.event_type &&
@@ -67,7 +65,9 @@ function CreateEventForm() {
         <section className="w-full mb-4">
           {/* HEADER */}
           <section className="border-b p-4 border-gray-300">
-            <h2 className="text-lg font-semibold mb-2">New Event information</h2>
+            <h2 className="text-lg font-semibold mb-2">
+              New Event information
+            </h2>
             <p className="mb-3 ">
               Ensure all event detail is clear enough that a new mentor will
               understand the process! When organising events with multiple

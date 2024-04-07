@@ -14,7 +14,6 @@ function UpdateEventForm() {
   const navigate = useNavigate();
   const { auth } = useAuth();
   const { id } = useParams();
-  console.log("event id = ", id);
   const { event } = useEvent(id);
   const token = auth.token;
 
@@ -43,8 +42,6 @@ function UpdateEventForm() {
       });
     }
   }, [event]);
-
-  console.log(eventDetails);
 
   const handleChange = (event) => {
     const { id, value } = event.target;

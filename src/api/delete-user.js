@@ -1,6 +1,4 @@
 async function deleteUser({ user_id, token }) {
-  console.log(user_id);
-  console.log(token);
   const url = `${import.meta.env.VITE_API_URL}/users/${user_id}/`;
 
   const deletedUser = await fetch(url, {

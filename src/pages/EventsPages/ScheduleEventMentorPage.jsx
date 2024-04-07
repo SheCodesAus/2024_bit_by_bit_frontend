@@ -14,7 +14,6 @@ import getEvent from "../../api/get-event";
 
 function ScheduleEventMentorPage() {
   const { id } = useParams();
-  console.log("id: ", id);
   const { users } = useAllUsers();
   const [eventData, setEventData] = useState();
   const [eventError, setEventError] = useState();
@@ -30,9 +29,6 @@ function ScheduleEventMentorPage() {
         setEventError(error);
       });
   }, []);
-
-  console.log("eventData: ", eventData);
-  console.log("mentorData inside page: ", eventData?.mentors);
 
   return (
     <main

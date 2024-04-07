@@ -1,6 +1,4 @@
 async function deleteMentor({ mentor_id, token }) {
-  console.log(mentor_id);
-  console.log(token);
   const url = `${import.meta.env.VITE_API_URL}/eventmentors/${mentor_id}`;
 
   const deletedMentor = await fetch(url, {
