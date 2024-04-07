@@ -14,11 +14,8 @@ import getEvents from "../../api/get-events.js";
 import getEventMentors from "../../api/get-event-mentors.js";
 
 function ProfilePage() {
-  const { auth } = useAuth();
-  const { token } = useUser(auth.token);
   const { id } = useParams();
   const { isNavbarOpen } = useNavbarContext();
-  const [selectedCity] = useState("");
 
   const [userData, setUserData] = useState();
   const [userError, setUserError] = useState();
@@ -73,13 +70,14 @@ function ProfilePage() {
         mentorApplications.push(addApplication);
       }
     });
+  console.log("mentorApplications: ", mentorApplications);
 
   let eventApplications = [];
   mentorApplications.length > 0 &&
     eventData &&
     mentorApplications.map((mentor) => {
       eventData.map((event) => {
-        if (mentor.id == event.id) {
+        if (mentor.event_id == event.id) {
           const addEventApplication = {
             mentor_id: mentor.id,
             event_id: mentor.event_id,
@@ -95,44 +93,6 @@ function ProfilePage() {
         }
       });
     });
-
-
-  const [userProcess, setUserProcess] = useState();
-  const [processError, setProcessError] = useState();
-
-  useEffect(() => {
-    getUserProcess(id, token)
-      .then((processes) => {
-        setUserProcess(processes);
-      })
-      .catch((error) => {
-        setProcessError(error);
-      });
-  }, [id, token]);
-
-  const filteredEvents = selectedCity
-    ? events.filter(
-        (event) => event.location.toLowerCase() === selectedCity.toLowerCase()
-      )
-    : events;
-
-  // const userProcess = {
-  //   user_onboarding_task: {
-  //     "Slack provided": false,
-  //     "LinkedIn provided": true,
-  //     "Mentor code of conduct provided": false,
-  //     "Mentor t-shirt provided": false,
-  //   },
-  //   user_offboarding_task: {
-  //     "Feedback asked for": true,
-  //     "Feedback recieved": true,
-  //     "Mentor t-shirt returned": false,
-  //   },
-  // };
-
-  // const [isOnboardingChecked, setIsOnboardingChecked] = useState({
-  //   ...userProcess.user_onboarding_task,
-  // });
 
   return (
     <main
