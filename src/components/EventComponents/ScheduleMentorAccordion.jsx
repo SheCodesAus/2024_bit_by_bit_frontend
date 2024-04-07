@@ -108,7 +108,7 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
                 as="span"
                 flex="1"
                 textAlign="left"
-                className="grid grid-cols-6 text-wrap"
+                className="grid grid-cols-6 text-wrap border-t border-orange-300"
               >
                 <div className="px-4 py-2"> {m.name}</div>
                 <div className="px-4 py-2">{m.email}</div>

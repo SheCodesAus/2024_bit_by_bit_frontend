@@ -7,14 +7,18 @@ function UpdateEventPage() {
 	const { isNavbarOpen } = useNavbarContext();
 
 	return (
-		<main className={`flex flex-col items-center justify-center min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"}`}>
+		<main className={`flex flex-col sm:flex-row min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"}`}>
 
-			<section className="border-b p-4 border-gray-300 flex flex-col items-center pt-16">
-				<h1 className="text-4xl font-bold text-slate-800 text-center mb-5">UPDATE EVENT DETAILS</h1>
+			{/* Adjust margin based on sidebar toggle */}
+			<section className="flex-1 flex justify-center items-center bg-white px-4 sm:w-3/5">
+				<div className="w-full max-w-md">
+					<UpdateEventForm />
+				</div>
 			</section>
 
-			<section className="border-b w-2/3 border-gray-300 flex flex-col items-center">
-				<UpdateEventForm />
+			{/* RHS: image */}
+			<section className="flex-1 sm:w-2/5 bg-purple-500">
+				<img id="SCportrait3" src="/imgs/SCportrait3.jpg" className="w-full h-full object-cover" />
 			</section>
 		</main>
 	);

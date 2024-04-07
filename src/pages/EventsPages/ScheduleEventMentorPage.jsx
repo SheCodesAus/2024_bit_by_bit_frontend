@@ -32,11 +32,26 @@ function ScheduleEventMentorPage() {
 
   return (
     <main
-      className={`min-h-screen ${
-        isNavbarOpen ? "ml-60" : "ml-20"
-      } flex flex-col justify-center px-4`}
+      className={`min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"
+        } flex flex-col justify-center px-4`}
     >
-      <h1 className="text-2xl font-semibold mb-4 pt-16">Schedule Mentors</h1>
+      <section className="flex flex-col items-center pt-16">
+        <img
+          id="SCimage9"
+          src="/imgs/SCimage4.jpeg"
+          className="w-full px-4 h-auto object-cover "
+        />
+        <div className="flex justify-center p-4 border-gray-300 mb-4">
+          <h1 className="font-bold text-5xl">SCHEDULE MENTORS</h1>
+        </div>
+
+        <div className="flex flex-col justify-center w-3/4 space-x-2">
+          <h3 className="text-center border-y border-gray-300 px-4 py-1 text-l mb-4">
+            Click on the drop down arrow at the end of each row to expand the
+            user onboarding/offboarding information
+          </h3>
+        </div>
+      </section>
 
       <ScheduleMentorAccordion
         eventData={eventData}

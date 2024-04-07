@@ -12,6 +12,10 @@ function AboutPage() {
   return (
     <main className={`flex flex-col items-center justify-center min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"}`}>
 
+      <style>
+        {`::-webkit-scrollbar {width: 8px;} ::-webkit-scrollbar-track {background: #ffffff;} ::-webkit-scrollbar-thumb {background-color: orange; border-radius: 10px; border: 2px solid #ffffff;}`}
+      </style>
+
       <section className="flex flex-col items-center pt-16">
         <img id="SCimage9" src="/imgs/SCbanner19.jpg" className="w-full px-4 h-auto object-cover " />
         <div className="flex justify-center p-4 border-gray-300 mb-4">
@@ -33,7 +37,7 @@ function AboutPage() {
           <h2 className="text-center border-y border-gray-300 px-4 py-1 font-bold text-2xl w-full">MENTORING WITH US</h2>
           <figure className="w-full">
             <div className="flex flex-col sm:flex-row justify-center text-center p-4 w-full">
-            <div className="w-full sm:w-1/3 h-auto border-dotted border-2 border-orange-300 flex flex-col justify-center p-4 sm:mb-0">
+              <div className="w-full sm:w-1/3 h-auto border-dotted border-2 border-orange-300 flex flex-col justify-center p-4 sm:mb-0">
                 <span className="font-extrabold text-3xl block">329</span>
                 <span className="font-semibold text-lg">MENTORS IN THE SHE CODES COMMUNITY</span>
               </div>
