@@ -20,7 +20,6 @@ function UpdateUserProcess() {
       <section className="flex flex-col items-center pt-16 border-b border-gray-200">
         <img src="/imgs/SCbanner9.jpg" className="w-full px-4 h-auto object-cover"/>
         <h1 className="text-4xl font-bold text-center text-slate-800">ONBOARDING & OFFBOARDING CHECKLIST</h1>
-        <p className="text-2xl text-center text-gray-700 my-2 font-semibold">USER: {auth.username}</p>
       </section>
 
       <section className="w-full max-w-4xl mt-4 bg-orange-100/90 rounded-lg p-4 shadow-md">

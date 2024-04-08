@@ -11,6 +11,7 @@ import LoginPage from "./pages/GlobalPages/LoginPage.jsx";
 import RegisterPage from "./pages/GlobalPages/RegisterPage.jsx";
 import HomePage from "./pages/GlobalPages/HomePage.jsx";
 import AboutPage from "./pages/GlobalPages/AboutPage.jsx";
+import ErrorPage from "./pages/GlobalPages/ErrorPage.jsx";
 
 // EVENT PAGES
 import AllEventsPage from "./pages/EventsPages/AllEventsPage.jsx";
@@ -54,6 +55,7 @@ const router = createBrowserRouter([
       { path: "/users/:id/update", element: <UpdateProfilePage /> },
       { path: "/users/manage", element: <ManageUsersPage /> },
       { path: "/user-process/:id", element: <UpdateUserProcessPage /> },
+      { path: "/error", element: <ErrorPage /> },
 
     ],
   },
