@@ -18,6 +18,7 @@ import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
 // COMPONENTS
 import Button from "../GlobalElements/Button";
+import AdminToggleSwitch from "../GlobalElements/AdminToggleSwitch";
 
 // API
 import deleteUser from "../../api/delete-user";
@@ -52,7 +53,7 @@ function ManageUserAccordion({ userData }) {
     setModalOpen(false);
   };
 
-  //UPDATE BUTTON //FIXME: this has not been updated at all
+  //UPDATE BUTTON
   const updateMessage = "Update Profile";
   const updateBtnClick = (id) => {
     navigate(`/user-process/${id}`);
@@ -199,6 +200,11 @@ function ManageUserAccordion({ userData }) {
                   btnClick={() => deleteBtnClick(user.id)}
                 />
               </div>
+              {/* IS ADMIN SWITCH */}
+              <div className="m-4 flex flex-col justify-center gap-2">
+                <label>Is Admin?</label>
+                <AdminToggleSwitch user_id={user.id} status={user.is_admin} />
+              </div>
             </AccordionPanel>
           </AccordionItem>
         ))}
@@ -217,7 +223,6 @@ function ManageUserAccordion({ userData }) {
         <h2 className="font-semibold px-4 py-2">LinkedIn</h2>
       </section>
       {userData && createAccordion(userData)}
-      {/* {mergedData && userAccordion} */}
       {/* SECTION  - Modal */}
       <section>
         <Transition.Root show={modalOpen} as={Fragment}>
