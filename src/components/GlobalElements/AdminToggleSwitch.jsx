@@ -16,7 +16,8 @@ function AdminToggleSwitch({ user_id, status }) {
     setIsSelected(!isSelected);
     const updatedStatus = await putUpdateUser(auth.token, id, userData);
     if (!updatedStatus) {
-      console.log("failed to update admin status");
+      console.error();
+      ("failed to update admin status");
     }
   };
 

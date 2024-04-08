@@ -114,14 +114,14 @@ function AboutPage() {
           <div className="flex flex-col sm:flex-row items-center py-8 justify-center">
             <a
               className="inline-flex w-full justify-center rounded-md mt-2  px-3 py-2 bg-orange-500 px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto"
-              href="./../public/downloads/She Code - Code of Conduct.pdf"
+              href="https://github.com/SheCodesAus/2024_bit_by_bit_frontend/blob/frontydevelopment/public/downloads/She%20Code%20-%20Code%20of%20Conduct.pdf"
               target="_blank"
             >
               Code of Conduct
             </a>
             <a
               className="inline-flex w-full justify-center rounded-md mt-2 px-3 py-2 bg-orange-500 px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto"
-              href="./../public/downloads/She Codes - Mentor Guidelines.pdf"
+              href="https://github.com/SheCodesAus/2024_bit_by_bit_frontend/blob/frontydevelopment/public/downloads/She%20Codes%20-%20Mentor%20Guidelines.pdf"
               target="_blank"
             >
               Mentor Guidlines
@@ -138,8 +138,8 @@ function AboutPage() {
           </h2>
 
           {/* PLUS PROGRAM */}
-          <article className="flex flex-col sm:flex-row items-center py-8">
-            <div id="PLUS PROGRAM" className="w-full sm:w-1/2 px-4 mb-4 sm:mb-0">
+          <article id="PLUS_PROGRAM" className="flex flex-col sm:flex-row items-center py-8">
+            <div className="w-full sm:w-1/2 px-4 mb-4 sm:mb-0">
               <h1 className="font-bold text-l pt-4">PLUS PROGRAM</h1>
               <p>
                 The Plus program caters to those aspiring for a tech career but
@@ -161,11 +161,11 @@ function AboutPage() {
           </article>
 
           {/* ONE DAY WORKSHOP */}
-          <article className="flex flex-col sm:flex-row items-center py-8 px-4 shadow-md">
+          <article id="ONE_DAY_WORKSHOP" className="flex flex-col sm:flex-row items-center py-8 px-4 shadow-md">
             <div className="w-full sm:w-1/2 mb-4 sm:mb-0 order-2 sm:order-1">
               <img id="SCbanner1" src="/imgs/SCbanner1.jpg" />
             </div>
-            <div id="ONE DAY WORKSHOP" className="w-full sm:w-1/2 order-1 sm:order-2 mb-4 sm:mb-0 px-0 sm:px-4">
+            <div className="w-full sm:w-1/2 order-1 sm:order-2 mb-4 sm:mb-0 px-0 sm:px-4">
               <h1 className="font-bold text-l pt-4">ONE DAY WORKSHOP</h1>
               <p>
                 Join us for our free one-day workshops held across Australia,
@@ -180,8 +180,8 @@ function AboutPage() {
           </article>
 
           {/* FLASH */}
-          <article className="flex flex-col sm:flex-row items-center py-8">
-            <div id="FLASH" className="w-full sm:w-1/2 px-4 mb-4 sm:mb-0">
+          <article id="FLASH" className="flex flex-col sm:flex-row items-center py-8">
+            <div className="w-full sm:w-1/2 px-4 mb-4 sm:mb-0">
               <h1 className="font-bold text-l pt-4">FLASH</h1>
               <p>
                 Flash is a concise one-week program designed to introduce the
