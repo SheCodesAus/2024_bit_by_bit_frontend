@@ -106,27 +106,32 @@ function AllEventsPage() {
           <h1 className="font-bold text-5xl">SHE CODES EVENTS</h1>
         </div>
 
+
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 justify-center mx-auto">
           {/* All Events Button */}
-          <button
-            onClick={() => setSelectedCity("")}
-            className={`px-4 py-2 rounded ${selectedCity === "" ? "bg-orange-500 text-white" : "bg-purple-500 text-white"}`}
-          >
-            All
-          </button>
+          <div className="col-span-2 sm:col-start-2 sm:col-span-2">
+            <button
+              onClick={() => setSelectedCity("")}
+              className={`w-full px-4 py-2 rounded ${selectedCity === "" ? "bg-orange-500 text-white" : "bg-purple-500 text-white"}`}
+            >
+              All
+            </button>
+          </div>
 
           {/* City Filter buttons */}
           {["Brisbane", "Perth", "Sydney", "Melbourne"].map((city) => (
-            <button
-              key={city}
-              onClick={() => setSelectedCity(city)}
-              className={`px-4 py-2 rounded ${selectedCity === city
-                ? "bg-orange-500 text-white"
-                : "bg-purple-500 text-white"
-                }`}
-            >
-              {city}
-            </button>
+            <div className="col-span-1 sm:row-start-1 sm:col-span-1">
+              <button
+                key={city}
+                onClick={() => setSelectedCity(city)}
+                className={`w-full px-4 py-2 rounded ${selectedCity === city
+                  ? "bg-orange-500 text-white"
+                  : "bg-purple-500 text-white"
+                  }`}
+              >
+                {city}
+              </button>
+            </div>
           ))}
         </div>
       </section>
@@ -144,7 +149,7 @@ function AllEventsPage() {
             )}
           </>
         )}
-        
+
 
         {/* TODO: create if statement for: if no events available, display text to say "XYZ" */}
         <style>
