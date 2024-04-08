@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 // import useUserProcess from "../../hooks/use-user-process";
 
 
+
 // COMPONENTS
 import ButtonElement from "../GlobalElements/Button";
 import { useNavbarContext } from "../../components/NavBarContext";
@@ -12,7 +13,8 @@ import { useNavbarContext } from "../../components/NavBarContext";
 // API
 import getUserProcess from "../../api/get-user-process";
 import putUpdateUserProcess from "../../api/put-update-userprocess";
-import putUpdateUser from "../../api/put-update-user";
+import getUser from "../../api/get-user";
+// import putUpdateUser from "../../api/put-update-user";
 
 function UpdateUserProcessForm() {
   const navigate = useNavigate();
@@ -21,17 +23,29 @@ function UpdateUserProcessForm() {
   const token = auth.token;
   const [userProcessError, setUserProcessError] = useState();
   const [userProcessDetails, setUserProcessDetails] = useState({});
+  const [mentorUsername, setMentorUsername] = useState(""); // State to store mentor's username
   const { isNavbarOpen } = useNavbarContext();
+
 
   useEffect(() => {
     getUserProcess(id, token)
       .then((process) => {
         setUserProcessDetails(process);
+        // After getting user process details, fetch the mentor's username
+        if (process.mentor) {
+          getUser(process.mentor) // Assuming process.mentor is the id of the mentor user
+            .then((mentorData) => {
+              setMentorUsername(mentorData.username);
+            })
+            .catch((error) => {
+              console.error("Error fetching mentor data:", error);
+            });
+        }
       })
       .catch((error) => {
         setUserProcessError(error);
       });
-  }, []);
+  }, [id, token]);
 
   const handleChange = (event) => {
     const { id, checked } = event.target;
@@ -62,10 +76,12 @@ function UpdateUserProcessForm() {
 
         {/* SECTION - User process information. */}
         <section className="w-full mb-4">
+
           <h2 className="text-2xl font-semibold mb-4 text-center pb-4 border-b border-orange-200">User Process Information</h2>
-          {/* <p className="text-4xl font-semibold mb-2">Username: {auth.username}</p> */}
+          <p className="text-4xl font-semibold mb-2">Mentor: {mentorUsername}</p>
           <h3 className="py-2 font-semibold">Onboarding Tasks:</h3>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+
             {/* Details */}
             <div>
               <label

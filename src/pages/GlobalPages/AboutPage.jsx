@@ -139,7 +139,7 @@ function AboutPage() {
 
           {/* PLUS PROGRAM */}
           <article className="flex flex-col sm:flex-row items-center py-8">
-            <div className="w-full sm:w-1/2 px-4 mb-4 sm:mb-0">
+            <div id="PLUS PROGRAM" className="w-full sm:w-1/2 px-4 mb-4 sm:mb-0">
               <h1 className="font-bold text-l pt-4">PLUS PROGRAM</h1>
               <p>
                 The Plus program caters to those aspiring for a tech career but
@@ -165,7 +165,7 @@ function AboutPage() {
             <div className="w-full sm:w-1/2 mb-4 sm:mb-0 order-2 sm:order-1">
               <img id="SCbanner1" src="/imgs/SCbanner1.jpg" />
             </div>
-            <div className="w-full sm:w-1/2 order-1 sm:order-2 mb-4 sm:mb-0 px-0 sm:px-4">
+            <div id="ONE DAY WORKSHOP" className="w-full sm:w-1/2 order-1 sm:order-2 mb-4 sm:mb-0 px-0 sm:px-4">
               <h1 className="font-bold text-l pt-4">ONE DAY WORKSHOP</h1>
               <p>
                 Join us for our free one-day workshops held across Australia,
@@ -181,7 +181,7 @@ function AboutPage() {
 
           {/* FLASH */}
           <article className="flex flex-col sm:flex-row items-center py-8">
-            <div className="w-full sm:w-1/2 px-4 mb-4 sm:mb-0">
+            <div id="FLASH" className="w-full sm:w-1/2 px-4 mb-4 sm:mb-0">
               <h1 className="font-bold text-l pt-4">FLASH</h1>
               <p>
                 Flash is a concise one-week program designed to introduce the
