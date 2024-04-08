@@ -17,7 +17,7 @@ function ProfilePage() {
   const { id } = useParams();
   const { isNavbarOpen } = useNavbarContext();
 
-  const [userData, setUserData] = useState();
+  const [userData, setUserData] = useState({});
   const [userError, setUserError] = useState();
   useEffect(() => {
     getUser(id)
@@ -93,21 +93,16 @@ function ProfilePage() {
       });
     });
 
-  {
-    /* sorting event cards in date order from left to right */
-  }
+  {/* sorting event cards in date order from left to right */}
   eventApplications.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   return (
     <main className={`min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"}`}>
       <section className="flex flex-col items-center justify-center">
         <div className="flex justify-center p-4 border-gray-300 mb-8 pt-16">
-          <h1 className="font-bold text-5xl ">hey there!</h1>
-          <img
-            id="wavingIcon"
-            src="/imgs/wavingIcon.png"
-            className="w-14 h-14"
-          />
+          <h1 className="font-bold text-5xl ">hey there, {userData.username}!</h1>
+          <img id="wavingIcon" src="/imgs/wavingIcon.png" className="w-14 h-14" />
+
         </div>
         {/* top half of page */}
         <section className="flex flex-col md:flex-row items-center justify-center w-full max-w-4xl px-4 py-2">
