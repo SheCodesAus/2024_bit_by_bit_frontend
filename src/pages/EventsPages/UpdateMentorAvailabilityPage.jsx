@@ -43,11 +43,6 @@ function UpdateMentorAvailabilityPage() {
     }
   }, [eventID]);
 
-  console.log("UPDATE EVENT MENTOR AVAILABILITY PAGE id: ", id);
-  console.log("UPDATE EVENT MENTOR AVAILABILITY PAGE mentorData: ", mentorData);
-  console.log("UPDATE EVENT MENTOR AVAILABILITY PAGE eventID: ", eventID);
-  console.log("UPDATE EVENT MENTOR AVAILABILITY PAGE eventData: ", eventData);
-
   return (
     <main
       className={`flex flex-col items-center justify-center min-h-screen ${

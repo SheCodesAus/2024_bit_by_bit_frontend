@@ -24,7 +24,6 @@ import AdminToggleSwitch from "../GlobalElements/AdminToggleSwitch";
 import deleteUser from "../../api/delete-user";
 
 function ManageUserAccordion({ userData }) {
-  console.log("userData in accordion: ", userData);
   const { auth } = useAuth();
   const [userToManage, setUserToManage] = useState();
   const navigate = useNavigate();
