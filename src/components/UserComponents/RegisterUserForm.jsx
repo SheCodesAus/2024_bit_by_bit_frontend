@@ -1,5 +1,5 @@
 // HOOKs
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth.js";
 import buttonElement from "../GlobalElements/Button.jsx";
@@ -35,7 +35,7 @@ function RegisterUserForm() {
   const [passwordValidation, setPasswordValidation] = useState(""); //to alert users if new PW not 'strong' enough
   const [retypePassword, setRetypePassword] = useState(""); //for advising if PW doesnt match when retyped
   const [retypePasswordValidation, setRetypePasswordValidation] = useState("");
-  const [referralCode, setReferralCode] = useState("")
+  const [referralCode, setReferralCode] = useState("");
 
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -49,34 +49,37 @@ function RegisterUserForm() {
       }
     } else if (id === "retypePassword") {
       setRetypePassword(value);
-      if (value !== password) {
-        setRetypePasswordValidation("Passwords do not match.");
-      } else {
-        setRetypePasswordValidation("");
-      }
     } else {
-      setUserDetails((prevUserDetails) => ({
-        ...prevUserDetails,
-        [id]: value,
+      setUserDetails(prev => ({
+        ...prev,
+        [id]: value
       }));
     }
   };
-  console.log(userDetails);
-  console.log("password: ", password);
+
+  useEffect(() => {
+    if (retypePassword !== password) {
+      setRetypePasswordValidation("Passwords do not match.");
+    } else {
+      setRetypePasswordValidation("");
+    }
+  }, [password, retypePassword]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (referralCode !== "cupcakes4days") {
-      alert("Incorrect referral code. Please enter the correct referral code to proceed.")
+      alert(
+        "Incorrect referral code. Please enter the correct referral code to proceed."
+      );
       return;
     }
 
-  //   // Added to handle the profile image update - Cathy. 
-  // const handleImageChange = (e) => {
-  //   let newData = { ...data };
-  //   newData["image_url"] = e.target.files[0];
-  //   setData(newData);
-  // };
+    //   // Added to handle the profile image update - Cathy.
+    // const handleImageChange = (e) => {
+    //   let newData = { ...data };
+    //   newData["image_url"] = e.target.files[0];
+    //   setData(newData);
+    // };
 
     if (
       userDetails.first_name &&
@@ -86,7 +89,6 @@ function RegisterUserForm() {
       password
     ) {
       postCreateUser(userDetails, password).then((newUser) => {
-        console.log("new user: ", newUser);
         const userProcessDetails = {
           mentor: newUser.id,
           user_onboarding_task_slack: false,
@@ -101,10 +103,7 @@ function RegisterUserForm() {
         };
 
         postCreateUserProcess(userProcessDetails)
-          .then(
-            console.log("new user: ", newUser),
-            postLogin(newUser.username, password)
-          )
+          .then(postLogin(newUser.username, password))
           .then((response) => {
             window.localStorage.setItem("token", response.token);
             window.localStorage.setItem("user_id", response.user_id);
@@ -165,6 +164,9 @@ function RegisterUserForm() {
                 onChange={handleChange}
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
+              {passwordValidation && (
+                <p className="mt-1 text-sm text-red-500">{passwordValidation}</p>
+              )}
             </div>
             <div>
               <label
@@ -179,10 +181,13 @@ function RegisterUserForm() {
                 name="retypePassword"
                 autoComplete="new-password"
                 placeholder="********"
-                value={password}
+                value={retypePassword}
                 onChange={handleChange}
                 className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
+              {retypePasswordValidation && (
+                <p className="mt-1 text-sm text-red-500">{retypePasswordValidation}</p>
+              )}
             </div>
             <div className="col-span-2 flex items-center justify-center">
               <label htmlFor="check">Show Password</label>
@@ -383,7 +388,7 @@ function RegisterUserForm() {
         </section>
         <section className="w-full mb-4">
           <h2 className="text-lg font-semibold mb-2">Referral Code</h2>
-          <div >
+          <div>
             <input
               id="referralCode"
               type="text"
@@ -394,7 +399,9 @@ function RegisterUserForm() {
               className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm"
               required
             />
-            <p className="block text-sm font-medium text-gray-700 mr-2" >Please check your mentor invitation email for your referral code. </p>
+            <p className="block text-sm font-medium text-gray-700 mr-2">
+              Please check your mentor invitation email for your referral code.{" "}
+            </p>
           </div>
         </section>
         {/* SECTION 5 - Submit */}

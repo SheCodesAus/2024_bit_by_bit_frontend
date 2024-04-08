@@ -1,149 +1,137 @@
 // HOOKS
 import { useEffect, useState } from "react";
-import useUser from "../../hooks/use-user.js";
-import { useAuth } from "../../hooks/use-auth.js";
 import { useParams } from "react-router-dom";
 
 //COMPONENTS
 import ProfileOverview from "../../components/UserComponents/ProfileOverview";
 import ProfileInformation from "../../components/UserComponents/ProfileDetails";
 import { useNavbarContext } from "../../components/NavBarContext";
-import EventCard from "../../components/GlobalElements/EventCard";
+import ProfileEventCard from "../../components/UserComponents/Profile-EventCard.jsx";
 
 // API
-import getUserProcess from "../../api/get-user-process.js";
+import getUser from "../../api/get-user.js";
+import getEvents from "../../api/get-events.js";
+import getEventMentors from "../../api/get-event-mentors.js";
 
 function ProfilePage() {
-  const { auth } = useAuth();
-  const { user } = useUser(auth);
-  const { token } = useUser(auth.token);
   const { id } = useParams();
-  console.log("user: ", user);
   const { isNavbarOpen } = useNavbarContext();
-  const [selectedCity] = useState("");
 
-  // Example events data
-  const events = [
-    {
-      id: 1,
-      program: "Event 1",
-      date: "1/1/2024",
-      city: "brisbane",
-      time: "9am - 1pm",
-    },
-  ];
-
-  const [userProcess, setUserProcess] = useState();
-  const [processError, setProcessError] = useState();
-
+  const [userData, setUserData] = useState();
+  const [userError, setUserError] = useState();
   useEffect(() => {
-    getUserProcess(id, token)
-      .then((processes) => {
-        setUserProcess(processes);
+    getUser(id)
+      .then((user) => {
+        setUserData(user);
       })
       .catch((error) => {
-        setProcessError(error);
+        setUserError(error);
       });
-  }, [id, token]);
-  console.log("userProcess: ", userProcess);
+  }, []);
 
-  const filteredEvents = selectedCity
-    ? events.filter(
-      (event) => event.location.toLowerCase() === selectedCity.toLowerCase()
-    )
-    : events;
+  // REGISTERED EVENTS
 
-  // const userProcess = {
-  //   user_onboarding_task: {
-  //     "Slack provided": false,
-  //     "LinkedIn provided": true,
-  //     "Mentor code of conduct provided": false,
-  //     "Mentor t-shirt provided": false,
-  //   },
-  //   user_offboarding_task: {
-  //     "Feedback asked for": true,
-  //     "Feedback recieved": true,
-  //     "Mentor t-shirt returned": false,
-  //   },
-  // };
+  const [eventMentors, setEventMentors] = useState();
+  const [mentorsError, setMentorsError] = useState();
+  useEffect(() => {
+    getEventMentors(id)
+      .then((mentors) => {
+        setEventMentors(mentors);
+      })
+      .catch((error) => {
+        setMentorsError(error);
+      });
+  }, []);
 
-  // const [isOnboardingChecked, setIsOnboardingChecked] = useState({
-  //   ...userProcess.user_onboarding_task,
-  // });
+  const [eventData, setEventData] = useState();
+  const [EventError, setEventError] = useState();
+  useEffect(() => {
+    getEvents()
+      .then((event) => {
+        setEventData(event);
+      })
+      .catch((error) => {
+        setEventError(error);
+      });
+  }, []);
+
+  let mentorApplications = [];
+  eventMentors &&
+    userData &&
+    eventMentors.map((mentor) => {
+      if (mentor.mentor_id == userData.id) {
+        const addApplication = {
+          id: mentor.id,
+          user_id: userData.id,
+          event_id: mentor.event_id,
+          role_requested: mentor.role_requested,
+          role_assigned: mentor.role_assigned,
+        };
+        mentorApplications.push(addApplication);
+      }
+    });
+  console.log("mentorApplications: ", mentorApplications);
+
+  let eventApplications = [];
+  mentorApplications.length > 0 &&
+    eventData &&
+    mentorApplications.map((mentor) => {
+      eventData.map((event) => {
+        if (mentor.event_id == event.id) {
+          const addEventApplication = {
+            mentor_id: mentor.id,
+            event_id: mentor.event_id,
+            user_id: mentor.user_id,
+            name: event.event_name,
+            location: event.location,
+            date: event.event_start_date,
+            type: event.event_type,
+            role_requested: mentor.role_requested,
+            role_assigned: mentor.role_assigned,
+          };
+          eventApplications.push(addEventApplication);
+        }
+      });
+    });
+
+  {/* sorting event cards in date order from left to right */ }
+  eventApplications.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   return (
-    <main
-      className={`min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"
-        } flex flex-col items-center`}
-    >
-      <div className="flex justify-center p-4 border-gray-300 mb-8 pt-16">
-        <h1 className="font-bold text-5xl ">hey there, {user?.username}!</h1>
-        <img id="wavingIcon" src="/imgs/wavingIcon.png" className="w-14 h-14" />
-      </div>
-      {/* top half of page */}
-      <section className="flex flex-col md:flex-row w-full max-w-4xl p-4">
-        {/* LHS top half - image */}
-        <div className="md:w-1/2 md:pr-32">
-          {/* add section for profile photo - update buttons and image? */}
-          <ProfileOverview />
-        </div>
-        {/* LHS top half - user details */}
-        <div className="bg-gradient-to-b from-slate-100 to-stone-200 rounded hover:rounded-lg sm:w-2/3">
-          <ProfileInformation />
-        </div>
-      </section>
+    <main className={`min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"}`}>
 
-      <section className="max-w-4xl mx-auto text-center border-t p-4 border-gray-300 mt-4">
-        <h2 className="font-bold text-xl pb-4">Mentor Onboarding Checklist</h2>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
-          <div className="flex flex-col items-center justify-center">
-            <input
-              type="checkbox"
-              checked={userProcess?.user_onboarding_task_slack}
-              className="w-6 h-6 block mb-2"
-              disabled={!auth.is_admin}
-            />
-            <label>Slack username provided</label>
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <input
-              type="checkbox"
-              checked={userProcess?.user_onboarding_task_linkedin}
-              className="w-6 h-6 block mb-2"
-              readOnly={!auth.is_admin}
-            />
-            <label>LinkedIn URL Provided</label>
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <input
-              type="checkbox"
-              checked={userProcess?.user_onboarding_task_CodeofConduct}
-              className="w-6 h-6 block mb-2"
-              readOnly={!auth.is_admin}
-            />
-            <label>Read the Code of Conduct</label>
-          </div>
-          <div className="flex flex-col items-center justify-center">
-            <input
-              type="checkbox"
-              checked={userProcess?.user_onboarding_task_tshirtsent}
-              className="w-6 h-6 block mb-2"
-              readOnly={!auth.is_admin}
-            />
-            <label>Mentor t-shirt Received</label>
-          </div>
+      <section className="flex flex-col items-center justify-center">
+        <div className="flex justify-center p-4 border-gray-300 mb-8 pt-16">
+          <h1 className="font-bold text-5xl ">hey there!</h1>
+          <img id="wavingIcon" src="/imgs/wavingIcon.png" className="w-14 h-14" />
         </div>
+        {/* top half of page */}
+        <section className="flex flex-col md:flex-row items-center justify-center w-full max-w-4xl px-4 py-2">
+          {/* LHS top half - image */}
+          <div className="md:w-1/2 md:pr-32">
+            {/* add section for profile photo - update buttons and image? */}
+            <ProfileOverview />
+          </div>
+          {/* LHS top half - user details */}
+          <div className="bg-gradient-to-b from-slate-100 to-stone-200 rounded hover:rounded-lg sm:w-2/3">
+            <ProfileInformation />
+          </div>
+        </section>
       </section>
 
       {/* bottom half - event cards */}
-      <section className="w-full max-w-4xl text-center border-t p-4 border-gray-300 mt-4">
+      <section className="event-card bg-white shadow-md p-8 rounded-lg flex-none border-t p-4 border-gray-300 mt-4" style={{ minWidth: "240px", overflowX: "auto" }}>
+        <style>
+          {`::-webkit-scrollbar {width: 8px;} ::-webkit-scrollbar-track {background: #ffffff;} ::-webkit-scrollbar-thumb {background-color: orange; border-radius: 10px; border: 2px solid #ffffff;}`}
+        </style>
         <h1 className="font-bold text-2xl ">Your Upcoming Events</h1>
-        <div className="flex flex-wrap justify-center gap-4 pt-4">
-          {filteredEvents.map((eventData) => (
-            <EventCard key={eventData.id} eventData={eventData} />
+        <div className="flex flex-row overflow-x-auto gap-4 pt-4">
+          {eventApplications.map((event, index) => (
+            <ProfileEventCard key={index} eventData={event} />
           ))}
         </div>
       </section>
+
     </main>
   );
 }

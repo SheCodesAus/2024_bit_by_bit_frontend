@@ -135,7 +135,7 @@ function AllEventsPage() {
         {/* Restricted to only admin view for create event button */}
         {auth.token && (
           <>
-            {auth.is_admin == true && (
+            {auth.is_admin === 'true' && (
               <Link
                 to="/create-event"
                 className="inline-flex w-full justify-center rounded-md px-3 py-2 bg-orange-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto">
@@ -147,6 +147,9 @@ function AllEventsPage() {
         
 
         {/* TODO: create if statement for: if no events available, display text to say "XYZ" */}
+        <style>
+          {`::-webkit-scrollbar {width: 8px;} ::-webkit-scrollbar-track {background: #ffffff;} ::-webkit-scrollbar-thumb {background-color: orange; border-radius: 10px; border: 2px solid #ffffff;}`}
+        </style>
         <div className="flex flex-row overflow-x-auto gap-4 pt-4">
           {filteredEvents.map((eventData) => (
             <EventCard key={eventData.id} eventData={eventData} />

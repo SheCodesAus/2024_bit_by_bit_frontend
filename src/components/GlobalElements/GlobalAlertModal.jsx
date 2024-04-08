@@ -11,7 +11,6 @@ import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 // import deleteUserProfile from ;
 
 function globalAlertModal({ title, message, btnTxt, btnAPICall }) {
-  console.log(btnAPICall);
   const navigate = useNavigate();
   const [modalOpen, setModalOpen] = useState(true);
   const cancelBtnRef = useRef(null);
@@ -20,14 +19,7 @@ function globalAlertModal({ title, message, btnTxt, btnAPICall }) {
   const handleRedBtnClick = async (event) => {
     setModalOpen(false);
 
-    console.log("MODAL RED BUTTON");
     await btnAPICall().then(navigate("/"));
-
-    // const {data} = await deleteUserProfile({
-    //   user_id: auth.user_id,
-    // });
-    // localStorage.removeItem("token");
-    // localStorage.removeItem("user_id");
   };
 
   return (

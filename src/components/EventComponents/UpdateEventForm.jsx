@@ -14,7 +14,6 @@ function UpdateEventForm() {
   const navigate = useNavigate();
   const { auth } = useAuth();
   const { id } = useParams();
-  console.log("event id = ", id);
   const { event } = useEvent(id);
   const token = auth.token;
 
@@ -44,8 +43,6 @@ function UpdateEventForm() {
     }
   }, [event]);
 
-  console.log(eventDetails);
-
   const handleChange = (event) => {
     const { id, value } = event.target;
     setEventDetails((prevEventDetails) => ({
@@ -74,7 +71,7 @@ function UpdateEventForm() {
         <section className="w-full mb-4">
           {/* HEADER */}
           <section className="border-b p-4 border-gray-300">
-            <h2 className="text-lg font-semibold mb-2">Event Information</h2>
+            <h2 className="text-4xl font-bold mb-2">UPDATE EVENT INFORMATION</h2>
             <p className="mb-3 ">
               Ensure all event details are clear enough that a new mentor will
               understand the process! When organising events with multiple
