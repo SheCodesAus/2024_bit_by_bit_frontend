@@ -52,7 +52,7 @@ function CreateEventForm() {
       eventDetails.owner
     ) {
       postCreateEvent(eventDetails).then((newEvent) => {
-        navigate(`/events/${newEvent.id}`);
+        navigate(`/events/`);
       });
     }
   };
