@@ -114,14 +114,14 @@ function AboutPage() {
           <div className="flex flex-col sm:flex-row items-center py-8 justify-center">
             <a
               className="inline-flex w-full justify-center rounded-md mt-2  px-3 py-2 bg-orange-500 px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto"
-              href="./../public/downloads/She Code - Code of Conduct.pdf"
+              href="https://github.com/SheCodesAus/2024_bit_by_bit_frontend/blob/frontydevelopment/public/downloads/She%20Code%20-%20Code%20of%20Conduct.pdf"
               target="_blank"
             >
               Code of Conduct
             </a>
             <a
               className="inline-flex w-full justify-center rounded-md mt-2 px-3 py-2 bg-orange-500 px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto"
-              href="./../public/downloads/She Codes - Mentor Guidelines.pdf"
+              href="https://github.com/SheCodesAus/2024_bit_by_bit_frontend/blob/frontydevelopment/public/downloads/She%20Codes%20-%20Mentor%20Guidelines.pdf"
               target="_blank"
             >
               Mentor Guidlines

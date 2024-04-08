@@ -6,6 +6,7 @@ import useEvent from "../../hooks/use-event";
 
 // API
 import putUpdateEvent from "../../api/put-update-event";
+import deleteEvent from "../../api/delete-event";
 
 // COMPONENTS
 import ButtonElement from "../GlobalElements/Button";
@@ -58,6 +59,20 @@ function UpdateEventForm() {
       navigate("/events");
     } else {
       console.error("Failed to update event");
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      const token = auth.token; 
+      const deleted = await deleteEvent({ event_id: id, token }); 
+      if (deleted) {
+        navigate("/events");
+      } else {
+        console.error("Failed to delete event");
+      }
+    } catch (error) {
+      console.error("Error deleting event:", error);
     }
   };
 
@@ -194,6 +209,7 @@ function UpdateEventForm() {
         {/* SECTION  - Submit */}
         <section>
           <ButtonElement message="Submit Changes" btnClick={handleSubmit} />
+          <ButtonElement message="Delete" btnClick={handleDelete} />
         </section>
       </form>
     </main>
