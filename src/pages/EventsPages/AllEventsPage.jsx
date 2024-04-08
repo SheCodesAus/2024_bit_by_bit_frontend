@@ -116,7 +116,7 @@ function AllEventsPage() {
           </button>
 
           {/* City Filter buttons */}
-          {["Brisbane", "Perth", "Sydney"].map((city) => (
+          {["Brisbane", "Perth", "Sydney", "Melbourne"].map((city) => (
             <button
               key={city}
               onClick={() => setSelectedCity(city)}
