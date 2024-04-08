@@ -25,12 +25,11 @@ import ProfilePage from "./pages/UserPages/ProfilePage";
 import UpdateProfilePage from "./pages/UserPages/UpdateProfilePage";
 import ManageUsersPage from "./pages/UserPages/ManageUsersPage";
 import UpdateUserProcessPage from "./pages/UserPages/UpdateUserProcessPage.jsx";
-
+import UpdateMentorAvailabilityPage from "./pages/EventsPages/UpdateMentorAvailabilityPage.jsx";
 // COMPONENTS
 import { AuthProvider } from "./components/AuthProvider.jsx";
 import NavBar from "./components/GlobalElements/NavBar.jsx";
 import { NavbarProvider } from "./components/NavBarContext.jsx";
-
 
 const router = createBrowserRouter([
   {
@@ -51,12 +50,12 @@ const router = createBrowserRouter([
       { path: "/create-event", element: <CreateEventPage /> },
       { path: "/event/:id/update", element: <UpdateEventPage /> },
       { path: "/event/:id/schedule", element: <ScheduleEventMentorPage /> },
+      { path: "/mentor/:id/update", element: <UpdateMentorAvailabilityPage /> },
       { path: "/users/:id", element: <ProfilePage /> },
       { path: "/users/:id/update", element: <UpdateProfilePage /> },
       { path: "/users/manage", element: <ManageUsersPage /> },
       { path: "/user-process/:id", element: <UpdateUserProcessPage /> },
       { path: "/error", element: <ErrorPage /> },
-
     ],
   },
 ]);
