@@ -1,5 +1,6 @@
 // HOOKS
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { HashLink as Link } from 'react-router-hash-link';
 
 // ELEMENTS
 import { useNavbarContext } from "../../components/NavBarContext";
@@ -31,7 +32,7 @@ function HomePage() {
       <section className="flex flex-col sm:flex-row justify-center items-center border-b p-8 border-gray-300 mb-4">
         <div>
           <Link
-            to="/about"
+            to="/about#PLUS_PROGRAM"
             className="event-card bg-orange-400 shadow-md p-8 rounded-lg mx-4 my-2 sm:my-0 flex justify-center border border-orange-300 text-white text-xl font-bold"
             style={{ minWidth: "300px", cursor: "pointer" }}
           >
@@ -40,7 +41,7 @@ function HomePage() {
         </div>
         <div>
           <Link
-            to="/about"
+            to="/about#ONE_DAY_WORKSHOP"
             className="event-card bg-orange-400 shadow-md p-8 rounded-lg mx-4 my-2 sm:my-0 flex justify-center border border-orange-300 text-white text-xl font-bold"
             style={{ minWidth: "300px", cursor: "pointer" }}
           >
@@ -49,7 +50,7 @@ function HomePage() {
         </div>
         <div>
           <Link
-            to="/about"
+            to="/about#FLASH"
             className="event-card bg-orange-400 shadow-md p-8 rounded-lg mx-4 my-2 sm:my-0 flex justify-center border border-orange-300 text-white text-xl font-bold"
             style={{ minWidth: "300px", cursor: "pointer" }}
           >
