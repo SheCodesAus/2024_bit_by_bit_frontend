@@ -24,7 +24,6 @@ import AdminToggleSwitch from "../GlobalElements/AdminToggleSwitch";
 import deleteUser from "../../api/delete-user";
 
 function ManageUserAccordion({ userData }) {
-  console.log("userData in accordion: ", userData);
   const { auth } = useAuth();
   const [userToManage, setUserToManage] = useState();
   const navigate = useNavigate();
@@ -82,8 +81,8 @@ function ManageUserAccordion({ userData }) {
                 <div className="px-4 py-2">{user.last_name}</div>
                 <div className="px-4 py-2">{user.email}</div>
                 <div className="px-4 py-2">{user.contact_number}</div>
-                <div className="px-4 py-2">{user.linkedIn}</div>
                 <div className="px-4 py-2">{user.slack}</div>
+                <div className="px-4 py-2">{user.linkedin}</div>
               </Box>
               <AccordionIcon />
             </AccordionButton>

@@ -70,7 +70,6 @@ function ProfilePage() {
         mentorApplications.push(addApplication);
       }
     });
-  console.log("mentorApplications: ", mentorApplications);
 
   let eventApplications = [];
   mentorApplications.length > 0 &&
@@ -99,11 +98,11 @@ function ProfilePage() {
 
   return (
     <main className={`min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"}`}>
-
       <section className="flex flex-col items-center justify-center">
         <div className="flex justify-center p-4 border-gray-300 mb-8 pt-16">
           <h1 className="font-bold text-5xl ">hey there, {userData.username}!</h1>
           <img id="wavingIcon" src="/imgs/wavingIcon.png" className="w-14 h-14" />
+
         </div>
         {/* top half of page */}
         <section className="flex flex-col md:flex-row items-center justify-center w-full max-w-4xl px-4 py-2">
@@ -120,7 +119,10 @@ function ProfilePage() {
       </section>
 
       {/* bottom half - event cards */}
-      <section className="event-card bg-white shadow-md p-8 rounded-lg flex-none border-t p-4 border-gray-300 mt-4" style={{ minWidth: "240px", overflowX: "auto" }}>
+      <section
+        className="event-card bg-white shadow-md p-8 rounded-lg flex-none border-t p-4 border-gray-300 mt-4"
+        style={{ minWidth: "240px", overflowX: "auto" }}
+      >
         <style>
           {`::-webkit-scrollbar {width: 8px;} ::-webkit-scrollbar-track {background: #ffffff;} ::-webkit-scrollbar-thumb {background-color: orange; border-radius: 10px; border: 2px solid #ffffff;}`}
         </style>
@@ -131,7 +133,6 @@ function ProfilePage() {
           ))}
         </div>
       </section>
-
     </main>
   );
 }
