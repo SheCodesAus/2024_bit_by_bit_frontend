@@ -5,13 +5,15 @@ import { useNavigate, useParams } from "react-router-dom";
 // import useUserProcess from "../../hooks/use-user-process";
 
 
+
 // COMPONENTS
 import ButtonElement from "../GlobalElements/Button";
 
 // API
 import getUserProcess from "../../api/get-user-process";
 import putUpdateUserProcess from "../../api/put-update-userprocess";
-import putUpdateUser from "../../api/put-update-user";
+import getUser from "../../api/get-user";
+// import putUpdateUser from "../../api/put-update-user";
 
 function UpdateUserProcessForm() {
   const navigate = useNavigate();
@@ -20,16 +22,28 @@ function UpdateUserProcessForm() {
   const token = auth.token;
   const [userProcessError, setUserProcessError] = useState();
   const [userProcessDetails, setUserProcessDetails] = useState({});
+  const [mentorUsername, setMentorUsername] = useState(""); // State to store mentor's username
+
 
   useEffect(() => {
     getUserProcess(id, token)
       .then((process) => {
         setUserProcessDetails(process);
+        // After getting user process details, fetch the mentor's username
+        if (process.mentor) {
+          getUser(process.mentor) // Assuming process.mentor is the id of the mentor user
+            .then((mentorData) => {
+              setMentorUsername(mentorData.username);
+            })
+            .catch((error) => {
+              console.error("Error fetching mentor data:", error);
+            });
+        }
       })
       .catch((error) => {
         setUserProcessError(error);
       });
-  }, []);
+  }, [id, token]);
 
   const handleChange = (event) => {
     const { id, checked } = event.target;
@@ -63,7 +77,7 @@ function UpdateUserProcessForm() {
         {/* SECTION - User process information. */}
         <section className="w-full mb-4">
           <h2 className="text-lg font-semibold mb-2">User Process Information</h2>
-          <p className="text-lg font-semibold mb-2">Username: {auth.username}</p>
+          <p className="text-lg font-semibold mb-2">Mentor: {mentorUsername}</p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {/* Details */}
             <div>
