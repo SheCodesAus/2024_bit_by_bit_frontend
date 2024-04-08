@@ -10,10 +10,9 @@ import putUpdateEventMentor from "../../api/put-update-event-mentor";
 import getUser from "../../api/get-user";
 
 function UpdateMentorAvailabilityForm({ mentorData }) {
-  console.log("UPDATE EVENT MENTOR AVAILABILITY FORM mentorData: ", mentorData);
   const navigate = useNavigate();
   const { id } = useParams();
-  const [mentorDetails, setMentorDetails] = useState(mentorData);
+  const [mentorDetails, setMentorDetails] = useState();
   const [mentorUsername, setMentorUsername] = useState(""); // State to store mentor's username
   const mentor_id = mentorData?.mentor_id;
 
@@ -24,13 +23,6 @@ function UpdateMentorAvailabilityForm({ mentorData }) {
       });
     }
   });
-
-  console.log("UPDATE EVENT MENTOR AVAILABILITY FORM id: ", id);
-  console.log("UPDATE EVENT MENTOR AVAILABILITY FORM mentor_id: ", mentor_id);
-  console.log(
-    "UPDATE EVENT MENTOR AVAILABILITY FORM userDetails: ",
-    mentorDetails
-  );
 
   const handleChange = (event) => {
     const { id, checked } = event.target;
@@ -62,7 +54,7 @@ function UpdateMentorAvailabilityForm({ mentorData }) {
 
   return (
     <main className="flex flex-col items-center justify-center w-full">
-      <form className="max-w-4xl w-full">
+      <form onSubmit={handleSubmit} className="max-w-4xl w-full">
         {/* SECTION - Mentor Application information. */}
         <section className="w-full mb-4">
           <h2 className="text-2xl font-semibold mb-4 text-center pb-4 border-b border-orange-200">
@@ -108,17 +100,17 @@ function UpdateMentorAvailabilityForm({ mentorData }) {
             {/* Details */}
             <div>
               <label
-                htmlFor="event_onboarding_task_slack"
+                htmlFor="event_onboarding_task_slackinvite"
                 className="block text-sm font-medium text-gray-700"
               >
                 Slack
               </label>
               <input
                 type="checkbox"
-                name="event_onboarding_task_slack"
-                id="event_onboarding_task_slack"
+                name="event_onboarding_task_slackinvite"
+                id="event_onboarding_task_slackinvite"
                 onChange={handleChange}
-                checked={mentorData?.event_onboarding_task_slack}
+                checked={mentorData?.event_onboarding_task_slackinvite}
                 className="mt-1 block px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm"
               />
             </div>
@@ -172,17 +164,17 @@ function UpdateMentorAvailabilityForm({ mentorData }) {
             </div>
             <div>
               <label
-                htmlFor="event_onboarding_task_bio"
+                htmlFor="event_onboarding_task_mentorbio"
                 className="block text-sm font-medium text-gray-700"
               >
                 Mentor bio provided?
               </label>
               <input
                 type="checkbox"
-                name="event_onboarding_task_bio"
-                id="event_onboarding_task_bio"
+                name="event_onboarding_task_mentorbio"
+                id="event_onboarding_task_mentorbio"
                 onChange={handleChange}
-                checked={mentorData?.event_onboarding_task_bio}
+                checked={mentorData?.event_onboarding_task_mentorbio}
                 className="mt-1 block px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm"
               />
             </div>
@@ -220,17 +212,17 @@ function UpdateMentorAvailabilityForm({ mentorData }) {
             </div>
             <div>
               <label
-                htmlFor="event_onboarding_task_createimageasset"
+                htmlFor="event_onboarding_task_createimgasset"
                 className="block text-sm font-medium text-gray-700"
               >
                 Image asset created?
               </label>
               <input
                 type="checkbox"
-                name="event_onboarding_task_createimageasset"
-                id="event_onboarding_task_createimageasset"
+                name="event_onboarding_task_createimgasset"
+                id="event_onboarding_task_createimgasset"
                 onChange={handleChange}
-                checked={mentorData?.event_onboarding_task_createimageasset}
+                checked={mentorData?.event_onboarding_task_createimgasset}
                 className="mt-1 block px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm"
               />
             </div>
@@ -241,17 +233,17 @@ function UpdateMentorAvailabilityForm({ mentorData }) {
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             <div>
               <label
-                htmlFor="event_offboarding_task_feedbackrecieved"
+                htmlFor="event_offboarding_task_feedbackreceived"
                 className="block text-sm font-medium text-gray-700"
               >
                 Feedback recieved?
               </label>
               <input
                 type="checkbox"
-                name="event_offboarding_task_feedbackrecieved"
-                id="event_offboarding_task_feedbackrecieved"
+                name="event_offboarding_task_feedbackreceived"
+                id="event_offboarding_task_feedbackreceived"
                 onChange={handleChange}
-                checked={mentorData?.event_offboarding_task_feedbackrecieved}
+                checked={mentorData?.event_offboarding_task_feedbackreceived}
                 className="mt-1 block px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm sm:text-sm"
               />
             </div>

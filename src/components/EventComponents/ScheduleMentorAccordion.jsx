@@ -15,6 +15,7 @@ import { Link, useNavigate } from "react-router-dom";
 // STYLE/TAILWIND
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import classNames from "classnames";
 
 // COMPONENTS
 import Button from "../GlobalElements/Button";
@@ -22,7 +23,8 @@ import Button from "../GlobalElements/Button";
 // API
 import deleteMentor from "../../api/delete-eventMentor";
 
-function ManageUserAccordion({ eventData, userData, mentorData }) {
+function ManageUserAccordion({ userData, mentorData }) {
+  const navigate = useNavigate();
   const { auth } = useAuth();
   const [mentorToManage, setMentorToManage] = useState();
 
@@ -34,6 +36,7 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
         if (mentor.mentor_id == user.id) {
           const addMentor = {
             id: mentor.id,
+            user_id: mentor.mentor_id,
             name: `${user.first_name} ${user.last_name}`,
             email: user.email,
             slack: user.slack,
@@ -51,7 +54,7 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
               mentor.event_onboarding_task_buildinginformation,
             offboarding_invoicesent: mentor.event_offboarding_task_invoicesent,
             offboarding_task_feedbackreceived:
-              mentor.event_offboarding_task_feedbackreceived,
+              mentor.offboarding_task_feedbackreceived,
           };
           mentors.push(addMentor);
         }
@@ -82,13 +85,10 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
     setModalOpen(false);
   };
 
-  //UPDATE BUTTON //FIXME: this has not been updated at all
+  //UPDATE BUTTON
   const updateMessage = "Update Availability";
-  const updateBtnClick = (event) => {
-    event.preventDefault();
-    setTimeout(() => {
-      window.location.reload();
-    }, 3000);
+  const updateBtnClick = (id) => {
+    navigate(`/mentor/${id}/update`);
   };
 
   //DELETE BUTTON
@@ -113,7 +113,19 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
                 <div className="px-4 py-2"> {m.name}</div>
                 <div className="px-4 py-2">{m.email}</div>
                 <div className="px-4 py-2">{m.role_requested}</div>
-                <div className="px-4 py-2">{m.role_assigned}</div>
+                <div
+                  className={classNames(
+                    "px-4 py-2 font-bold",
+                    {
+                      "text-red-500 ": m.role_assigned === "Unassigned",
+                    },
+                    {
+                      "text-green-500 ": m.role_assigned != "Unassigned",
+                    }
+                  )}
+                >
+                  {m.role_assigned}
+                </div>
               </Box>
               <AccordionIcon />
             </AccordionButton>
@@ -123,72 +135,106 @@ function ManageUserAccordion({ eventData, userData, mentorData }) {
                 <Box as="span" flex="1" textAlign="left"></Box>
               </AccordionButton>
             </h2>
-            <AccordionPanel pb={4} className="flex bg-orange-300">
+            <AccordionPanel p={4} className="flex flex-col bg-orange-300">
               <Box as="span" flex="1" textAlign="left"></Box>
               {/* ONBOARDING TASKS */}
-              <div className="">
-                <h2 className="font-semibold">Onboarding tasks</h2>
+              <div className="m-4">
+                <h2 className="font-semibold">Event Onboarding tasks</h2>
                 <div className="flex">
                   <div className="grid grid-cols-1 px-4 py-2">
                     <label>Slack link Provided?</label>
-                    <input type="checkbox" checked={m.onboarding_task_slack} />
-                  </div>
-                  <div className="grid grid-cols-1  px-4 py-2">
-                    <label>LinkedIn link Provided?</label>
                     <input
                       type="checkbox"
-                      checked={m.onboarding_task_linkedin}
+                      readOnly={true}
+                      checked={m.onboarding_slack}
                     />
                   </div>
                   <div className="grid grid-cols-1 px-4 py-2">
-                    <label>Mentor Code of Conduct provided?</label>
+                    <label>LMS invite Provided?</label>
                     <input
                       type="checkbox"
-                      checked={m.onboarding_task_CodeofConduct}
+                      readOnly={true}
+                      checked={m.onboarding_lms}
                     />
                   </div>
                   <div className="grid grid-cols-1 px-4 py-2">
-                    <label>Mentor t-shirt provided?</label>
+                    <label>Google Calendar invite Provided?</label>
                     <input
                       type="checkbox"
-                      checked={m.onboarding_task_tshirtsent}
+                      readOnly={true}
+                      checked={m.onboarding_google}
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 px-4 py-2">
+                    <label>Contract provided?</label>
+                    <input
+                      type="checkbox"
+                      readOnly={true}
+                      checked={m.onboarding_contract}
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 px-4 py-2">
+                    <label>Mentor bio provided?</label>
+                    <input
+                      type="checkbox"
+                      readOnly={true}
+                      checked={m.onboarding_bio}
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 px-4 py-2">
+                    <label>Dates reconfirmed?</label>
+                    <input
+                      type="checkbox"
+                      readOnly={true}
+                      checked={m.onboarding_dates}
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 px-4 py-2">
+                    <label>Building Information provided?</label>
+                    <input
+                      type="checkbox"
+                      readOnly={true}
+                      checked={m.onboarding_buildinginformation}
+                    />
+                  </div>
+                  <div className="grid grid-cols-1 px-4 py-2">
+                    <label>Image asset created?</label>
+                    <input
+                      type="checkbox"
+                      readOnly={true}
+                      checked={m.onboarding_img}
                     />
                   </div>
                 </div>
               </div>
               {/* OFFBOARDING TASKS */}
-              <div className="">
-                <h2 className="font-semibold">Offboarding tasks</h2>
+              <div className="m-4">
+                <h2 className="font-semibold">Event Offboarding tasks</h2>
                 <div className="flex">
                   <div className="grid grid-cols-1 px-4 py-2">
-                    <label>Feedback Requested?</label>
+                    <label>Feedback Received?</label>
                     <input
                       type="checkbox"
-                      checked={m.offboarding_task_feedbackrequested}
-                    />
-                  </div>
-                  <div className="grid grid-cols-1  px-4 py-2">
-                    <label>Feedback Recieved?</label>
-                    <input
-                      type="checkbox"
+                      readOnly={true}
                       checked={m.offboarding_task_feedbackreceived}
                     />
                   </div>
                   <div className="grid grid-cols-1 px-4 py-2">
-                    <label>Mentor t-shirt returned?</label>
+                    <label>Invoice recieved?</label>
                     <input
                       type="checkbox"
-                      checked={m.offboarding_task_tshirtreceived}
+                      readOnly={true}
+                      checked={m.offboarding_invoicesent}
                     />
                   </div>
                 </div>
               </div>
 
               {/* UPDATE/DELETE */}
-              <div className="m-4 flex flex-col justify-center gap-2">
+              <div className="m-4 flex justify-center gap-2">
                 <Button
                   message={updateMessage}
-                  btnClick={updateBtnClick} //TODO: - need to pass the user id from this function.
+                  btnClick={() => updateBtnClick(m.id)} //TODO: - need to pass the user id from this function.
                 />
                 <Button
                   message={deleteMessage}
