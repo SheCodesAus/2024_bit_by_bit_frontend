@@ -1,4 +1,4 @@
-import { Link, Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useParams, Navigate } from "react-router-dom";
 import { useAuth } from "../../hooks/use-auth";
 import { useState, useEffect } from "react";
 import { useNavbarContext } from "../NavBarContext";
@@ -41,7 +41,13 @@ function NavBar() {
     window.localStorage.removeItem("user_id");
     window.localStorage.removeItem("username");
     window.localStorage.removeItem("is_admin");
-    setAuth({ token: null, user_id: null, username: null });
+    window.localStorage.removeItem("is_authenticated");
+    setAuth({
+      token: null,
+      user_id: null,
+      username: null,
+      is_authenticated: false,
+    });
   };
 
   return (
@@ -170,7 +176,7 @@ function NavBar() {
           </div>
         </nav>
       </header>
-      <Outlet />
+      {auth.is_authenticated ? <Outlet /> : <Navigate to="/" replace />}
     </>
   );
 }
