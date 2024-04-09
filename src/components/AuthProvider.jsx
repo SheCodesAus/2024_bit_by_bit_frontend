@@ -7,6 +7,7 @@ export const AuthProvider = (props) => {
     user_id: window.localStorage.getItem("user_id"),
     username: window.localStorage.getItem("username"),
     is_admin: window.localStorage.getItem("is_admin"),
+    is_authenticated: window.localStorage.getItem("is_authenticated"),
   });
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>
