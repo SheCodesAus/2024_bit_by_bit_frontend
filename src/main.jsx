@@ -55,7 +55,7 @@ const router = createBrowserRouter([
       { path: "/users/:id/update", element: <UpdateProfilePage /> },
       { path: "/users/manage", element: <ManageUsersPage /> },
       { path: "/user-process/:id", element: <UpdateUserProcessPage /> },
-      { path: "/error", element: <ErrorPage /> },
+      { path: "*", element: <ErrorPage /> },
     ],
   },
 ]);
