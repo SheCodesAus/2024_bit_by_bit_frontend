@@ -18,9 +18,11 @@ function AboutPage() {
   const { isNavbarOpen } = useNavbarContext();
 
   return (
-
-    <main className={`flex flex-col items-center justify-center min-h-screen ${isNavbarOpen ? "ml-60" : "ml-20"}`}>
-
+    <main
+      className={`flex flex-col items-center justify-center min-h-screen ${
+        isNavbarOpen ? "ml-60" : "ml-20"
+      }`}
+    >
       <style>
         {`::-webkit-scrollbar {width: 8px;} ::-webkit-scrollbar-track {background: #ffffff;} ::-webkit-scrollbar-thumb {background-color: orange; border-radius: 10px; border: 2px solid #ffffff;}`}
       </style>
@@ -114,14 +116,14 @@ function AboutPage() {
           <div className="flex flex-col sm:flex-row items-center py-8 justify-center">
             <a
               className="inline-flex w-full justify-center rounded-md mt-2  px-3 py-2 bg-orange-500 px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto"
-              href="https://github.com/SheCodesAus/2024_bit_by_bit_frontend/blob/frontydevelopment/public/downloads/She%20Code%20-%20Code%20of%20Conduct.pdf"
+              href="https://drive.google.com/file/d/1-uFmDw1EpTXnUrYdw4syKlX2sVxmpapo/view?usp=sharing"
               target="_blank"
             >
               Code of Conduct
             </a>
             <a
               className="inline-flex w-full justify-center rounded-md mt-2 px-3 py-2 bg-orange-500 px-3 py-2 text-base font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto"
-              href="https://github.com/SheCodesAus/2024_bit_by_bit_frontend/blob/frontydevelopment/public/downloads/She%20Codes%20-%20Mentor%20Guidelines.pdf"
+              href="https://drive.google.com/file/d/1J_kpF5KJUkMkDjjw5VEEeRqOnjG667T8/view?usp=sharing"
               target="_blank"
             >
               Mentor Guidlines
@@ -138,7 +140,10 @@ function AboutPage() {
           </h2>
 
           {/* PLUS PROGRAM */}
-          <article id="PLUS_PROGRAM" className="flex flex-col sm:flex-row items-center py-8">
+          <article
+            id="PLUS_PROGRAM"
+            className="flex flex-col sm:flex-row items-center py-8"
+          >
             <div className="w-full sm:w-1/2 px-4 mb-4 sm:mb-0">
               <h1 className="font-bold text-l pt-4">PLUS PROGRAM</h1>
               <p>
@@ -161,7 +166,10 @@ function AboutPage() {
           </article>
 
           {/* ONE DAY WORKSHOP */}
-          <article id="ONE_DAY_WORKSHOP" className="flex flex-col sm:flex-row items-center py-8 px-4 shadow-md">
+          <article
+            id="ONE_DAY_WORKSHOP"
+            className="flex flex-col sm:flex-row items-center py-8 px-4 shadow-md"
+          >
             <div className="w-full sm:w-1/2 mb-4 sm:mb-0 order-2 sm:order-1">
               <img id="SCbanner1" src="/imgs/SCbanner1.jpg" />
             </div>
@@ -180,7 +188,10 @@ function AboutPage() {
           </article>
 
           {/* FLASH */}
-          <article id="FLASH" className="flex flex-col sm:flex-row items-center py-8">
+          <article
+            id="FLASH"
+            className="flex flex-col sm:flex-row items-center py-8"
+          >
             <div className="w-full sm:w-1/2 px-4 mb-4 sm:mb-0">
               <h1 className="font-bold text-l pt-4">FLASH</h1>
               <p>
